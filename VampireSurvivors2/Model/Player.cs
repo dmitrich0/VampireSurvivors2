@@ -49,7 +49,7 @@ namespace VampireSurvivors2.Model
             _img = World.PlayerImage;
             _health = 100;
             _speed = 5;
-            _position = new PointF(100f, 100f);
+            _position = new PointF(800f, 400f);
             _size = new Size(World.PlayerImage.Width * 2, World.PlayerImage.Height * 2);
         }
 
@@ -58,8 +58,21 @@ namespace VampireSurvivors2.Model
             _health -= damage;
         }
 
+        public bool CanMove(KeyEventArgs key)
+        {
+            if (GameWindow.ActiveForm == null)
+                return false;
+            if (Math.Abs(Position.X - 0) < 3 && key.KeyCode == Keys.A
+                || Math.Abs(Position.X + Size.Width - GameWindow.ActiveForm.ClientSize.Width) < 3 && key.KeyCode == Keys.D
+                || Math.Abs(Position.Y - 0) < 3 && key.KeyCode == Keys.W
+                || Math.Abs(Position.Y + Size.Height - GameWindow.ActiveForm.ClientSize.Height) < 3 && key.KeyCode == Keys.S)
+                return false;
+            return true;
+        }
+
         public void Move(object sender, KeyEventArgs e)
         {
+            if (!CanMove(e)) return;
             switch (e.KeyCode)
             {
                 case Keys.W:

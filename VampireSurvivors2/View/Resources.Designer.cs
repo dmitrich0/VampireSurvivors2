@@ -73,9 +73,9 @@ namespace VampireSurvivors2.View {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap player {
+        internal static System.Drawing.Bitmap idle_down {
             get {
-                object obj = ResourceManager.GetObject("player", resourceCulture);
+                object obj = ResourceManager.GetObject("idle_down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

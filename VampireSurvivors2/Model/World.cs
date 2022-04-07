@@ -19,7 +19,7 @@ namespace VampireSurvivors2.Model
 
     internal static class World
     {
-        public static Image PlayerImage = View.Resources.player;
+        public static Image PlayerImage = View.Resources.idle_down;
         public static Image BatImage = View.Resources.bat;
         public static List<Bat> Bats = new List<Bat>();
         public static Player Player = new Player();

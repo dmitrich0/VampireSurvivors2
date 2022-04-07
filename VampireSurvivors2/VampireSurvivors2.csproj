@@ -96,10 +96,13 @@
     <Folder Include="View\Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\idle_down.png" />
+    <None Include="Resources\bat-face %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bat-face %283%29.png" />
+    <None Include="Resources\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle_down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

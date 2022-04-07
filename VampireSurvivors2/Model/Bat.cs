@@ -17,6 +17,7 @@ namespace VampireSurvivors2.Model
         private Size _size;
         private int _currentCooldown;
         private readonly int _cooldown;
+        private readonly int _attackRange;
 
         public int Damage { get; }
 
@@ -42,6 +43,7 @@ namespace VampireSurvivors2.Model
             Damage = 1;
             _currentCooldown = 0;
             _cooldown = 30;
+            _attackRange = 30;
         }
 
         public PointF Position
@@ -65,8 +67,8 @@ namespace VampireSurvivors2.Model
                 - ((Position.Y + World.BatImage.Height / 2)));
             vector.Normalize();
             Position = new PointF(Position.X + (float)vector.X * Speed, Position.Y + (float)vector.Y * Speed);
-            if (Position.X.EqualTo(World.Player.Position.X + World.PlayerImage.Width / 2, 30)
-                && Position.Y.EqualTo(World.Player.Position.Y + World.PlayerImage.Height / 2, 30))
+            if (Position.X.EqualTo(World.Player.Position.X + World.PlayerImage.Width / 2, _attackRange)
+                && Position.Y.EqualTo(World.Player.Position.Y + World.PlayerImage.Height / 2, _attackRange))
             {
                 if (_currentCooldown == 0)
                 {
