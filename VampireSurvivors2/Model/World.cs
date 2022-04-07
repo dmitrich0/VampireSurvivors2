@@ -51,7 +51,7 @@ namespace VampireSurvivors2.Model
 
         public static void MoveMonsters(object sender, EventArgs e)
         {
-            foreach (var monster in Bats)
+            foreach (var monster in Bats.ToList())
                 monster.Move();
         }
     }

@@ -14,48 +14,64 @@ namespace VampireSurvivors2
 {
     internal partial class GameWindow : Form
     {
-        private readonly Stopwatch _gameTimer = new Stopwatch();
-        public Timer timer = new Timer();
-        public Timer MonsterTimer = new Timer(); // TO CHANGE
+        private readonly Stopwatch visibleTimer = new Stopwatch();
         private PrivateFontCollection myFontCollection = new PrivateFontCollection();
-        private FontFamily _myFont;
-        private Color _bgcolor = Color.FromArgb(2, 85, 23);
+        private FontFamily myFont;
+        private Color bgColor = Color.FromArgb(2, 85, 23);
+        private Model.Player player = Model.World.Player;
+        public Timer MainTimer = new Timer();
+        public Timer MonsterTimer = new Timer(); // TO CHANGE
         public GameWindow()
         {
             myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font.ttf");
-            _myFont = myFontCollection.Families[0];
+            myFont = myFontCollection.Families[0];
             DoubleBuffered = true;
             InitializeComponent();
-            timer.Interval = 30;
+            MainTimer.Interval = 30;
             MonsterTimer.Interval = 2000; // TO CHANGE
             MonsterTimer.Tick += Model.World.SpawnMonster; // TO CHANGE
-            timer.Tick += new EventHandler(Update);
-            timer.Tick += Model.World.MoveMonsters; // TO CHANGE
+            MainTimer.Tick += new EventHandler(Update);
+            MainTimer.Tick += Model.World.MoveMonsters; // TO CHANGE
             KeyDown += Model.World.Player.Move;
-            timer.Start();
+            MainTimer.Start();
             MonsterTimer.Start();
-            _gameTimer.Start();
+            visibleTimer.Start();
             WindowState = FormWindowState.Maximized;
-            BackColor = _bgcolor;
+            BackColor = bgColor;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            string totalTime;
-            g.DrawImage(Model.World.PlayerImage, Model.World.Player.Position.X, Model.World.Player.Position.Y,
-                Model.World.Player.Size.Width, Model.World.Player.Size.Height);
-            if ((int)_gameTimer.Elapsed.TotalSeconds % 60 >= 10)
-                totalTime = ((int)_gameTimer.Elapsed.TotalMinutes).ToString() 
-                    + ":" + ((int)_gameTimer.Elapsed.TotalSeconds % 60).ToString();
-            else
-                totalTime = ((int)_gameTimer.Elapsed.TotalMinutes).ToString() 
-                    + ":0" + ((int)_gameTimer.Elapsed.TotalSeconds % 60).ToString();
-            g.DrawString(totalTime, new Font(_myFont, 32), Brushes.BlanchedAlmond,
-                new PointF((float)(ClientSize.Width / 2.15), 40));
-            g.DrawRectangle(Pens.Black, 40, 50, Model.World.Player.MaxHealth * 2, 25);
-            g.FillRectangle(Brushes.Red, 40, 50, Model.World.Player.Health * 2, 25);
-            foreach (var bat in Model.World.Bats)
+            DrawTime(g);
+            DrawMonsters(g);
+            DrawPlayerWithHP(g);
+        }
+
+        private void DrawPlayerWithHP(Graphics g)
+        {
+            g.DrawImage(Model.World.PlayerImage, player.Position.X, player.Position.Y,
+                player.Size.Width, player.Size.Height);
+            g.DrawRectangle(Pens.Black, 40, 50, player.MaxHealth * 2, 25);
+            g.FillRectangle(Brushes.Red, 40, 50, player.Health * 2, 25);
+            g.DrawEllipse(Pens.Gold, Model.Extenstions.GetCircleRect(player.CentralPosition.X,
+                player.CentralPosition.Y, player.AttackRange));
+
+        }
+
+        private void DrawTime(Graphics g)
+        {
+            var seconds = (int)visibleTimer.Elapsed.TotalSeconds % 60;
+            var minutes = (int)visibleTimer.Elapsed.TotalMinutes;
+            var timePosition = new PointF((float)(ClientSize.Width / 2.15), 40);
+            var totalTime = seconds % 60 >= 10 ? minutes.ToString() + ":" + seconds.ToString()
+                : minutes.ToString() + ":0" + seconds.ToString();
+            g.DrawString(totalTime, new Font(myFont, 32), Brushes.BlanchedAlmond, timePosition);
+        }
+        
+        private void DrawMonsters(Graphics g)
+        {
+            foreach (var bat in Model.World.Bats.ToList())
             {
                 var healthWidth = (bat.Health / bat.MaxHealth) * bat.Size.Width;
                 g.DrawImage(Model.World.BatImage, bat.Position.X, bat.Position.Y, bat.Size.Width, bat.Size.Height);
@@ -65,7 +81,6 @@ namespace VampireSurvivors2
                    bat.Size.Width, 5);
             }
         }
-
 
         public void Update(object sender, EventArgs e)
         {

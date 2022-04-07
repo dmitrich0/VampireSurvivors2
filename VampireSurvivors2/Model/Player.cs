@@ -10,55 +10,40 @@ namespace VampireSurvivors2.Model
 {
     internal class Player
     {
-        private Image _img;
-        private PointF _position;
-        private int _health;
-        private float _speed;
-        private Size _size;
+        public PointF CentralPosition
+        {
+            get { return new PointF(Position.X + Size.Width / 2,
+                Position.Y + Size.Height / 2); }
+        }
 
+        public int Damage { get; }
+        public int CurrentCooldown { get; set; }
+        public int Cooldown { get; set; }
+        public float AttackRange { get; }
         public int MaxHealth { get; }
-
-        public Size Size
-        {
-            get { return _size; }
-        }
-
-
-        public float Speed
-        {
-            get { return _speed; }
-        }
-
-
-        public int Health
-        {
-            get { return _health; }
-
-        }
-
-        public PointF Position
-        {
-            get { return _position; }
-        }
-
-        public Image Image
-        {
-            get { return _img; }
-        }
+        public Size Size { get; }
+        public float Speed { get; }
+        public float Health { get; private set; }
+        public PointF Position { get; private set; }
+        public Image Image { get; }
 
         public Player()
         {
-            _img = World.PlayerImage;
-            _health = 100;
-            _speed = 5;
-            _position = new PointF(800f, 400f);
+            Image = World.PlayerImage;
+            Health = 100;
+            Speed = 5;
+            Position = new PointF(800f, 400f);
             MaxHealth = 100;
-            _size = new Size(World.PlayerImage.Width * 2, World.PlayerImage.Height * 2);
+            Size = new Size(World.PlayerImage.Width * 2, World.PlayerImage.Height * 2);
+            CurrentCooldown = 0;
+            Cooldown = 20;
+            AttackRange = 120;
+            Damage = 5;
         }
 
         public void GetDamage(int damage)
         {
-            _health -= damage;
+            Health -= damage;
         }
 
         public bool CanMove(KeyEventArgs key)
@@ -79,16 +64,16 @@ namespace VampireSurvivors2.Model
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    _position = new PointF(Position.X, Position.Y - Speed);
+                    Position = new PointF(Position.X, Position.Y - Speed);
                     break;
                 case Keys.A:
-                    _position = new PointF(Position.X - Speed, Position.Y);
+                    Position = new PointF(Position.X - Speed, Position.Y);
                     break;
                 case Keys.S:
-                    _position = new PointF(Position.X, Position.Y + Speed);
+                    Position = new PointF(Position.X, Position.Y + Speed);
                     break;
                 case Keys.D:
-                    _position = new PointF(Position.X + Speed, Position.Y);
+                    Position = new PointF(Position.X + Speed, Position.Y);
                     break;
             }
         }

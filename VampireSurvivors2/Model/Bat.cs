@@ -5,84 +5,89 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace VampireSurvivors2.Model
 {
     public class Bat
     {
-        private int currentHealth;
-        private PointF _position;
-        private float _speed;
-        private Size _size;
-        private int _currentCooldown;
-        private readonly int _cooldown;
-        private readonly int _attackRange;
-
+        private float speed;
+        private int currentCooldown;
+        private readonly int coolDown;
+        private readonly int attackRange;
+        public float Health { get; set; }
+        public float MaxHealth { get; }
         public int Damage { get; }
-
-        public int MaxHealth { get; }
-
-        public Size Size
+        public Size Size { get; set; }
+        public PointF Position { get; set; }
+        public PointF CentralPosition
         {
-            get { return _size; }
-            set { _size = value; }
+            get { return new PointF(Position.X + Size.Width / 2, Position.Y + Size.Height / 2); }
         }
 
         public float Speed
         {
-            get { return _speed; }
-            set { _speed = value; }
+            get { return speed; }
+            set { speed = value; }
         }
-
 
         public Bat(PointF position)
         {
-            _position = position;
-            currentHealth = 10;
+            Position = position;
+            Health = 10;
             MaxHealth = 10;
-            _speed = 2;
-            _size = new Size(World.BatImage.Width, World.BatImage.Height);
+            speed = 2;
+            Size = new Size(World.BatImage.Width, World.BatImage.Height);
             Damage = 1;
-            _currentCooldown = 0;
-            _cooldown = 30;
-            _attackRange = 30;
-        }
-
-        public PointF Position
-        {
-            get { return _position; }
-            set { _position = value; }
-        }
-
-
-        public int Health
-        {
-            get { return currentHealth; }
-            set { currentHealth = value; }
+            currentCooldown = 0;
+            coolDown = 30;
+            attackRange = 30;
         }
 
         public void Move()
         {
-            var direction = new System.Windows.Vector(World.Player.Position.X + World.PlayerImage.Size.Width / 2
-                - (Position.X + World.BatImage.Width / 2),
-                World.Player.Position.Y + World.PlayerImage.Size.Height / 2
-                - Position.Y + World.BatImage.Height / 2);
+            var direction = new System.Windows.Vector(World.Player.CentralPosition.X - CentralPosition.X,
+                World.Player.CentralPosition.Y - CentralPosition.Y);
+            TryDamagePlayer(direction);
+            TryToGetDamage(direction);
             direction.Normalize();
             Position = new PointF(Position.X + (float)direction.X * Speed, Position.Y + (float)direction.Y * Speed);
-            if (Position.X.EqualTo(World.Player.Position.X + World.PlayerImage.Width / 2, _attackRange)
-                && Position.Y.EqualTo(World.Player.Position.Y + World.PlayerImage.Height / 2, _attackRange))
+        }
+
+        private void TryDamagePlayer(System.Windows.Vector vector)
+        {
+            if (vector.Length <= attackRange)
             {
-                if (_currentCooldown == 0)
+                if (currentCooldown == 0)
                 {
                     World.Player.GetDamage(Damage);
-                    _currentCooldown++;
+                    currentCooldown++;
                 }
-                else if (_currentCooldown == _cooldown)
-                    _currentCooldown = 0;
+                else if (currentCooldown == coolDown)
+                    currentCooldown = 0;
                 else
-                    _currentCooldown++;
+                    currentCooldown++;
             }
+        }
+
+        private void TryToGetDamage(System.Windows.Vector vector)
+        {
+            if (vector.Length <= World.Player.AttackRange)
+                if (World.Player.CurrentCooldown == 0)
+                {
+                    GetDamage(World.Player.Damage);
+                    World.Player.CurrentCooldown++;
+                }
+                else if (World.Player.CurrentCooldown == World.Player.Cooldown)
+                    World.Player.CurrentCooldown = 0;
+                else
+                    World.Player.CurrentCooldown++;
+        }
+
+        private void GetDamage(int damage)
+        {
+            Health -= damage;
+            if (Health <= 0)
+                World.Bats.Remove(this);
         }
     }
 }
