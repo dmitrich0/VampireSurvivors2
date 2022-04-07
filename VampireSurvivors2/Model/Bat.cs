@@ -14,8 +14,11 @@ namespace VampireSurvivors2.Model
         private int _health;
         private PointF _position;
         private float _speed;
-
         private Size _size;
+        private int _currentCooldown;
+        private readonly int _cooldown;
+
+        public int Damage { get; }
 
         public Size Size
         {
@@ -36,6 +39,9 @@ namespace VampireSurvivors2.Model
             _health = 10;
             _speed = 2;
             _size = new Size(World.BatImage.Width, World.BatImage.Height);
+            Damage = 1;
+            _currentCooldown = 0;
+            _cooldown = 30;
         }
 
         public PointF Position
@@ -53,10 +59,25 @@ namespace VampireSurvivors2.Model
 
         public void Move()
         {
-            var vector = new System.Windows.Vector(World.Player.Position.X + World.PlayerImage.Size.Width / 2 - Position.X,
-                World.Player.Position.Y + World.PlayerImage.Size.Height / 2 - Position.Y);
+            var vector = new System.Windows.Vector((World.Player.Position.X + World.PlayerImage.Size.Width / 2)
+                - (Position.X + World.BatImage.Width / 2),
+                World.Player.Position.Y + World.PlayerImage.Size.Height / 2
+                - ((Position.Y + World.BatImage.Height / 2)));
             vector.Normalize();
-            Position = new PointF(Position.X + (float)vector.X*Speed, Position.Y + (float)vector.Y * Speed);
+            Position = new PointF(Position.X + (float)vector.X * Speed, Position.Y + (float)vector.Y * Speed);
+            if (Position.X.EqualTo(World.Player.Position.X + World.PlayerImage.Width / 2, 30)
+                && Position.Y.EqualTo(World.Player.Position.Y + World.PlayerImage.Height / 2, 30))
+            {
+                if (_currentCooldown == 0)
+                {
+                    World.Player.GetDamage(Damage);
+                    _currentCooldown++;
+                }
+                else if (_currentCooldown == _cooldown)
+                    _currentCooldown = 0;
+                else
+                    _currentCooldown++;
+            }
         }
     }
 }
