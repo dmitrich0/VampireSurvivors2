@@ -53,10 +53,17 @@ namespace VampireSurvivors2
                     + ":0" + ((int)_gameTimer.Elapsed.TotalSeconds % 60).ToString();
             g.DrawString(totalTime, new Font(_myFont, 32), Brushes.BlanchedAlmond,
                 new PointF((float)(ClientSize.Width / 2.15), 40));
-            g.DrawRectangle(Pens.Black, 40, 50, 100 * 2, 25);
+            g.DrawRectangle(Pens.Black, 40, 50, Model.World.Player.MaxHealth * 2, 25);
             g.FillRectangle(Brushes.Red, 40, 50, Model.World.Player.Health * 2, 25);
             foreach (var bat in Model.World.Bats)
+            {
+                var healthWidth = (bat.Health / bat.MaxHealth) * bat.Size.Width;
                 g.DrawImage(Model.World.BatImage, bat.Position.X, bat.Position.Y, bat.Size.Width, bat.Size.Height);
+                g.FillRectangle(Brushes.Red, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
+                    healthWidth, 5);
+                g.DrawRectangle(Pens.Black, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
+                   bat.Size.Width, 5);
+            }
         }
 
 

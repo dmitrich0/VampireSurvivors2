@@ -16,6 +16,8 @@ namespace VampireSurvivors2.Model
         private float _speed;
         private Size _size;
 
+        public int MaxHealth { get; }
+
         public Size Size
         {
             get { return _size; }
@@ -50,6 +52,7 @@ namespace VampireSurvivors2.Model
             _health = 100;
             _speed = 5;
             _position = new PointF(800f, 400f);
+            MaxHealth = 100;
             _size = new Size(World.PlayerImage.Width * 2, World.PlayerImage.Height * 2);
         }
 

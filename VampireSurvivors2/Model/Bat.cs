@@ -11,7 +11,7 @@ namespace VampireSurvivors2.Model
 {
     public class Bat
     {
-        private int _health;
+        private int currentHealth;
         private PointF _position;
         private float _speed;
         private Size _size;
@@ -20,6 +20,8 @@ namespace VampireSurvivors2.Model
         private readonly int _attackRange;
 
         public int Damage { get; }
+
+        public int MaxHealth { get; }
 
         public Size Size
         {
@@ -37,7 +39,8 @@ namespace VampireSurvivors2.Model
         public Bat(PointF position)
         {
             _position = position;
-            _health = 10;
+            currentHealth = 10;
+            MaxHealth = 10;
             _speed = 2;
             _size = new Size(World.BatImage.Width, World.BatImage.Height);
             Damage = 1;
@@ -55,8 +58,8 @@ namespace VampireSurvivors2.Model
 
         public int Health
         {
-            get { return _health; }
-            set { _health = value; }
+            get { return currentHealth; }
+            set { currentHealth = value; }
         }
 
         public void Move()
