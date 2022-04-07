@@ -19,33 +19,29 @@ namespace VampireSurvivors2.Model
         public Size Size
         {
             get { return _size; }
-            set { _size = value; }
         }
 
 
         public float Speed
         {
             get { return _speed; }
-            set { _speed = value; }
         }
 
 
         public int Health
         {
             get { return _health; }
-            set { _health = value; }
+
         }
 
         public PointF Position
         {
             get { return _position; }
-            set { _position = value; }
         }
 
         public Image Image
         {
             get { return _img; }
-            set { _img = value; }
         }
 
         public Player()
@@ -59,7 +55,7 @@ namespace VampireSurvivors2.Model
 
         public void GetDamage(int damage)
         {
-            Health -= damage;
+            _health -= damage;
         }
 
         public void Move(object sender, KeyEventArgs e)
@@ -67,16 +63,16 @@ namespace VampireSurvivors2.Model
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    Position = new PointF(Position.X, Position.Y - Speed);
+                    _position = new PointF(Position.X, Position.Y - Speed);
                     break;
                 case Keys.A:
-                    Position = new PointF(Position.X - Speed, Position.Y);
+                    _position = new PointF(Position.X - Speed, Position.Y);
                     break;
                 case Keys.S:
-                    Position = new PointF(Position.X, Position.Y + Speed);
+                    _position = new PointF(Position.X, Position.Y + Speed);
                     break;
                 case Keys.D:
-                    Position = new PointF(Position.X + Speed, Position.Y);
+                    _position = new PointF(Position.X + Speed, Position.Y);
                     break;
             }
         }
