@@ -22,8 +22,28 @@ namespace VampireSurvivors2.Model
         {
             if (GameWindow.ActiveForm == null)
                 return;
-            var x = Random.Next(-10, GameWindow.ActiveForm.ClientSize.Width + 10);
-            var y = Random.Next(-10, GameWindow.ActiveForm.ClientSize.Height + 10);
+            var sideId = Random.Next(0, 4);
+            var x = 0f;
+            var y = 0f;
+            switch (sideId)
+            {
+                case 0:
+                    y = -10f;
+                    x = (float)Random.NextDouble() * GameWindow.ActiveForm.ClientSize.Width;
+                    break;
+                case 1:
+                    y = (float)Random.NextDouble() * GameWindow.ActiveForm.ClientSize.Height;
+                    x = GameWindow.ActiveForm.ClientSize.Width + 10;
+                    break;
+                case 2:
+                    y = GameWindow.ActiveForm.ClientSize.Height + 10;
+                    x = (float)Random.NextDouble() * GameWindow.ActiveForm.ClientSize.Width;
+                    break;
+                case 3:
+                    y = (float)Random.NextDouble() * GameWindow.ActiveForm.ClientSize.Height;
+                    x = -10f;
+                    break;
+            }
             var batPosition = new PointF(x, y);
             var bat = new Bat(batPosition);
             Bats.Add(bat);
