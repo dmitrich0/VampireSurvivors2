@@ -9,14 +9,6 @@ using System.Timers;
 
 namespace VampireSurvivors2.Model
 {
-    public static class DoubleExtensions
-    {
-        public static bool EqualTo(this float value1, float value2, float epsilon)
-        {
-            return Math.Abs(value1 - value2) < epsilon;
-        }
-    }
-
     internal static class World
     {
         public static Image PlayerImage = View.Resources.idle_down;

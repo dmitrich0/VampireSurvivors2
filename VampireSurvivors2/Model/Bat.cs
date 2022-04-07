@@ -61,12 +61,12 @@ namespace VampireSurvivors2.Model
 
         public void Move()
         {
-            var vector = new System.Windows.Vector((World.Player.Position.X + World.PlayerImage.Size.Width / 2)
+            var direction = new System.Windows.Vector(World.Player.Position.X + World.PlayerImage.Size.Width / 2
                 - (Position.X + World.BatImage.Width / 2),
                 World.Player.Position.Y + World.PlayerImage.Size.Height / 2
-                - ((Position.Y + World.BatImage.Height / 2)));
-            vector.Normalize();
-            Position = new PointF(Position.X + (float)vector.X * Speed, Position.Y + (float)vector.Y * Speed);
+                - Position.Y + World.BatImage.Height / 2);
+            direction.Normalize();
+            Position = new PointF(Position.X + (float)direction.X * Speed, Position.Y + (float)direction.Y * Speed);
             if (Position.X.EqualTo(World.Player.Position.X + World.PlayerImage.Width / 2, _attackRange)
                 && Position.Y.EqualTo(World.Player.Position.Y + World.PlayerImage.Height / 2, _attackRange))
             {
