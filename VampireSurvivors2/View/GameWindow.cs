@@ -56,7 +56,6 @@ namespace VampireSurvivors2
             g.FillRectangle(Brushes.Red, 40, 50, player.Health * 2, 25);
             g.DrawEllipse(Pens.Gold, Model.Extenstions.GetCircleRect(player.CentralPosition.X,
                 player.CentralPosition.Y, player.AttackRange));
-
         }
 
         private void DrawTime(Graphics g)
@@ -75,10 +74,13 @@ namespace VampireSurvivors2
             {
                 var healthWidth = (bat.Health / bat.MaxHealth) * bat.Size.Width;
                 g.DrawImage(Model.World.BatImage, bat.Position.X, bat.Position.Y, bat.Size.Width, bat.Size.Height);
-                g.FillRectangle(Brushes.Red, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
-                    healthWidth, 5);
-                g.DrawRectangle(Pens.Black, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
-                   bat.Size.Width, 5);
+                if (bat.Health != bat.MaxHealth)
+                {
+                    g.FillRectangle(Brushes.Red, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
+                        healthWidth, 5);
+                    g.DrawRectangle(Pens.Black, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
+                       bat.Size.Width, 5);
+                }
             }
         }
 

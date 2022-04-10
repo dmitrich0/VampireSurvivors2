@@ -16,7 +16,7 @@ namespace VampireSurvivors2.Model
         public static List<Bat> Bats = new List<Bat>();
         public static Player Player = new Player();
         public static Random Random = new Random();
-        public static Stopwatch stopwatch = new Stopwatch();
+        public static Stopwatch Stopwatch = new Stopwatch();
 
         public static void SpawnMonster(object sender, EventArgs e)
         {
