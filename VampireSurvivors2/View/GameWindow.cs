@@ -96,25 +96,13 @@ namespace VampireSurvivors2
 
         private void AddKeys(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W && !ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Add(e.KeyCode);
-            if (e.KeyCode == Keys.A && !ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Add(e.KeyCode);
-            if (e.KeyCode == Keys.S && !ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Add(e.KeyCode);
-            if (e.KeyCode == Keys.D && !ActiveKeys.Contains(e.KeyCode))
+            if (!ActiveKeys.Contains(e.KeyCode))
                 ActiveKeys.Add(e.KeyCode);
         }
 
         private void RemoveKeys(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W && ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Remove(e.KeyCode);
-            if (e.KeyCode == Keys.A && ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Remove(e.KeyCode);
-            if (e.KeyCode == Keys.S && ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Remove(e.KeyCode);
-            if (e.KeyCode == Keys.D && ActiveKeys.Contains(e.KeyCode))
+            if (ActiveKeys.Contains(e.KeyCode))
                 ActiveKeys.Remove(e.KeyCode);
         }
 
