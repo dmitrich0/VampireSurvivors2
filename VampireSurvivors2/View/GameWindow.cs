@@ -4,45 +4,55 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace VampireSurvivors2
 {
     internal partial class GameWindow : Form
     {
-        private readonly Stopwatch visibleTimer = new Stopwatch();
-        private PrivateFontCollection myFontCollection = new PrivateFontCollection();
+        private WorldModel world;
+        private Stopwatch visibleTimer;
+        private PrivateFontCollection myFontCollection;
         private FontFamily myFont;
-        private Color bgColor = Color.FromArgb(2, 85, 23);
-        private Model.Player player = Model.World.Player;
-        public Timer MainTimer = new Timer();
-        public Timer MonsterTimer = new Timer(); // TO CHANGE
-        public GameWindow()
+        private Color bgColor;
+        private Player player;
+        public Timer MainTimer;
+        private List<Keys> ActiveKeys;
+
+        protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+            WindowState = FormWindowState.Maximized;
+            DoubleBuffered = true;
+            visibleTimer = new Stopwatch();
+            myFontCollection = new PrivateFontCollection();
+            bgColor = Color.FromArgb(2, 85, 23);
+            MainTimer = new Timer();
+            MainTimer.Interval = 30;
+            world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);
+            player = world.Player;
             myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font.ttf");
             myFont = myFontCollection.Families[0];
-            DoubleBuffered = true;
-            InitializeComponent();
-            MainTimer.Interval = 30;
-            MonsterTimer.Interval = 2000; // TO CHANGE
-            MonsterTimer.Tick += Model.World.SpawnMonster; // TO CHANGE
-            MainTimer.Tick += new EventHandler(Update);
-            MainTimer.Tick += Model.World.MoveMonsters; // TO CHANGE
-            KeyDown += Model.World.Player.Move;
-            MainTimer.Start();
-            MonsterTimer.Start();
-            visibleTimer.Start();
-            WindowState = FormWindowState.Maximized;
             BackColor = bgColor;
+            MainTimer.Tick += new EventHandler(Update);
+            MainTimer.Start();
+            visibleTimer.Start();
+            ActiveKeys = new List<Keys>();
+            KeyDown += AddKeys;
+            KeyUp += RemoveKeys;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            base.OnPaint(e);
+            var g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             DrawTime(g);
             DrawMonsters(g);
             DrawPlayerWithHP(g);
@@ -50,11 +60,11 @@ namespace VampireSurvivors2
 
         private void DrawPlayerWithHP(Graphics g)
         {
-            g.DrawImage(Model.World.PlayerImage, player.Position.X, player.Position.Y,
-                player.Size.Width, player.Size.Height);
+            g.DrawImage(player.Image, player.Position.X, player.Position.Y,
+                (float)player.Size.Width, (float)player.Size.Height);
             g.DrawRectangle(Pens.Black, 40, 50, player.MaxHealth * 2, 25);
             g.FillRectangle(Brushes.Red, 40, 50, player.Health * 2, 25);
-            g.DrawEllipse(Pens.Gold, Model.Extenstions.GetCircleRect(player.CentralPosition.X,
+            g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X,
                 player.CentralPosition.Y, player.AttackRange));
         }
 
@@ -70,10 +80,10 @@ namespace VampireSurvivors2
         
         private void DrawMonsters(Graphics g)
         {
-            foreach (var bat in Model.World.Bats.ToList())
+            foreach (var bat in world.Bats.ToList())
             {
                 var healthWidth = (bat.Health / bat.MaxHealth) * bat.Size.Width;
-                g.DrawImage(Model.World.BatImage, bat.Position.X, bat.Position.Y, bat.Size.Width, bat.Size.Height);
+                g.DrawImage(bat.Image, bat.Position.X, bat.Position.Y, bat.Size.Width, bat.Size.Height);
                 if (bat.Health != bat.MaxHealth)
                 {
                     g.FillRectangle(Brushes.Red, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
@@ -84,8 +94,52 @@ namespace VampireSurvivors2
             }
         }
 
+        private void AddKeys(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.W && !ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Add(e.KeyCode);
+            if (e.KeyCode == Keys.A && !ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Add(e.KeyCode);
+            if (e.KeyCode == Keys.S && !ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Add(e.KeyCode);
+            if (e.KeyCode == Keys.D && !ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Add(e.KeyCode);
+        }
+
+        private void RemoveKeys(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.W && ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Remove(e.KeyCode);
+            if (e.KeyCode == Keys.A && ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Remove(e.KeyCode);
+            if (e.KeyCode == Keys.S && ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Remove(e.KeyCode);
+            if (e.KeyCode == Keys.D && ActiveKeys.Contains(e.KeyCode))
+                ActiveKeys.Remove(e.KeyCode);
+        }
+
+        private Vector GetPlayerDirection()
+        {
+            var direction = new Vector();
+            if (ActiveKeys.Contains(Keys.W))
+                direction.Y = -1;
+            if (ActiveKeys.Contains(Keys.A))
+                direction.X = -1;
+            if (ActiveKeys.Contains(Keys.S))
+                direction.Y = 1;
+            if (ActiveKeys.Contains(Keys.D))
+                direction.X = 1;
+            if (direction.X == 0 && direction.Y == 0)
+                return new Vector(0, 0);
+            direction.Normalize();
+            return direction;
+        }
+
         public void Update(object sender, EventArgs e)
         {
+            world.SpawnMonster();
+            world.MoveMonsters();
+            player.Move(GetPlayerDirection());
             Invalidate();
         }
     }

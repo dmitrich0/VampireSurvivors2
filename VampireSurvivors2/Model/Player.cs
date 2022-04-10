@@ -4,16 +4,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
-namespace VampireSurvivors2.Model
+namespace VampireSurvivors2
 {
     internal class Player
     {
         public PointF CentralPosition
         {
-            get { return new PointF(Position.X + Size.Width / 2,
-                Position.Y + Size.Height / 2); }
+            get { return new PointF((float)(Position.X + Size.Width / 2),
+                (float)(Position.Y + Size.Height / 2)); }
         }
 
         public int Damage { get; }
@@ -21,20 +22,21 @@ namespace VampireSurvivors2.Model
         public int Cooldown { get; set; }
         public float AttackRange { get; }
         public int MaxHealth { get; }
-        public Size Size { get; }
+        public System.Windows.Size Size { get; }
         public float Speed { get; }
         public float Health { get; private set; }
         public PointF Position { get; private set; }
         public Image Image { get; }
+        public WorldModel World { get; private set; }
 
-        public Player()
+        public Player(WorldModel world)
         {
-            Image = World.PlayerImage;
+            Image = View.Resources.idle_down;
             Health = 100;
             Speed = 5;
             Position = new PointF(800f, 400f);
             MaxHealth = 100;
-            Size = new Size(World.PlayerImage.Width * 2, World.PlayerImage.Height * 2);
+            Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
             CurrentCooldown = 0;
             Cooldown = 20;
             AttackRange = 120;
@@ -46,36 +48,21 @@ namespace VampireSurvivors2.Model
             Health -= damage;
         }
 
-        public bool CanMove(KeyEventArgs key)
+        public bool CanMove(Vector direction)
         {
-            if (GameWindow.ActiveForm == null)
-                return false;
-            if (Math.Abs(Position.X - 0) < 3 && key.KeyCode == Keys.A
-                || Math.Abs(Position.X + Size.Width - GameWindow.ActiveForm.ClientSize.Width) < 3 && key.KeyCode == Keys.D
-                || Math.Abs(Position.Y - 0) < 3 && key.KeyCode == Keys.W
-                || Math.Abs(Position.Y + Size.Height - GameWindow.ActiveForm.ClientSize.Height) < 3 && key.KeyCode == Keys.S)
+            var newPosition = new PointF((float)(Position.X + direction.X), (float)(Position.Y + direction.Y));
+            if (newPosition.X.EqualTo(0, 3) && direction.X < 0 
+                || newPosition.X.EqualTo(World.WorldWidth, 3) && direction.X > 0
+                || newPosition.Y.EqualTo(0, 3) && direction.Y < 0
+                || newPosition.Y.EqualTo(World.WorldHeight, 3) && direction.Y > 0)
                 return false;
             return true;
         }
 
-        public void Move(object sender, KeyEventArgs e)
+        public void Move(Vector direction)
         {
-            if (!CanMove(e)) return;
-            switch (e.KeyCode)
-            {
-                case Keys.W:
-                    Position = new PointF(Position.X, Position.Y - Speed);
-                    break;
-                case Keys.A:
-                    Position = new PointF(Position.X - Speed, Position.Y);
-                    break;
-                case Keys.S:
-                    Position = new PointF(Position.X, Position.Y + Speed);
-                    break;
-                case Keys.D:
-                    Position = new PointF(Position.X + Speed, Position.Y);
-                    break;
-            }
+            //if (!CanMove(direction)) return;
+            Position = new PointF((float)(Position.X + Speed * direction.X), (float)(Position.Y + Speed * direction.Y));
         }
     }
 }

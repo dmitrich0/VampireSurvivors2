@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VampireSurvivors2.Model
+namespace VampireSurvivors2
 {
     public static class Extenstions
     {

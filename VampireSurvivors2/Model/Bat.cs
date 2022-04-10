@@ -6,19 +6,21 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VampireSurvivors2.Model
+namespace VampireSurvivors2
 {
-    public class Bat
+    internal class Bat
     {
         private float speed;
         private int currentCooldown;
         private readonly int coolDown;
         private readonly int attackRange;
+        public Image Image { get; private set; }
         public float Health { get; set; }
         public float MaxHealth { get; }
         public int Damage { get; }
         public Size Size { get; set; }
         public PointF Position { get; set; }
+        public WorldModel World { get; private set; }
         public PointF CentralPosition
         {
             get { return new PointF(Position.X + Size.Width / 2, Position.Y + Size.Height / 2); }
@@ -30,17 +32,19 @@ namespace VampireSurvivors2.Model
             set { speed = value; }
         }
 
-        public Bat(PointF position)
+        public Bat(WorldModel world, PointF position)
         {
             Position = position;
             Health = 10;
             MaxHealth = 10;
             speed = 2;
-            Size = new Size(World.BatImage.Width, World.BatImage.Height);
+            Image = View.Resources.bat;
+            Size = new Size(Image.Width, Image.Height);
             Damage = 1;
             currentCooldown = 0;
             coolDown = 30;
             attackRange = 30;
+            World = world;
         }
 
         public void Move()
@@ -74,7 +78,7 @@ namespace VampireSurvivors2.Model
             if (vector.Length <= World.Player.AttackRange)
                 if (World.Player.CurrentCooldown == 0)
                 {
-                    GetDamage(World.Player.Damage);
+                    GetDamage(World.Player.Damage, World);
                     World.Player.CurrentCooldown++;
                 }
                 else if (World.Player.CurrentCooldown == World.Player.Cooldown)
@@ -83,11 +87,11 @@ namespace VampireSurvivors2.Model
                     World.Player.CurrentCooldown++;
         }
 
-        private void GetDamage(int damage)
+        private void GetDamage(int damage, WorldModel world)
         {
             Health -= damage;
             if (Health <= 0)
-                World.Bats.Remove(this);
+                world.Bats.Remove(this);
         }
     }
 }

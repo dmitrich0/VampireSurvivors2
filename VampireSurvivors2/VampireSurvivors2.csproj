@@ -51,7 +51,7 @@
     <Compile Include="Model\Bat.cs" />
     <Compile Include="Model\Extenstions.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\World.cs" />
+    <Compile Include="Model\WorldModel.cs" />
     <Compile Include="View\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
