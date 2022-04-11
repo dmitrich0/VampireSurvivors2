@@ -68,7 +68,7 @@ namespace VampireSurvivors2
                 Bats.Add(bat);
                 SpawnCooldownRemaining = SpawnCooldown;
                 MonstersSpawned++;
-                if (MonstersSpawned % 10 == 0 && SpawnCooldown != 1)
+                if (MonstersSpawned % 30 == 0 && SpawnCooldown != 1)
                     SpawnCooldown--;
             }
         }

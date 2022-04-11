@@ -215,5 +215,11 @@
   <ItemGroup>
     <None Include="Resources\bat-face %283%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\currentHP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\allHP.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,7 +32,7 @@ namespace VampireSurvivors2
             DoubleBuffered = true;
             visibleTimer = new Stopwatch();
             myFontCollection = new PrivateFontCollection();
-            bgColor = Color.FromArgb(2, 85, 23);
+            bgColor = Color.FromArgb(112, 85, 23);
             MainTimer = new Timer();
             MainTimer.Interval = 30;
             world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);
@@ -60,15 +60,17 @@ namespace VampireSurvivors2
 
         private void DrawPlayerAndHUD(Graphics g)
         {
-            var paddingXP = 50f;
+            var padding = 50f;
             var XPWidth = ((float)player.CurrentXP / (float)player.XPToNextLevel) * world.WorldWidth - 10;
             var levelPosition = new PointF(world.WorldWidth - 200, 50);
             g.DrawImage(player.Image, player.Position.X, player.Position.Y,
                 (float)player.Size.Width, (float)player.Size.Height);
-            g.DrawRectangle(Pens.Black, 40, 60, player.MaxHealth * 3, 25);
-            g.FillRectangle(Brushes.Red, 40, 60, player.Health * 3, 25);
-            g.FillRectangle(Brushes.Blue, paddingXP, 20, XPWidth, 10);
-            g.DrawRectangle(Pens.Black, paddingXP, 20, world.WorldWidth - paddingXP*2, 10);
+            //g.DrawImage(View.Resources.currentHP, 40, 60, player.Health * 3, 45);
+            //g.DrawImage(View.Resources.allHP, 40, 60, player.MaxHealth * 3, 45);
+            g.DrawRectangle(Pens.Black, padding, 60, player.MaxHealth * 3, 25);
+            g.FillRectangle(Brushes.Red, padding, 60, player.Health * 3, 25);
+            g.FillRectangle(Brushes.Blue, padding, 20, XPWidth, 10);
+            g.DrawRectangle(Pens.Black, padding, 20, world.WorldWidth - padding*2, 10);
             g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X,
                 player.CentralPosition.Y, player.AttackRange));
             g.DrawString("Level: " + player.Level.ToString(), new Font(myFont, 24),

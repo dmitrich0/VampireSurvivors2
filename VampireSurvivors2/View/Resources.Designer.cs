@@ -63,6 +63,16 @@ namespace VampireSurvivors2.View {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap allHP {
+            get {
+                object obj = ResourceManager.GetObject("allHP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bat_back__1_ {
             get {
                 object obj = ResourceManager.GetObject("bat_back__1_", resourceCulture);
@@ -216,6 +226,16 @@ namespace VampireSurvivors2.View {
         internal static System.Drawing.Bitmap bat_right__4_ {
             get {
                 object obj = ResourceManager.GetObject("bat_right__4_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap currentHP {
+            get {
+                object obj = ResourceManager.GetObject("currentHP", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
