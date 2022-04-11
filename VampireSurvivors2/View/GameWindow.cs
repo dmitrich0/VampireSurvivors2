@@ -91,16 +91,16 @@ namespace VampireSurvivors2
         
         private void DrawMonsters(Graphics g)
         {
-            foreach (var bat in world.Bats.ToList())
+            foreach (var monster in world.Monsters.ToList())
             {
-                var healthWidth = (bat.Health / bat.MaxHealth) * bat.Size.Width;
-                g.DrawImage(bat.Image, bat.Position.X, bat.Position.Y, bat.Size.Width, bat.Size.Height);
-                if (bat.Health != bat.MaxHealth)
+                var healthWidth = (monster.Health / monster.MaxHealth) * monster.Size.Width;
+                g.DrawImage(monster.Image, monster.Position.X, monster.Position.Y, monster.Size.Width, monster.Size.Height);
+                if (monster.Health != monster.MaxHealth)
                 {
-                    g.FillRectangle(Brushes.Red, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
+                    g.FillRectangle(Brushes.Red, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
                         healthWidth, 5);
-                    g.DrawRectangle(Pens.Black, bat.Position.X, bat.Position.Y + bat.Size.Height + 10,
-                       bat.Size.Width, 5);
+                    g.DrawRectangle(Pens.Black, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
+                       monster.Size.Width, 5);
                 }
             }
         }

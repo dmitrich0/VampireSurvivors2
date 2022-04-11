@@ -11,7 +11,7 @@ namespace VampireSurvivors2
 {
     internal class WorldModel
     {
-        public List<Bat> Bats;
+        public List<IMonster> Monsters;
         public Player Player;
         public Random Random;
         public Stopwatch Timer;
@@ -25,7 +25,7 @@ namespace VampireSurvivors2
         {
             WorldHeight = height;
             WorldWidth = width;
-            Bats = new List<Bat>();
+            Monsters = new List<IMonster>();
             Player = new Player(this);
             Random = new Random();
             Timer = new Stopwatch();
@@ -65,7 +65,7 @@ namespace VampireSurvivors2
                 }
                 var batPosition = new PointF(x, y);
                 var bat = new Bat(this, batPosition);
-                Bats.Add(bat);
+                Monsters.Add(bat);
                 SpawnCooldownRemaining = SpawnCooldown;
                 MonstersSpawned++;
                 if (MonstersSpawned % 30 == 0 && SpawnCooldown != 1)
@@ -75,7 +75,7 @@ namespace VampireSurvivors2
 
         public void MoveMonsters()
         {
-            foreach (var monster in Bats.ToList())
+            foreach (var monster in Monsters.ToList())
             {
                 monster.Move();
                 monster.MakeAnim();

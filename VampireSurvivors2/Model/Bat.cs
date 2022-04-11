@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VampireSurvivors2
 {
-    internal class Bat : IAnimarable
+    internal class Bat : IAnimarable, IMonster
     {
         public Image[] Idle { get; set; }
         public Image[] Right { get; set; }
@@ -16,30 +16,26 @@ namespace VampireSurvivors2
         public Image[] Up { get; set; }
         public Image[] Down { get; set; }
 
-        private float speed;
-        private int currentCooldown;
-        private readonly int coolDown;
-        private readonly int attackRange;
+        public int CurrentCooldown { get; set; }
+        public int CoolDown { get; set; }
+        public int AttackRange { get; set; }
         public int XP { get; set; }
-        public Image Image { get; private set; }
+        public Image Image { get; set; }
         public float Health { get; set; }
-        public float MaxHealth { get; }
-        public int Damage { get; }
+        public float MaxHealth { get; set; }
+        public int Damage { get; set; }
         public Size Size { get; set; }
         public PointF Position { get; set; }
-        public WorldModel World { get; private set; }
+        public WorldModel World { get; set; }
         public System.Windows.Vector Direction { get; set; }
         public Animator Animator { get; set; }
         public PointF CentralPosition
         {
             get { return new PointF(Position.X + Size.Width / 2, Position.Y + Size.Height / 2); }
+            set { ; }
         }
 
-        public float Speed
-        {
-            get { return speed; }
-            set { speed = value; }
-        }
+        public float Speed { get; set; }
 
         public Bat(WorldModel world, PointF position)
         {
@@ -57,12 +53,12 @@ namespace VampireSurvivors2
             Position = position;
             Health = 10;
             MaxHealth = 10;
-            speed = 2;
+            Speed = 2;
             Size = new Size(Image.Width, Image.Height);
             Damage = 1;
-            currentCooldown = 0;
-            coolDown = 30;
-            attackRange = 30;
+            CurrentCooldown = 0;
+            CoolDown = 30;
+            AttackRange = 30;
             World = world;
             XP = 10;
         }
@@ -78,23 +74,23 @@ namespace VampireSurvivors2
             Position = new PointF(Position.X + (float)direction.X * Speed, Position.Y + (float)direction.Y * Speed);
         }
 
-        private void TryDamagePlayer(System.Windows.Vector vector)
+        public void TryDamagePlayer(System.Windows.Vector vector)
         {
-            if (vector.Length <= attackRange)
+            if (vector.Length <= AttackRange)
             {
-                if (currentCooldown == 0)
+                if (CurrentCooldown == 0)
                 {
                     World.Player.GetDamage(Damage);
-                    currentCooldown++;
+                    CurrentCooldown++;
                 }
-                else if (currentCooldown == coolDown)
-                    currentCooldown = 0;
+                else if (CurrentCooldown == CoolDown)
+                    CurrentCooldown = 0;
                 else
-                    currentCooldown++;
+                    CurrentCooldown++;
             }
         }
 
-        private void TryToGetDamage(System.Windows.Vector vector)
+        public void TryToGetDamage(System.Windows.Vector vector)
         {
             if (vector.Length <= World.Player.AttackRange)
                 if (World.Player.CurrentCooldown == 0)
@@ -108,12 +104,12 @@ namespace VampireSurvivors2
                     World.Player.CurrentCooldown++;
         }
 
-        private void GetDamage(int damage, WorldModel world)
+        public void GetDamage(int damage, WorldModel world)
         {
             Health -= damage;
             if (Health <= 0)
             {
-                world.Bats.Remove(this);
+                world.Monsters.Remove(this);
                 World.Player.GetXP(XP);
             }
         }
