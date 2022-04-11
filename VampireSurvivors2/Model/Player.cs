@@ -70,6 +70,8 @@ namespace VampireSurvivors2
         public void GetDamage(int damage)
         {
             Health -= damage;
+            if (Health <= 0)
+                Application.Exit();
         }
 
         public bool CanMove(Vector direction)
