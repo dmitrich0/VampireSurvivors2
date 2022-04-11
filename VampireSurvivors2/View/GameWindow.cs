@@ -30,6 +30,7 @@ namespace VampireSurvivors2
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             DoubleBuffered = true;
             visibleTimer = new Stopwatch();
@@ -50,6 +51,8 @@ namespace VampireSurvivors2
             KeyDown += AddKeys;
             KeyUp += RemoveKeys;
             MusicPlayer.PlayLooping();
+            Text = "Vampire Survivors 2";
+            Icon = View.Resources.skull1;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -131,6 +134,8 @@ namespace VampireSurvivors2
 
         private void AddKeys(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Escape)
+                Application.Exit();
             if (!ActiveKeys.Contains(e.KeyCode))
                 ActiveKeys.Add(e.KeyCode);
         }

@@ -239,6 +239,7 @@
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
     <Content Include="Resources\music.wav" />
+    <None Include="Resources\skull.ico" />
     <None Include="Resources\snake %284%29.png" />
     <None Include="Resources\snake %283%29.png" />
     <None Include="Resources\snake %282%29.png" />
