@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace VampireSurvivors2
         public Image[] Left { get; set; }
         public Image[] Up { get; set; }
         public Image[] Down { get; set; }
-
         public int CurrentCooldown { get; set; }
         public int CoolDown { get; set; }
         public int AttackRange { get; set; }

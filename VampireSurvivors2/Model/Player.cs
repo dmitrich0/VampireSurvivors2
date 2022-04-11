@@ -87,7 +87,7 @@ namespace VampireSurvivors2
 
         public void Move(Vector direction)
         {
-            //if (!CanMove(direction)) return;
+            if (!CanMove(direction)) return;
             Position = new PointF((float)(Position.X + Speed * direction.X), (float)(Position.Y + Speed * direction.Y));
             Direction = direction;
         }

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace VampireSurvivors2
         private Player player;
         public Timer MainTimer;
         private List<Keys> ActiveKeys;
+        private SoundPlayer MusicPlayer;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -37,7 +39,8 @@ namespace VampireSurvivors2
             MainTimer.Interval = 30;
             world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);
             player = world.Player;
-            myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font.ttf");
+            MusicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\music.wav");
+            myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font2.otf");
             myFont = myFontCollection.Families[0];
             BackColor = bgColor;
             MainTimer.Tick += new EventHandler(Update);
@@ -46,6 +49,7 @@ namespace VampireSurvivors2
             ActiveKeys = new List<Keys>();
             KeyDown += AddKeys;
             KeyUp += RemoveKeys;
+            MusicPlayer.PlayLooping();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -60,33 +64,39 @@ namespace VampireSurvivors2
 
         private void DrawPlayerAndHUD(Graphics g)
         {
-            var padding = 50f;
-            var XPWidth = ((float)player.CurrentXP / (float)player.XPToNextLevel) * world.WorldWidth - 10;
-            var levelPosition = new PointF(world.WorldWidth - 200, 50);
+            var padding = 8;
+            var XPWidth = (int)(((float)player.CurrentXP / (float)player.XPToNextLevel) * world.WorldWidth - 2 * padding);
+            var levelPosition = new PointF(world.WorldWidth - 80, padding - 2);
+            var XPRectangle = new Rectangle(padding, padding, XPWidth, 25);
+            var XPBg = new Rectangle(padding - 2, padding - 2, (int)(world.WorldWidth - 2 * padding) + 4, 25 + 4);
+            var XPBorder = new Rectangle(padding - 4, padding - 4, (int)(world.WorldWidth - 2 * padding) + 8, 25 + 8);
+
             g.DrawImage(player.Image, player.Position.X, player.Position.Y,
                 (float)player.Size.Width, (float)player.Size.Height);
-            //g.DrawImage(View.Resources.currentHP, 40, 60, player.Health * 3, 45);
-            //g.DrawImage(View.Resources.allHP, 40, 60, player.MaxHealth * 3, 45);
+
             g.DrawRectangle(Pens.Black, padding, 60, player.MaxHealth * 3, 25);
             g.FillRectangle(Brushes.Red, padding, 60, player.Health * 3, 25);
-            g.FillRectangle(Brushes.Blue, padding, 20, XPWidth, 10);
-            g.DrawRectangle(Pens.Black, padding, 20, world.WorldWidth - padding*2, 10);
+
+            g.FillRectangle(Brushes.Gold, XPBorder);
+            g.FillRectangle(Brushes.Black, XPBg);
+            g.FillRectangle(Brushes.Blue, XPRectangle);
+
             g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X,
                 player.CentralPosition.Y, player.AttackRange));
-            g.DrawString("Level: " + player.Level.ToString(), new Font(myFont, 24),
-                Brushes.Aquamarine, levelPosition);
+            g.DrawString("LV " + player.Level.ToString(), new Font(myFont, 14),
+                Brushes.AntiqueWhite, levelPosition);
         }
 
         private void DrawTime(Graphics g)
         {
             var seconds = (int)visibleTimer.Elapsed.TotalSeconds % 60;
             var minutes = (int)visibleTimer.Elapsed.TotalMinutes;
-            var timePosition = new PointF((float)(ClientSize.Width / 2.15), 60);
-            var tagetTimePosition = new PointF((float)(ClientSize.Width / 2.1), 110);
+            var timePosition = new PointF((float)(ClientSize.Width / 2.15), 30);
+            var tagetTimePosition = new PointF((float)(ClientSize.Width / 2.082), 90);
             var totalTime = seconds % 60 >= 10 ? minutes.ToString() + ":" + seconds.ToString()
                 : minutes.ToString() + ":0" + seconds.ToString();
             g.DrawString(totalTime, new Font(myFont, 36), Brushes.BlanchedAlmond, timePosition);
-            g.DrawString("15:00", new Font(myFont, 20), Brushes.Gray, tagetTimePosition);
+            g.DrawString("15:00", new Font(myFont, 18), Brushes.Gray, tagetTimePosition);
         }
         
         private void DrawMonsters(Graphics g)

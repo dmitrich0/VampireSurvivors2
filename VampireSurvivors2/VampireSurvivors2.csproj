@@ -103,6 +103,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="View\font.ttf" />
+    <None Include="View\font2.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -232,6 +233,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\allHP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\bg_music_2.wav" />
+    <Content Include="Resources\bat_hit.wav" />
+    <Content Include="Resources\music.wav" />
+    <Content Include="Resources\skull.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
