@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace VampireSurvivors2
 {
-    internal class Bat
+    internal class Bat : IAnimarable
     {
+        public Image[] Idle { get; set; }
+        public Image[] Right { get; set; }
+        public Image[] Left { get; set; }
+        public Image[] Up { get; set; }
+        public Image[] Down { get; set; }
+
         private float speed;
         private int currentCooldown;
         private readonly int coolDown;
@@ -21,6 +27,8 @@ namespace VampireSurvivors2
         public Size Size { get; set; }
         public PointF Position { get; set; }
         public WorldModel World { get; private set; }
+        public System.Windows.Vector Direction { get; set; }
+        public Animator Animator { get; set; }
         public PointF CentralPosition
         {
             get { return new PointF(Position.X + Size.Width / 2, Position.Y + Size.Height / 2); }
@@ -34,11 +42,21 @@ namespace VampireSurvivors2
 
         public Bat(WorldModel world, PointF position)
         {
+            Idle = new Image[] { View.Resources.bat_face__3_ };
+            Right = new Image[] { View.Resources.bat_right__1_, View.Resources.bat_right__2_,
+                View.Resources.bat_right__3_, View.Resources.bat_right__4_ };
+            Left = new Image[] { View.Resources.bat_left__1_, View.Resources.bat_left__2_,
+                View.Resources.bat_left__3_, View.Resources.bat_left__4_ };
+            Up = new Image[] { View.Resources.bat_back__1_, View.Resources.bat_back__2_,
+                View.Resources.bat_back__3_, View.Resources.bat_back__4_ };
+            Down = new Image[] { View.Resources.bat_face__1_, View.Resources.bat_face__2_,
+                View.Resources.bat_face__3_, View.Resources.bat_face__4_ };
+            Animator = new Animator(this);
+            Image = Animator.GetCurrentFrame();
             Position = position;
             Health = 10;
             MaxHealth = 10;
             speed = 2;
-            Image = View.Resources.bat;
             Size = new Size(Image.Width, Image.Height);
             Damage = 1;
             currentCooldown = 0;
@@ -51,6 +69,7 @@ namespace VampireSurvivors2
         {
             var direction = new System.Windows.Vector(World.Player.CentralPosition.X - CentralPosition.X,
                 World.Player.CentralPosition.Y - CentralPosition.Y);
+            Direction = direction;
             TryDamagePlayer(direction);
             TryToGetDamage(direction);
             direction.Normalize();
@@ -92,6 +111,11 @@ namespace VampireSurvivors2
             Health -= damage;
             if (Health <= 0)
                 world.Bats.Remove(this);
+        }
+
+        public void MakeAnim()
+        {
+            Image = Animator.GetCurrentFrame();
         }
     }
 }

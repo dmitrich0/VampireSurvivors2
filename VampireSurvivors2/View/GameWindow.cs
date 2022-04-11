@@ -128,6 +128,7 @@ namespace VampireSurvivors2
             world.SpawnMonster();
             world.MoveMonsters();
             player.Move(GetPlayerDirection());
+            player.MakeAnim();
             Invalidate();
         }
     }

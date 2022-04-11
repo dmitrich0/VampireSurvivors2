@@ -18,5 +18,12 @@ namespace VampireSurvivors2
         {
             return new RectangleF(x - r / 2, y - r / 2, r, r);
         }
+
+        public static Image Flip(Image img)
+        {
+            var result = (Image)img.Clone();
+            result.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            return result;
+        }
     }
 }

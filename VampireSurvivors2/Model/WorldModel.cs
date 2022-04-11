@@ -76,7 +76,10 @@ namespace VampireSurvivors2
         public void MoveMonsters()
         {
             foreach (var monster in Bats.ToList())
+            {
                 monster.Move();
+                monster.MakeAnim();
+            }
         }
     }
 }

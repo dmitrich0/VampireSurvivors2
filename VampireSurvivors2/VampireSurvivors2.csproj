@@ -48,7 +48,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAnimarable.cs" />
     <Compile Include="Model\Bat.cs" />
+    <Compile Include="Model\Animator.cs" />
     <Compile Include="Model\Extenstions.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\WorldModel.cs" />
@@ -97,13 +99,121 @@
     <Folder Include="View\Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bat-face %283%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\player.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\idle_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle_right_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idle_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walk6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-face %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-face %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-face %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-left %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-left %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-left %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-left %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-right %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-right %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-right %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-right %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-back %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-back %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-back %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-back %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bat-face %283%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
