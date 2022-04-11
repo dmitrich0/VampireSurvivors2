@@ -87,6 +87,8 @@ namespace VampireSurvivors2
 
         public void TryToGetDamage(System.Windows.Vector vector)
         {
+            var rnd = new Random();
+            var damage = World.Player.Damage + rnd.Next((int)(-World.Player.Damage * 0.2), (int)(World.Player.Damage * 0.2));
             if (vector.Length <= World.Player.AttackRange)
                 if (World.Player.CurrentCooldown == 0)
                 {
