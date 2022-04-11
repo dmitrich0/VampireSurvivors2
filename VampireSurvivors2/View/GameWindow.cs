@@ -121,13 +121,13 @@ namespace VampireSurvivors2
         {
             var direction = new Vector();
             if (ActiveKeys.Contains(Keys.W))
-                direction.Y = -1;
+                direction.Y += -1;
             if (ActiveKeys.Contains(Keys.A))
-                direction.X = -1;
+                direction.X += -1;
             if (ActiveKeys.Contains(Keys.S))
-                direction.Y = 1;
+                direction.Y += 1;
             if (ActiveKeys.Contains(Keys.D))
-                direction.X = 1;
+                direction.X += 1;
             if (direction.X == 0 && direction.Y == 0)
                 return new Vector(0, 0);
             direction.Normalize();
