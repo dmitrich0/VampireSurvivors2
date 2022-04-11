@@ -36,9 +36,15 @@ namespace VampireSurvivors2
         public WorldModel World { get; private set; }
         public Vector Direction { get; set; }
         public Animator Animator { get; set; }
+        public double CurrentXP { get; set; }
+        public double XPToNextLevel { get; set; }
+        public int Level { get; set; }
 
         public Player(WorldModel world)
         {
+            CurrentXP = 0;
+            XPToNextLevel = 100;
+            Level = 1;
             Health = 100;
             Speed = 5;
             Position = new PointF(800f, 400f);
@@ -82,6 +88,17 @@ namespace VampireSurvivors2
             //if (!CanMove(direction)) return;
             Position = new PointF((float)(Position.X + Speed * direction.X), (float)(Position.Y + Speed * direction.Y));
             Direction = direction;
+        }
+
+        public void GetXP(int xp)
+        {
+            CurrentXP += xp;
+            if (CurrentXP >= XPToNextLevel)
+            {
+                CurrentXP = CurrentXP - XPToNextLevel;
+                Level++;
+                XPToNextLevel *= 1.2;
+            }
         }
 
         public void MakeAnim()

@@ -20,6 +20,7 @@ namespace VampireSurvivors2
         private int currentCooldown;
         private readonly int coolDown;
         private readonly int attackRange;
+        public int XP { get; set; }
         public Image Image { get; private set; }
         public float Health { get; set; }
         public float MaxHealth { get; }
@@ -63,6 +64,7 @@ namespace VampireSurvivors2
             coolDown = 30;
             attackRange = 30;
             World = world;
+            XP = 10;
         }
 
         public void Move()
@@ -110,7 +112,10 @@ namespace VampireSurvivors2
         {
             Health -= damage;
             if (Health <= 0)
+            {
                 world.Bats.Remove(this);
+                World.Player.GetXP(XP);
+            }
         }
 
         public void MakeAnim()

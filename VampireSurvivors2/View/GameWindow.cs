@@ -55,27 +55,36 @@ namespace VampireSurvivors2
             g.SmoothingMode = SmoothingMode.HighQuality;
             DrawTime(g);
             DrawMonsters(g);
-            DrawPlayerWithHP(g);
+            DrawPlayerAndHUD(g);
         }
 
-        private void DrawPlayerWithHP(Graphics g)
+        private void DrawPlayerAndHUD(Graphics g)
         {
+            var paddingXP = 50f;
+            var XPWidth = ((float)player.CurrentXP / (float)player.XPToNextLevel) * world.WorldWidth - 10;
+            var levelPosition = new PointF(world.WorldWidth - 200, 50);
             g.DrawImage(player.Image, player.Position.X, player.Position.Y,
                 (float)player.Size.Width, (float)player.Size.Height);
-            g.DrawRectangle(Pens.Black, 40, 50, player.MaxHealth * 2, 25);
-            g.FillRectangle(Brushes.Red, 40, 50, player.Health * 2, 25);
+            g.DrawRectangle(Pens.Black, 40, 60, player.MaxHealth * 3, 25);
+            g.FillRectangle(Brushes.Red, 40, 60, player.Health * 3, 25);
+            g.FillRectangle(Brushes.Blue, paddingXP, 20, XPWidth, 10);
+            g.DrawRectangle(Pens.Black, paddingXP, 20, world.WorldWidth - paddingXP*2, 10);
             g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X,
                 player.CentralPosition.Y, player.AttackRange));
+            g.DrawString("Level: " + player.Level.ToString(), new Font(myFont, 24),
+                Brushes.Aquamarine, levelPosition);
         }
 
         private void DrawTime(Graphics g)
         {
             var seconds = (int)visibleTimer.Elapsed.TotalSeconds % 60;
             var minutes = (int)visibleTimer.Elapsed.TotalMinutes;
-            var timePosition = new PointF((float)(ClientSize.Width / 2.15), 40);
+            var timePosition = new PointF((float)(ClientSize.Width / 2.15), 60);
+            var tagetTimePosition = new PointF((float)(ClientSize.Width / 2.1), 110);
             var totalTime = seconds % 60 >= 10 ? minutes.ToString() + ":" + seconds.ToString()
                 : minutes.ToString() + ":0" + seconds.ToString();
-            g.DrawString(totalTime, new Font(myFont, 32), Brushes.BlanchedAlmond, timePosition);
+            g.DrawString(totalTime, new Font(myFont, 36), Brushes.BlanchedAlmond, timePosition);
+            g.DrawString("15:00", new Font(myFont, 20), Brushes.Gray, tagetTimePosition);
         }
         
         private void DrawMonsters(Graphics g)
