@@ -39,6 +39,7 @@ namespace VampireSurvivors2
         public double CurrentXP { get; set; }
         public double XPToNextLevel { get; set; }
         public int Level { get; set; }
+        public int Killed { get; set; }
 
         public Player(WorldModel world)
         {

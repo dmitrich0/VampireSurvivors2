@@ -60,22 +60,27 @@ namespace VampireSurvivors2
             DrawTime(g);
             DrawMonsters(g);
             DrawPlayerAndHUD(g);
+            DrawKillsCounter(g);
         }
 
         private void DrawPlayerAndHUD(Graphics g)
         {
-            var padding = 8;
-            var XPWidth = (int)(((float)player.CurrentXP / (float)player.XPToNextLevel) * world.WorldWidth - 2 * padding);
-            var levelPosition = new PointF(world.WorldWidth - 80, padding - 2);
-            var XPRectangle = new Rectangle(padding, padding, XPWidth, 25);
-            var XPBg = new Rectangle(padding - 2, padding - 2, (int)(world.WorldWidth - 2 * padding) + 4, 25 + 4);
-            var XPBorder = new Rectangle(padding - 4, padding - 4, (int)(world.WorldWidth - 2 * padding) + 8, 25 + 8);
+            var XPPadding = 8;
+            var xpBorders = 2;
+            var XPWidth = (int)(((float)player.CurrentXP / (float)player.XPToNextLevel) * world.WorldWidth - 2 * XPPadding);
+            var levelPosition = new PointF(world.WorldWidth - 80, XPPadding - 2);
+            var XPRectangle = new Rectangle(XPPadding, XPPadding, XPWidth, 25);
+            var XPBg = new Rectangle(XPPadding - xpBorders, XPPadding - xpBorders,
+                (int)(world.WorldWidth - 2 * XPPadding) + xpBorders * 2, 25 + xpBorders * 2);
+            var XPBorder = new Rectangle(XPPadding - xpBorders * 2, XPPadding - xpBorders * 2,
+                (int)(world.WorldWidth - 2 * XPPadding) + xpBorders * 4, 25 + xpBorders * 4);
 
             g.DrawImage(player.Image, player.Position.X, player.Position.Y,
                 (float)player.Size.Width, (float)player.Size.Height);
 
-            g.DrawRectangle(Pens.Black, padding, 60, player.MaxHealth * 3, 25);
-            g.FillRectangle(Brushes.Red, padding, 60, player.Health * 3, 25);
+            g.FillRectangle(Brushes.LightYellow, XPPadding - 2, 50 - 2, player.MaxHealth * 3 + 4, 25 + 4);
+            g.FillRectangle(Brushes.Black, XPPadding, 50, player.MaxHealth * 3, 25);
+            g.FillRectangle(Brushes.DarkRed, XPPadding, 50, player.Health * 3, 25);
 
             g.FillRectangle(Brushes.Gold, XPBorder);
             g.FillRectangle(Brushes.Black, XPBg);
@@ -85,6 +90,15 @@ namespace VampireSurvivors2
                 player.CentralPosition.Y, player.AttackRange));
             g.DrawString("LV " + player.Level.ToString(), new Font(myFont, 14),
                 Brushes.AntiqueWhite, levelPosition);
+        }
+
+        private void DrawKillsCounter(Graphics g)
+        {
+            var skullRect = new RectangleF(world.WorldWidth - 300, 40, 25, 25);
+            var textPosition = new PointF(skullRect.Location.X + skullRect.Width + 10, skullRect.Location.Y - 4);
+            g.DrawImage(View.Resources.skull, skullRect);
+            g.DrawString(player.Killed.ToString(), new Font(myFont, 14),
+                Brushes.AntiqueWhite, textPosition);
         }
 
         private void DrawTime(Graphics g)

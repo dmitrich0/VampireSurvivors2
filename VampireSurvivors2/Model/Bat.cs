@@ -111,6 +111,7 @@ namespace VampireSurvivors2
             {
                 world.Monsters.Remove(this);
                 World.Player.GetXP(XP);
+                World.Player.Killed++;
             }
         }
 

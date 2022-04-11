@@ -238,7 +238,7 @@
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
     <Content Include="Resources\music.wav" />
-    <Content Include="Resources\skull.png" />
+    <None Include="Resources\skull.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
