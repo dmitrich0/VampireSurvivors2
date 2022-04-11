@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="allHP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\allHP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bat_back__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bat-back (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,9 +166,6 @@
   <data name="bat_right__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bat-right (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="currentHP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\currentHP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="down1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\down1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -201,6 +195,27 @@
   </data>
   <data name="skull" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\skull.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snake__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snake (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snake__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snake (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snake__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snake (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snake__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snake (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snake__5_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snake (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snake__6_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snake (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snake__7_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snake (7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="up1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\up1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

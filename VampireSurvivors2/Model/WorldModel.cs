@@ -63,9 +63,12 @@ namespace VampireSurvivors2
                         x = -10f;
                         break;
                 }
-                var batPosition = new PointF(x, y);
-                var bat = new Bat(this, batPosition);
-                Monsters.Add(bat);
+                var monsterPos = new PointF(x, y);
+                var monsterId = Random.Next(0, 5);
+                if (monsterId != 0)
+                    Monsters.Add(new Bat(this, monsterPos));
+                else
+                    Monsters.Add(new Snake(this, monsterPos));
                 SpawnCooldownRemaining = SpawnCooldown;
                 MonstersSpawned++;
                 if (MonstersSpawned % 30 == 0 && SpawnCooldown != 1)

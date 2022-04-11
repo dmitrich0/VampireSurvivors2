@@ -15,8 +15,5 @@ namespace VampireSurvivors2
         Image[] Idle { get; set; }
         Image[] Right { get; set; }
         Image[] Left { get; set; }
-        Image[] Up { get; set; }
-        Image[] Down { get; set; }
-
     }
 }

@@ -34,7 +34,7 @@ namespace VampireSurvivors2
             DoubleBuffered = true;
             visibleTimer = new Stopwatch();
             myFontCollection = new PrivateFontCollection();
-            bgColor = Color.FromArgb(112, 85, 23);
+            bgColor = Color.FromArgb(72, 85, 23);
             MainTimer = new Timer();
             MainTimer.Interval = 30;
             world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);

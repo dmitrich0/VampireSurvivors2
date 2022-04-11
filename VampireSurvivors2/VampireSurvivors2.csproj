@@ -49,6 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Snake.cs" />
     <Compile Include="Model\IAnimarable.cs" />
     <Compile Include="Model\Bat.cs" />
     <Compile Include="Model\Animator.cs" />
@@ -238,6 +239,13 @@
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
     <Content Include="Resources\music.wav" />
+    <None Include="Resources\snake %284%29.png" />
+    <None Include="Resources\snake %283%29.png" />
+    <None Include="Resources\snake %282%29.png" />
+    <None Include="Resources\snake %281%29.png" />
+    <None Include="Resources\snake %287%29.png" />
+    <None Include="Resources\snake %286%29.png" />
+    <None Include="Resources\snake %285%29.png" />
     <None Include="Resources\skull.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

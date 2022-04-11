@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Media;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace VampireSurvivors2
 {
-    internal class Bat : IAnimarable, IMonster
+    internal class Snake : IAnimarable, IMonster
     {
+        public Vector Direction { get; set; }
+        public Animator Animator { get; set; }
         public Image[] Idle { get; set; }
         public Image[] Right { get; set; }
         public Image[] Left { get; set; }
         public Image[] Up { get; set; }
         public Image[] Down { get; set; }
+        public float Speed { get; set; }
         public int CurrentCooldown { get; set; }
         public int CoolDown { get; set; }
         public int AttackRange { get; set; }
@@ -24,38 +26,52 @@ namespace VampireSurvivors2
         public float Health { get; set; }
         public float MaxHealth { get; set; }
         public int Damage { get; set; }
-        public Size Size { get; set; }
+        public System.Drawing.Size Size { get; set; }
         public PointF Position { get; set; }
         public WorldModel World { get; set; }
-        public System.Windows.Vector Direction { get; set; }
-        public Animator Animator { get; set; }
         public PointF CentralPosition
         {
             get { return new PointF(Position.X + Size.Width / 2, Position.Y + Size.Height / 2); }
             set { ; }
         }
 
-        public float Speed { get; set; }
-
-        public Bat(WorldModel world, PointF position)
+        public Snake(WorldModel world, PointF position)
         {
-            Idle = new Image[] { View.Resources.bat_face__3_ };
-            Right = new Image[] { View.Resources.bat_face__1_, View.Resources.bat_face__2_,
-                View.Resources.bat_face__3_, View.Resources.bat_face__4_ };
-            Left = Right;
+            Idle = new Image[] { View.Resources.snake__1_ };
+            Right = new Image[] { View.Resources.snake__1_, View.Resources.snake__2_,
+                View.Resources.snake__3_, View.Resources.snake__4_, View.Resources.snake__5_,
+            View.Resources.snake__6_, View.Resources.snake__7_};
+            Left = Right.Select(x => Extenstions.Flip(x)).ToArray();
+            Up = Left.ToArray();
+            Down = Left.ToArray();
             Animator = new Animator(this);
             Image = Animator.GetCurrentFrame();
             Position = position;
-            Health = 10;
-            MaxHealth = 10;
-            Speed = 2;
-            Size = new Size(Image.Width, Image.Height);
-            Damage = 1;
+            Health = 20;
+            MaxHealth = 20;
+            Speed = 2.5f;
+            Size = new System.Drawing.Size(Image.Width, Image.Height);
+            Damage = 3;
             CurrentCooldown = 0;
             CoolDown = 5;
             AttackRange = 30;
             World = world;
-            XP = 10;
+            XP = 15;
+        }
+
+        public void GetDamage(int damage, WorldModel world)
+        {
+            Health -= damage;
+            if (Health <= 0)
+            {
+                world.Monsters.Remove(this);
+                World.Player.GetXP(XP);
+                World.Player.Killed++;
+            }
+        }
+        public void MakeAnim()
+        {
+            Image = Animator.GetCurrentFrame();
         }
 
         public void Move()
@@ -97,22 +113,6 @@ namespace VampireSurvivors2
                     World.Player.CurrentCooldown = 0;
                 else
                     World.Player.CurrentCooldown++;
-        }
-
-        public void GetDamage(int damage, WorldModel world)
-        {
-            Health -= damage;
-            if (Health <= 0)
-            {
-                world.Monsters.Remove(this);
-                World.Player.GetXP(XP);
-                World.Player.Killed++;
-            }
-        }
-
-        public void MakeAnim()
-        {
-            Image = Animator.GetCurrentFrame();
         }
     }
 }

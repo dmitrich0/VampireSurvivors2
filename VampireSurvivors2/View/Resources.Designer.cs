@@ -63,16 +63,6 @@ namespace VampireSurvivors2.View {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap allHP {
-            get {
-                object obj = ResourceManager.GetObject("allHP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bat_back__1_ {
             get {
                 object obj = ResourceManager.GetObject("bat_back__1_", resourceCulture);
@@ -233,16 +223,6 @@ namespace VampireSurvivors2.View {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap currentHP {
-            get {
-                object obj = ResourceManager.GetObject("currentHP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap down1 {
             get {
                 object obj = ResourceManager.GetObject("down1", resourceCulture);
@@ -336,6 +316,76 @@ namespace VampireSurvivors2.View {
         internal static System.Drawing.Bitmap skull {
             get {
                 object obj = ResourceManager.GetObject("skull", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snake__1_ {
+            get {
+                object obj = ResourceManager.GetObject("snake__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snake__2_ {
+            get {
+                object obj = ResourceManager.GetObject("snake__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snake__3_ {
+            get {
+                object obj = ResourceManager.GetObject("snake__3_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snake__4_ {
+            get {
+                object obj = ResourceManager.GetObject("snake__4_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snake__5_ {
+            get {
+                object obj = ResourceManager.GetObject("snake__5_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snake__6_ {
+            get {
+                object obj = ResourceManager.GetObject("snake__6_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snake__7_ {
+            get {
+                object obj = ResourceManager.GetObject("snake__7_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
