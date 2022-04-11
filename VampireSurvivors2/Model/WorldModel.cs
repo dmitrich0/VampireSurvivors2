@@ -92,12 +92,19 @@ namespace VampireSurvivors2
         {
             foreach (var crystal in Crystals.ToList())
             {
-                var vector = new Vector(crystal.CentralPosition.X - Player.CentralPosition.X,
-                    crystal.CentralPosition.Y - Player.CentralPosition.Y);
+                var vector = new Vector(Player.CentralPosition.X - crystal.CentralPosition.X,
+                    Player.CentralPosition.Y - crystal.CentralPosition.Y);
                 if (vector.Length <= Player.PickupRange)
                 {
-                    Player.GetXP(crystal.XP);
-                    Crystals.Remove(crystal);
+                    vector.Normalize();
+                    crystal.Move(vector);
+                    vector = new Vector(Player.CentralPosition.X - crystal.CentralPosition.X,
+                    Player.CentralPosition.Y - crystal.CentralPosition.Y);
+                    if (vector.Length <= 3)
+                    {
+                        Player.GetXP(crystal.XP);
+                        Crystals.Remove(crystal);
+                    }
                 }
             }
         }

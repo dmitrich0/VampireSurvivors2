@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace VampireSurvivors2
 {
@@ -13,6 +14,7 @@ namespace VampireSurvivors2
         public PointF Position { get; set; }
         public int XP { get; set; }
         public System.Windows.Size Size { get; }
+        public float Speed { get; set; }
         public PointF CentralPosition
         {
             get
@@ -28,6 +30,12 @@ namespace VampireSurvivors2
             XP = xp;
             Image = View.Resources.crystal2;
             Size = new System.Windows.Size(Image.Width, Image.Height);
+            Speed = 9;
+        }
+
+        public void Move(Vector direction)
+        {
+            Position = new PointF((float)(Position.X + Speed * direction.X), (float)(Position.Y + Speed * direction.Y));
         }
     }
 }

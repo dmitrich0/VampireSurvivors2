@@ -67,7 +67,7 @@ namespace VampireSurvivors2
             Animator = new Animator(this);
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
-            PickupRange = 30;
+            PickupRange = 50;
         }
 
         public void GetDamage(int damage)
