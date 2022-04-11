@@ -39,6 +39,8 @@ namespace VampireSurvivors2
                     CurrentAnimation = Entity.Right;
                 else if (Entity.Direction.X < 0)
                     CurrentAnimation = Entity.Left;
+                else
+                    CurrentAnimation = Entity.Right;
                 if (oldCurrentAnim == CurrentAnimation)
                 {
                     CurrentFrame++;
