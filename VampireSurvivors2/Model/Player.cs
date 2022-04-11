@@ -16,6 +16,7 @@ namespace VampireSurvivors2
         public Image[] Left { get; set; }
         public Image[] Up { get; set; }
         public Image[] Down { get; set; }
+        public int PickupRange { get; set; }
 
         public PointF CentralPosition
         {
@@ -66,6 +67,7 @@ namespace VampireSurvivors2
             Animator = new Animator(this);
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
+            PickupRange = 30;
         }
 
         public void GetDamage(int damage)

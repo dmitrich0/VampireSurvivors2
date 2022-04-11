@@ -49,6 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Crystal.cs" />
     <Compile Include="Model\Snake.cs" />
     <Compile Include="Model\IAnimarable.cs" />
     <Compile Include="Model\Bat.cs" />
@@ -236,8 +237,11 @@
     <None Include="Resources\allHP.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\bg.jpg" />
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
+    <None Include="Resources\crystal.png" />
+    <None Include="Resources\crystal2.png" />
     <Content Include="Resources\music.wav" />
     <None Include="Resources\skull.ico" />
     <None Include="Resources\snake %284%29.png" />

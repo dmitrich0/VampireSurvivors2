@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows;
 
 namespace VampireSurvivors2
 {
@@ -20,6 +21,7 @@ namespace VampireSurvivors2
         public int SpawnCooldown;
         public int SpawnCooldownRemaining;
         public int MonstersSpawned;
+        public List<Crystal> Crystals;
 
         public WorldModel(float width, float height, int spawnCooldown)
         {
@@ -33,6 +35,7 @@ namespace VampireSurvivors2
             Timer.Start();
             SpawnCooldownRemaining = SpawnCooldown;
             MonstersSpawned = 0;
+            Crystals = new List<Crystal>();
         }
 
         public void SpawnMonster()
@@ -82,6 +85,20 @@ namespace VampireSurvivors2
             {
                 monster.Move();
                 monster.MakeAnim();
+            }
+        }
+
+        public void CheckCrystals()
+        {
+            foreach (var crystal in Crystals.ToList())
+            {
+                var vector = new Vector(crystal.CentralPosition.X - Player.CentralPosition.X,
+                    crystal.CentralPosition.Y - Player.CentralPosition.Y);
+                if (vector.Length <= Player.PickupRange)
+                {
+                    Player.GetXP(crystal.XP);
+                    Crystals.Remove(crystal);
+                }
             }
         }
     }

@@ -65,7 +65,7 @@ namespace VampireSurvivors2
             if (Health <= 0)
             {
                 world.Monsters.Remove(this);
-                World.Player.GetXP(XP);
+                world.Crystals.Add(new Crystal(CentralPosition, XP));
                 World.Player.Killed++;
             }
         }
@@ -103,10 +103,12 @@ namespace VampireSurvivors2
 
         public void TryToGetDamage(System.Windows.Vector vector)
         {
+            var rnd = new Random();
+            var damage = World.Player.Damage + rnd.Next((int)(-World.Player.Damage * 0.2), (int)(World.Player.Damage * 0.2));
             if (vector.Length <= World.Player.AttackRange)
                 if (World.Player.CurrentCooldown == 0)
                 {
-                    GetDamage(World.Player.Damage, World);
+                    GetDamage(damage, World);
                     World.Player.CurrentCooldown++;
                 }
                 else if (World.Player.CurrentCooldown == World.Player.Cooldown)

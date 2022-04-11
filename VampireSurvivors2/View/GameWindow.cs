@@ -61,6 +61,7 @@ namespace VampireSurvivors2
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             DrawTime(g);
+            DrawCrystals(g);
             DrawMonsters(g);
             DrawPlayerAndHUD(g);
             DrawKillsCounter(g);
@@ -115,6 +116,14 @@ namespace VampireSurvivors2
             g.DrawString(totalTime, new Font(myFont, 36), Brushes.BlanchedAlmond, timePosition);
             g.DrawString("15:00", new Font(myFont, 18), Brushes.Gray, tagetTimePosition);
         }
+
+        private void DrawCrystals(Graphics g)
+        {
+            foreach (var crystal in world.Crystals)
+            {
+                g.DrawImage(crystal.Image, crystal.Position);
+            }
+        }
         
         private void DrawMonsters(Graphics g)
         {
@@ -167,6 +176,7 @@ namespace VampireSurvivors2
         {
             world.SpawnMonster();
             world.MoveMonsters();
+            world.CheckCrystals();
             player.Move(GetPlayerDirection());
             player.MakeAnim();
             Invalidate();
