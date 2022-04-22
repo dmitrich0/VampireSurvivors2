@@ -238,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bg.jpg" />
+    <None Include="Resources\menuBg.gif" />
+    <None Include="Resources\menuBg.jpg" />
+    <Content Include="Resources\menuMusic.wav" />
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
     <None Include="Resources\crystal.png" />
