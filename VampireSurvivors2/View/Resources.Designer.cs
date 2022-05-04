@@ -233,6 +233,26 @@ namespace VampireSurvivors2.View {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bullet {
+            get {
+                object obj = ResourceManager.GetObject("bullet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bulletIcon {
+            get {
+                object obj = ResourceManager.GetObject("bulletIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap crystal {
             get {
                 object obj = ResourceManager.GetObject("crystal", resourceCulture);
@@ -376,6 +396,16 @@ namespace VampireSurvivors2.View {
         internal static System.Drawing.Bitmap playBtn {
             get {
                 object obj = ResourceManager.GetObject("playBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap protectionBook {
+            get {
+                object obj = ResourceManager.GetObject("protectionBook", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -586,6 +616,16 @@ namespace VampireSurvivors2.View {
         internal static System.Drawing.Bitmap walk6 {
             get {
                 object obj = ResourceManager.GetObject("walk6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap weapons {
+            get {
+                object obj = ResourceManager.GetObject("weapons", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

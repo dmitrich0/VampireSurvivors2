@@ -21,7 +21,6 @@ namespace VampireSurvivors2.View
         private float titleDy;
         private bool isTitleGoingUp;
         private SoundPlayer MusicPlayer;
-        private Button PlayButton;
         public GameMenu()
         {
             InitializeComponent();
@@ -47,7 +46,6 @@ namespace VampireSurvivors2.View
             MainTimer.Tick += new EventHandler(Update);
             MainTimer.Start();
             titleDy = 3;
-            PlayButton = new Button();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -56,8 +54,8 @@ namespace VampireSurvivors2.View
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             DrawTitle(g);
-            DrawPlayButton(g);
-            DrawExitButton(g);
+            DrawPlayButton();
+            DrawExitButton();
         }
 
         private void DrawTitle(Graphics g)
@@ -68,10 +66,10 @@ namespace VampireSurvivors2.View
             g.DrawString("Vampire Survivors 2", new Font(myFont, 54), Brushes.DarkRed, titlePostiton);
         }
 
-        private void DrawPlayButton(Graphics g)
+        private void DrawPlayButton()
         {
             var btnLocation = new Point(Size.Width / 2, Size.Height / 2);
-            var playButton = new Button() { Text = "Play", BackColor = Color.FromArgb(11, 52, 135),
+            var playButton = new Button() { Text = "Go to battle", BackColor = Color.FromArgb(11, 52, 135),
                 Font = new Font(myFont, 22), Height = 60, Width = 300, TextAlign = ContentAlignment.MiddleCenter};
             playButton.Location = new Point(Size.Width / 2 - playButton.Width / 2, Size.Height / 2);
             playButton.FlatStyle = FlatStyle.Flat;
@@ -79,7 +77,7 @@ namespace VampireSurvivors2.View
             playButton.Click += (s, e) => { new GameWindow().Show(); };
         }
 
-        private void DrawExitButton(Graphics g)
+        private void DrawExitButton()
         {
             var exitButton = new Button()
             {

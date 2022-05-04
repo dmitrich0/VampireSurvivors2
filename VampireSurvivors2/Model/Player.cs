@@ -41,6 +41,7 @@ namespace VampireSurvivors2
         public double XPToNextLevel { get; set; }
         public int Level { get; set; }
         public int Killed { get; set; }
+        public List<IWeapon> Weapons { get; set; }
 
         public Player(WorldModel world)
         {
@@ -68,6 +69,7 @@ namespace VampireSurvivors2
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
             PickupRange = 50;
+            Weapons = new List<IWeapon>() { new ProtectionBookWeapon() };
         }
 
         public void GetDamage(int damage)
@@ -100,7 +102,7 @@ namespace VampireSurvivors2
             CurrentXP += xp;
             if (CurrentXP >= XPToNextLevel)
             {
-                CurrentXP = CurrentXP - XPToNextLevel;
+                CurrentXP -= XPToNextLevel;
                 Level++;
                 XPToNextLevel *= 1.2;
             }

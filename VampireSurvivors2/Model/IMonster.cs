@@ -28,7 +28,7 @@ namespace VampireSurvivors2
 
         void Move();
         void TryDamagePlayer(System.Windows.Vector vector);
-        void TryToGetDamage(System.Windows.Vector vector);
+        void TryToGetBookDamage(System.Windows.Vector vector);
         void GetDamage(int damage, WorldModel world);
         void MakeAnim();
 

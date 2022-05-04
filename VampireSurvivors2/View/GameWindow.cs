@@ -65,6 +65,7 @@ namespace VampireSurvivors2
             DrawMonsters(g);
             DrawPlayerAndHUD(g);
             DrawKillsCounter(g);
+            DrawWeaponsTable(g);
         }
 
         private void DrawPlayerAndHUD(Graphics g)
@@ -138,6 +139,17 @@ namespace VampireSurvivors2
                     g.DrawRectangle(Pens.Black, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
                        monster.Size.Width, 5);
                 }
+            }
+        }
+
+        private void DrawWeaponsTable(Graphics g)
+        {
+            var padding = 0;
+            foreach (var weapon in player.Weapons)
+            {
+                var pos = new PointF(350 + padding, 48);
+                g.DrawImage(weapon.Icon, pos);
+                padding += 40;
             }
         }
 

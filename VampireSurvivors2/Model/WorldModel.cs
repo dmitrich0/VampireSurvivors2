@@ -24,6 +24,7 @@ namespace VampireSurvivors2
         public List<IEntity> Entities;
         public List<Crystal> Crystals;
         public List<Heart> Hearts;
+        public List<RacingSoulBullet> RacingSoulBullets;
         public int HeartChance { get; set; }
 
         public WorldModel(float width, float height, int spawnCooldown)
@@ -93,6 +94,27 @@ namespace VampireSurvivors2
                 monster.MakeAnim();
             }
         }
+
+        //public void CheckBullets()
+        //{
+        //    foreach (var weapon in Player.Weapons) 
+        //    {
+        //        if (weapon is RacingSoulWeapon)
+        //        {
+        //            var currentWeapon = (RacingSoulWeapon)weapon;
+        //            foreach (var bullet in currentWeapon.Bullets)
+        //            {
+        //                var vector = new Vector(Player.CentralPosition.X - bullet.CentralPosition.X, 
+        //                    Player.CentralPosition.Y - bullet.CentralPosition.Y);
+        //                if (vector.Length < 5)
+        //                {
+
+        //                }
+        //            }
+        //        }
+        //        else
+        //            return;
+        //    }
 
         public void CheckEntities()
         {

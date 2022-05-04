@@ -64,7 +64,7 @@ namespace VampireSurvivors2
                 World.Player.CentralPosition.Y - CentralPosition.Y);
             Direction = direction;
             TryDamagePlayer(direction);
-            TryToGetDamage(direction);
+            TryToGetBookDamage(direction);
             direction.Normalize();
             Position = new PointF(Position.X + (float)direction.X * Speed, Position.Y + (float)direction.Y * Speed);
         }
@@ -85,7 +85,7 @@ namespace VampireSurvivors2
             }
         }
 
-        public void TryToGetDamage(System.Windows.Vector vector)
+        public void TryToGetBookDamage(System.Windows.Vector vector)
         {
             var rnd = new Random();
             var damage = World.Player.Damage + rnd.Next((int)(-World.Player.Damage * 0.2), (int)(World.Player.Damage * 0.2));
