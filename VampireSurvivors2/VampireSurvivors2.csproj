@@ -239,6 +239,7 @@
     <None Include="Resources\allHP.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\playBtn.png" />
     <None Include="Resources\bg.jpg" />
     <None Include="Resources\menuBg.gif" />
     <None Include="Resources\menuBg.jpg" />

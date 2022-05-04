@@ -21,6 +21,7 @@ namespace VampireSurvivors2.View
         private float titleDy;
         private bool isTitleGoingUp;
         private SoundPlayer MusicPlayer;
+        private Button PlayButton;
         public GameMenu()
         {
             InitializeComponent();
@@ -46,6 +47,7 @@ namespace VampireSurvivors2.View
             MainTimer.Tick += new EventHandler(Update);
             MainTimer.Start();
             titleDy = 3;
+            PlayButton = new Button();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -54,6 +56,8 @@ namespace VampireSurvivors2.View
             var g = e.Graphics;
             g.SmoothingMode = SmoothingMode.HighQuality;
             DrawTitle(g);
+            DrawPlayButton(g);
+            DrawExitButton(g);
         }
 
         private void DrawTitle(Graphics g)
@@ -63,6 +67,35 @@ namespace VampireSurvivors2.View
             var titlePostiton = new PointF(Size.Width / 4, Size.Height / 6 + titleDy);
             g.DrawString("Vampire Survivors 2", new Font(myFont, 54), Brushes.DarkRed, titlePostiton);
         }
+
+        private void DrawPlayButton(Graphics g)
+        {
+            var btnLocation = new Point(Size.Width / 2, Size.Height / 2);
+            var playButton = new Button() { Text = "Play", BackColor = Color.FromArgb(11, 52, 135),
+                Font = new Font(myFont, 22), Height = 60, Width = 300, TextAlign = ContentAlignment.MiddleCenter};
+            playButton.Location = new Point(Size.Width / 2 - playButton.Width / 2, Size.Height / 2);
+            playButton.FlatStyle = FlatStyle.Flat;
+            Controls.Add(playButton);
+            playButton.Click += (s, e) => { new GameWindow().Show(); };
+        }
+
+        private void DrawExitButton(Graphics g)
+        {
+            var exitButton = new Button()
+            {
+                Text = "Exit",
+                BackColor = Color.FromArgb(11, 52, 135),
+                Font = new Font(myFont, 22),
+                Height = 60,
+                Width = 300,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            exitButton.Location = new Point(Size.Width / 2 - exitButton.Width / 2, Size.Height / 2 + 120);
+            exitButton.FlatStyle = FlatStyle.Flat;
+            Controls.Add(exitButton);
+            exitButton.Click += (s, e) => { Application.Exit(); };
+        }
+
 
         private void StartGame(object sender, EventArgs e)
         {

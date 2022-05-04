@@ -29,7 +29,7 @@ namespace VampireSurvivors2
             Position = pos;
             Value = 25;
             Image = View.Resources.heart;
-            Size = new System.Windows.Size(Image.Width, Image.Height);
+            Size = new System.Windows.Size(Image.Width / 2, Image.Height / 2);
             Speed = 9;
         }
 
