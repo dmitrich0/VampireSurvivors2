@@ -11,7 +11,7 @@ namespace VampireSurvivors2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameMenu());
+            Application.Run(new GameWindow());
         }
     }
 }

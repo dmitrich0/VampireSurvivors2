@@ -104,10 +104,19 @@ namespace VampireSurvivors2
         public void GetDamage(int damage, WorldModel world)
         {
             Health -= damage;
+            var rand = new Random();
             if (Health <= 0)
             {
                 world.Monsters.Remove(this);
-                world.Crystals.Add(new Crystal(CentralPosition, XP));
+                var crystal = new Crystal(CentralPosition, XP);
+                world.Crystals.Add(crystal);
+                world.Entities.Add(crystal);
+                if (rand.Next(1, world.HeartChance + 1) == 1)
+                {
+                    var heart = new Heart(CentralPosition);
+                    world.Hearts.Add(heart);
+                    world.Entities.Add(heart);
+                }
                 World.Player.Killed++;
             }
         }

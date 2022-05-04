@@ -106,6 +106,13 @@ namespace VampireSurvivors2
             }
         }
 
+        public void GetHP(int hp)
+        {
+            Health += hp;
+            if (Health > 100)
+                Health = 100;
+        }
+
         public void MakeAnim()
         {
             Image = Animator.GetCurrentFrame();

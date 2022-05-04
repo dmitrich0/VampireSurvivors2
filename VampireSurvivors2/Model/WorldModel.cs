@@ -21,7 +21,10 @@ namespace VampireSurvivors2
         public int SpawnCooldown;
         public int SpawnCooldownRemaining;
         public int MonstersSpawned;
+        public List<IEntity> Entities;
         public List<Crystal> Crystals;
+        public List<Heart> Hearts;
+        public int HeartChance { get; set; }
 
         public WorldModel(float width, float height, int spawnCooldown)
         {
@@ -36,6 +39,9 @@ namespace VampireSurvivors2
             SpawnCooldownRemaining = SpawnCooldown;
             MonstersSpawned = 0;
             Crystals = new List<Crystal>();
+            Hearts = new List<Heart>();
+            Entities = new List<IEntity>();
+            HeartChance = 30;
         }
 
         public void SpawnMonster()
@@ -88,22 +94,31 @@ namespace VampireSurvivors2
             }
         }
 
-        public void CheckCrystals()
+        public void CheckEntities()
         {
-            foreach (var crystal in Crystals.ToList())
+            foreach (var entity in Entities.ToList())
             {
-                var vector = new Vector(Player.CentralPosition.X - crystal.CentralPosition.X,
-                    Player.CentralPosition.Y - crystal.CentralPosition.Y);
+                var vector = new Vector(Player.CentralPosition.X - entity.CentralPosition.X,
+                    Player.CentralPosition.Y - entity.CentralPosition.Y);
                 if (vector.Length <= Player.PickupRange)
                 {
                     vector.Normalize();
-                    crystal.Move(vector);
-                    vector = new Vector(Player.CentralPosition.X - crystal.CentralPosition.X,
-                    Player.CentralPosition.Y - crystal.CentralPosition.Y);
+                    entity.Move(vector);
+                    vector = new Vector(Player.CentralPosition.X - entity.CentralPosition.X,
+                    Player.CentralPosition.Y - entity.CentralPosition.Y);
                     if (vector.Length <= 3)
                     {
-                        Player.GetXP(crystal.XP);
-                        Crystals.Remove(crystal);
+                        if (entity is Heart)
+                        {
+                            Player.GetHP(entity.Value);
+                            Hearts.Remove((Heart)entity);
+                        }
+                        else
+                        {
+                            Player.GetXP(entity.Value);
+                            Crystals.Remove((Crystal)entity);
+                        }
+                        Entities.Remove(entity);
                     }
                 }
             }

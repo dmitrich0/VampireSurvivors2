@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace VampireSurvivors2
 {
-    internal class Crystal : IEntity
+    internal class Heart : IEntity
     {
         public Image Image { get; set; }
         public PointF Position { get; set; }
@@ -24,11 +24,11 @@ namespace VampireSurvivors2
             }
         }
 
-        public Crystal(PointF pos, int xp)
+        public Heart(PointF pos)
         {
             Position = pos;
-            Value = xp;
-            Image = View.Resources.crystal2;
+            Value = 25;
+            Image = View.Resources.heart;
             Size = new System.Windows.Size(Image.Width, Image.Height);
             Speed = 9;
         }

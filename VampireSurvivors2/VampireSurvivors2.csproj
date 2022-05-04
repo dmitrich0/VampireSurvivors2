@@ -49,7 +49,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Heart.cs" />
     <Compile Include="Model\Crystal.cs" />
+    <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\Snake.cs" />
     <Compile Include="Model\IAnimarable.cs" />
     <Compile Include="Model\Bat.cs" />
@@ -240,6 +242,8 @@
     <None Include="Resources\bg.jpg" />
     <None Include="Resources\menuBg.gif" />
     <None Include="Resources\menuBg.jpg" />
+    <None Include="Resources\heart.png" />
+    <None Include="Resources\heart %281%29.png" />
     <Content Include="Resources\menuMusic.wav" />
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
