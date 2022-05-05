@@ -69,7 +69,7 @@ namespace VampireSurvivors2
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
             PickupRange = 50;
-            Weapons = new List<IWeapon>() { new ProtectionBookWeapon() };
+            Weapons = new List<IWeapon>() { new ProtectionBookWeapon(), new RacingSoulWeapon(world) };
         }
 
         public void GetDamage(int damage)

@@ -16,6 +16,11 @@ namespace VampireSurvivors2
         public PointF Position { get; set; }
         public System.Windows.Size Size { get; }
         public WorldModel World { get; set; }
+        public IMonster Target { get; set; }
+        public Vector VectorToTarget
+        {
+            get { return new Vector(Target.CentralPosition.X - Position.X, Target.CentralPosition.Y - Position.Y); }
+        }
         public PointF CentralPosition
         {
             get
@@ -25,7 +30,7 @@ namespace VampireSurvivors2
             }
         }
 
-        public RacingSoulBullet(PointF pos, int damage, WorldModel world)
+        public RacingSoulBullet(PointF pos, int damage, WorldModel world, IMonster target)
         {
             Position = pos;
             Damage = damage;
@@ -33,20 +38,24 @@ namespace VampireSurvivors2
             Size = new System.Windows.Size(Image.Width, Image.Height);
             Speed = 9;
             World = world;
+            Target = target;
         }
 
-        public void Move()
+        public void MoveToTarget()
         {
-            var direction = new Vector(double.PositiveInfinity, double.PositiveInfinity);
-            foreach (var monster in World.Monsters)
+            var vector = new Vector(Target.CentralPosition.X - Position.X, Target.CentralPosition.Y - Position.Y);
+            vector.Normalize();
+            Position = new PointF((float)(Position.X + Speed * vector.X), (float)(Position.Y + Speed * vector.Y));
+            TryToDamage();
+        }
+
+        public void TryToDamage()
+        {
+            if (VectorToTarget.Length < 5)
             {
-                var vector = new Vector(monster.Position.X - World.Player.Position.X,
-                    monster.Position.Y - World.Player.Position.Y);
-                if (vector.Length < direction.Length)
-                    direction = vector;
+                Target.GetDamage(Damage, World);
+                World.RacingSoulBullets.Remove(this);
             }
-            direction.Normalize();
-            Position = new PointF((float)(Position.X + Speed * direction.X), (float)(Position.Y + Speed * direction.Y));
         }
     }
 }

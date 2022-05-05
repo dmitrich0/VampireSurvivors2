@@ -43,6 +43,7 @@ namespace VampireSurvivors2
             Hearts = new List<Heart>();
             Entities = new List<IEntity>();
             HeartChance = 30;
+            RacingSoulBullets = new List<RacingSoulBullet>();
         }
 
         public void SpawnMonster()
@@ -95,26 +96,20 @@ namespace VampireSurvivors2
             }
         }
 
-        //public void CheckBullets()
-        //{
-        //    foreach (var weapon in Player.Weapons) 
-        //    {
-        //        if (weapon is RacingSoulWeapon)
-        //        {
-        //            var currentWeapon = (RacingSoulWeapon)weapon;
-        //            foreach (var bullet in currentWeapon.Bullets)
-        //            {
-        //                var vector = new Vector(Player.CentralPosition.X - bullet.CentralPosition.X, 
-        //                    Player.CentralPosition.Y - bullet.CentralPosition.Y);
-        //                if (vector.Length < 5)
-        //                {
-
-        //                }
-        //            }
-        //        }
-        //        else
-        //            return;
-        //    }
+        public void CheckBullets()
+        {
+            RacingSoulWeapon weapon = null;
+            foreach (var gun in Player.Weapons)
+            {
+                if (gun is RacingSoulWeapon)
+                {
+                    weapon = (RacingSoulWeapon)gun;
+                    weapon.CreateBullet();
+                }
+            }
+            foreach (var bullet in RacingSoulBullets.ToArray())
+                bullet.MoveToTarget();
+        }
 
         public void CheckEntities()
         {

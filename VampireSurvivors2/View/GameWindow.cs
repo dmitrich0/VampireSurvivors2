@@ -35,7 +35,7 @@ namespace VampireSurvivors2
             DoubleBuffered = true;
             visibleTimer = new Stopwatch();
             myFontCollection = new PrivateFontCollection();
-            bgColor = Color.FromArgb(72, 85, 23);
+            bgColor = Color.FromArgb(112, 85, 23);
             MainTimer = new Timer();
             MainTimer.Interval = 30;
             world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);
@@ -66,6 +66,7 @@ namespace VampireSurvivors2
             DrawPlayerAndHUD(g);
             DrawKillsCounter(g);
             DrawWeaponsTable(g);
+            DrawRacingSoulBullets(g);
         }
 
         private void DrawPlayerAndHUD(Graphics g)
@@ -142,6 +143,14 @@ namespace VampireSurvivors2
             }
         }
 
+        private void DrawRacingSoulBullets(Graphics g)
+        {
+            foreach (var bullet in world.RacingSoulBullets.ToList())
+            {
+                g.DrawImage(bullet.Image, bullet.Position);
+            }
+        }
+
         private void DrawWeaponsTable(Graphics g)
         {
             var padding = 0;
@@ -189,6 +198,7 @@ namespace VampireSurvivors2
             world.SpawnMonster();
             world.MoveMonsters();
             world.CheckEntities();
+            world.CheckBullets();
             player.Move(GetPlayerDirection());
             player.MakeAnim();
             Invalidate();

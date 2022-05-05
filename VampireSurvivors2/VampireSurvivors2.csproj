@@ -253,6 +253,7 @@
     <None Include="Resources\heart %281%29.png" />
     <None Include="Resources\bullet.png" />
     <None Include="Resources\bulletIcon.png" />
+    <None Include="Resources\final_bullet.png" />
     <Content Include="Resources\menuMusic.wav" />
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />

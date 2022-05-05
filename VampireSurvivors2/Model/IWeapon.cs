@@ -14,5 +14,6 @@ namespace VampireSurvivors2
         int WeaponLevel { get; set; }
         Image Image { get; set; }
         int CoolDown { get; set; }
+        int CurrentCooldown { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace VampireSurvivors2
         public Image Icon { get; set; }
         public Image Image { get; set; }
         public int CoolDown { get; set; }
+        public int CurrentCooldown { get; set; }
 
         public ProtectionBookWeapon()
         {
