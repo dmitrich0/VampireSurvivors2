@@ -36,8 +36,7 @@ namespace VampireSurvivors2
             visibleTimer = new Stopwatch();
             myFontCollection = new PrivateFontCollection();
             bgColor = Color.FromArgb(112, 85, 23);
-            MainTimer = new Timer();
-            MainTimer.Interval = 30;
+            MainTimer = new Timer { Interval = 30 };
             world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);
             player = world.Player;
             MusicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\music.wav");

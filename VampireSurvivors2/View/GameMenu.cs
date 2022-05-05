@@ -41,8 +41,7 @@ namespace VampireSurvivors2.View
             SizeChanged += Update;
             MusicPlayer.PlayLooping();
             BackgroundImage = Resources.menuBg1;
-            MainTimer = new Timer();
-            MainTimer.Interval = 570;
+            MainTimer = new Timer { Interval = 570 };
             MainTimer.Tick += new EventHandler(Update);
             MainTimer.Start();
             titleDy = 3;

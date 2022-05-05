@@ -25,6 +25,7 @@ namespace VampireSurvivors2
         public List<Crystal> Crystals;
         public List<Heart> Hearts;
         public List<RacingSoulBullet> RacingSoulBullets;
+        public int LastPlayerLevel;
         public int HeartChance { get; set; }
 
         public WorldModel(float width, float height, int spawnCooldown)
@@ -44,6 +45,7 @@ namespace VampireSurvivors2
             Entities = new List<IEntity>();
             HeartChance = 30;
             RacingSoulBullets = new List<RacingSoulBullet>();
+            LastPlayerLevel = 1;
         }
 
         public void SpawnMonster()
@@ -96,9 +98,19 @@ namespace VampireSurvivors2
             }
         }
 
+        public bool IsLevelChanged()
+        {
+            if (LastPlayerLevel != Player.Level)
+            {
+                LastPlayerLevel = Player.Level;
+                return true;
+            }
+            return false;
+        }
+
         public void CheckBullets()
         {
-            RacingSoulWeapon weapon = null;
+            RacingSoulWeapon weapon;
             foreach (var gun in Player.Weapons)
             {
                 if (gun is RacingSoulWeapon)
