@@ -9,6 +9,7 @@ namespace VampireSurvivors2
 {
     internal interface IWeapon
     {
+        int BaseDamage { get; set; }
         int Damage { get; set; }
         Image Icon { get; set; }
         int WeaponLevel { get; set; }

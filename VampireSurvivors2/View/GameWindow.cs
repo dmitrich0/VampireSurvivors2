@@ -145,9 +145,7 @@ namespace VampireSurvivors2
         private void DrawRacingSoulBullets(Graphics g)
         {
             foreach (var bullet in world.RacingSoulBullets.ToList())
-            {
                 g.DrawImage(bullet.Image, bullet.Position);
-            }
         }
 
         private void DrawWeaponsTable(Graphics g)

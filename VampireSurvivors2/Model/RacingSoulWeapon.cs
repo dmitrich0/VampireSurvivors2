@@ -10,6 +10,7 @@ namespace VampireSurvivors2
 {
     internal class RacingSoulWeapon : IWeapon
     {
+        public int BaseDamage { get; set; }
         public int Damage { get; set; }
         public int WeaponLevel { get; set; }
         public Image Icon { get; set; }
@@ -26,7 +27,8 @@ namespace VampireSurvivors2
             CoolDown = 30;
             CurrentCooldown = 0;
             World = world;
-            Damage = 5;
+            BaseDamage = 5;
+            Damage = WeaponLevel * BaseDamage;
         }
 
         public void CreateBullet()
@@ -46,7 +48,7 @@ namespace VampireSurvivors2
             }
             if (target != null && CurrentCooldown > CoolDown)
             {
-                World.RacingSoulBullets.Add(new RacingSoulBullet(World.Player.Position, 5, World, target));
+                World.RacingSoulBullets.Add(new RacingSoulBullet(World.Player.Position, Damage, World, target));
                 CurrentCooldown = 0;
             }
         }
