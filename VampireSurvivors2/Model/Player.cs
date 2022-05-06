@@ -39,6 +39,9 @@ namespace VampireSurvivors2
         public int Killed { get; set; }
         public List<IWeapon> Weapons { get; set; }
 
+        public ProtectionBookWeapon ProtectionBookWeapon { get; set; }
+        public RacingSoulWeapon RacingSoulWeapon { get; set; }
+
         public Player(WorldModel world)
         {
             CurrentXP = 0;
@@ -61,7 +64,9 @@ namespace VampireSurvivors2
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
             PickupRange = 50;
-            Weapons = new List<IWeapon>() { new ProtectionBookWeapon(), new RacingSoulWeapon(world) };
+            ProtectionBookWeapon = new ProtectionBookWeapon();
+            RacingSoulWeapon = new RacingSoulWeapon(world);
+            Weapons = new List<IWeapon>() { ProtectionBookWeapon, RacingSoulWeapon };
         }
 
         public void GetDamage(int damage)

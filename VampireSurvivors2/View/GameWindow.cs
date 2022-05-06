@@ -87,15 +87,10 @@ namespace VampireSurvivors2
             g.FillRectangle(Brushes.Black, XPBg);
             g.FillRectangle(Brushes.Blue, XPRectangle);
 
-            foreach (var weapon in player.Weapons)
-            {
-                if (weapon is ProtectionBookWeapon)
-                {
-                    var book = (ProtectionBookWeapon)weapon;
-                    g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X,
-                    player.CentralPosition.Y, book.AttackRange));
-                }
-            }
+            if (player.ProtectionBookWeapon != null)
+                g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X, 
+                    player.CentralPosition.Y, player.ProtectionBookWeapon.AttackRange));
+
             g.DrawString("LV " + player.Level.ToString(), new Font(myFont, 14),
                 Brushes.AntiqueWhite, levelPosition);
         }

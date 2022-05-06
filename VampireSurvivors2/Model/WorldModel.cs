@@ -114,15 +114,8 @@ namespace VampireSurvivors2
 
         public void CheckBullets()
         {
-            RacingSoulWeapon weapon;
-            foreach (var gun in Player.Weapons)
-            {
-                if (gun is RacingSoulWeapon)
-                {
-                    weapon = (RacingSoulWeapon)gun;
-                    weapon.CreateBullet();
-                }
-            }
+            if (Player.RacingSoulWeapon != null)
+                Player.RacingSoulWeapon.CreateBullet();
             foreach (var bullet in RacingSoulBullets.ToArray())
                 bullet.MoveToTarget();
         }
@@ -162,8 +155,7 @@ namespace VampireSurvivors2
                 {
                     vector.Normalize();
                     var newEntityPos = entity.Move(vector);
-                    vector = new Vector(Player.CentralPosition.X - newEntityPos.X,
-                    Player.CentralPosition.Y - newEntityPos.Y);
+                    vector = new Vector(Player.CentralPosition.X - newEntityPos.X, Player.CentralPosition.Y - newEntityPos.Y);
                     if (vector.Length <= 5)
                     {
                         if (entity is Heart)
