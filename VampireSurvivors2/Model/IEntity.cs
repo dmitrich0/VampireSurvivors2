@@ -16,6 +16,6 @@ namespace VampireSurvivors2
         System.Windows.Size Size { get; }
         float Speed { get; set; }
         PointF CentralPosition { get; }
-        void Move(Vector direction);
+        PointF Move(Vector direction);
     }
 }

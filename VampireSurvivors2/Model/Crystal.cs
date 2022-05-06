@@ -33,9 +33,10 @@ namespace VampireSurvivors2
             Speed = 9;
         }
 
-        public void Move(Vector direction)
+        public PointF Move(Vector direction)
         {
             Position = new PointF((float)(Position.X + Speed * direction.X), (float)(Position.Y + Speed * direction.Y));
+            return Position;
         }
     }
 }

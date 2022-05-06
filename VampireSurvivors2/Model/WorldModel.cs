@@ -132,9 +132,9 @@ namespace VampireSurvivors2
                 if (vector.Length <= Player.PickupRange)
                 {
                     vector.Normalize();
-                    entity.Move(vector);
-                    vector = new Vector(Player.CentralPosition.X - entity.CentralPosition.X,
-                    Player.CentralPosition.Y - entity.CentralPosition.Y);
+                    var newEntityPos = entity.Move(vector);
+                    vector = new Vector(Player.CentralPosition.X - newEntityPos.X,
+                    Player.CentralPosition.Y - newEntityPos.Y);
                     if (vector.Length <= 3)
                     {
                         if (entity is Heart)
