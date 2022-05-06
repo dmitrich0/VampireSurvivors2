@@ -43,6 +43,11 @@ namespace VampireSurvivors2
 
         public void MoveToTarget()
         {
+            if (!World.Monsters.Contains(Target))
+            {
+                World.RacingSoulBullets.Remove(this);
+                return;
+            }
             var vector = new Vector(Target.CentralPosition.X - Position.X, Target.CentralPosition.Y - Position.Y);
             vector.Normalize();
             Position = new PointF((float)(Position.X + Speed * vector.X), (float)(Position.Y + Speed * vector.Y));

@@ -8,13 +8,14 @@ using System.Windows;
 
 namespace VampireSurvivors2
 {
-    internal class Crystal : IEntity
+    internal class Chest : IEntity
     {
         public Image Image { get; set; }
         public PointF Position { get; set; }
         public int Value { get; set; }
         public System.Windows.Size Size { get; }
         public float Speed { get; set; }
+        WorldModel World { get; set; }
         public PointF CentralPosition
         {
             get
@@ -24,18 +25,16 @@ namespace VampireSurvivors2
             }
         }
 
-        public Crystal(PointF pos, int xp)
+        public Chest(WorldModel world, PointF pos)
         {
+            World = world;
+            Speed = 0;
             Position = pos;
-            Value = xp;
-            Image = View.Resources.crystal2;
-            Size = new System.Windows.Size(Image.Width, Image.Height);
-            Speed = 9;
+            Image = View.Resources.chest;
         }
 
-        public PointF Move(Vector direction)
+        public PointF Move(Vector vector)
         {
-            Position = new PointF((float)(Position.X + Speed * direction.X), (float)(Position.Y + Speed * direction.Y));
             return CentralPosition;
         }
     }

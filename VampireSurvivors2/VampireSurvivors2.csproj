@@ -49,6 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Chest.cs" />
     <Compile Include="Model\RacingSoulBullet.cs" />
     <Compile Include="Model\RacingSoulWeapon.cs" />
     <Compile Include="Model\ProtectionBookWeapon.cs" />
@@ -260,6 +261,7 @@
     <None Include="Resources\bullet.png" />
     <None Include="Resources\bulletIcon.png" />
     <None Include="Resources\final_bullet.png" />
+    <None Include="Resources\chest.png" />
     <Content Include="Resources\menuMusic.wav" />
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
