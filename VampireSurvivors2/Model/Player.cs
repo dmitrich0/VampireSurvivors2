@@ -24,10 +24,6 @@ namespace VampireSurvivors2
                 (float)(Position.Y + Size.Height / 2)); }
         }
 
-        public int Damage { get; }
-        public int CurrentCooldown { get; set; }
-        public int Cooldown { get; set; }
-        public float AttackRange { get; }
         public int MaxHealth { get; }
         public System.Windows.Size Size { get; }
         public float Speed { get; }
@@ -52,10 +48,6 @@ namespace VampireSurvivors2
             Speed = 5;
             Position = new PointF(800f, 400f);
             MaxHealth = 100;
-            CurrentCooldown = 0;
-            Cooldown = 20;
-            AttackRange = 120;
-            Damage = 5;
             World = world;
             Idle = new Image[] { View.Resources.idle };
             Right = new Image[] { View.Resources.walk1, View.Resources.walk2,

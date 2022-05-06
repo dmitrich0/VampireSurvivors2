@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace VampireSurvivors2
 {
@@ -17,6 +14,8 @@ namespace VampireSurvivors2
         public int CurrentCooldown { get; set; }
         public int Damage { get; set; }
 
+        public int AttackRange { get; set; }
+
         public ProtectionBookWeapon()
         {
             WeaponLevel = 1;
@@ -25,6 +24,24 @@ namespace VampireSurvivors2
             Icon = View.Resources.protectionBook;
             Image = null;
             CoolDown = 20;
+            AttackRange = 120;
+        }
+
+        public int DoDamage(Vector vectorToTarget)
+        {
+            var rnd = new Random();
+            var damage = Damage + rnd.Next((int)(Damage * 0.2), (int)(Damage * 0.2));
+            if (vectorToTarget.Length <= AttackRange)
+                if (CurrentCooldown == 0)
+                {
+                    CurrentCooldown++;
+                    return damage;
+                }
+                else if (CurrentCooldown == CoolDown)
+                    CurrentCooldown = 0;
+                else
+                    CurrentCooldown++;
+            return 0;
         }
     }
 }

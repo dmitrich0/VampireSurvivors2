@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -23,35 +19,35 @@ namespace VampireSurvivors2
         private FontFamily myFont;
         private Color bgColor;
         private Player player;
+        private List<Keys> activeKeys;
+        private SoundPlayer musicPlayer;
         public Timer MainTimer;
-        private List<Keys> ActiveKeys;
-        private SoundPlayer MusicPlayer;
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
+            bgColor = Color.FromArgb(112, 85, 23);
             DoubleBuffered = true;
             visibleTimer = new Stopwatch();
             myFontCollection = new PrivateFontCollection();
-            bgColor = Color.FromArgb(112, 85, 23);
+            activeKeys = new List<Keys>();
             MainTimer = new Timer { Interval = 30 };
             world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);
             player = world.Player;
-            MusicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\music.wav");
+            musicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\music.wav");
             myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font2.otf");
             myFont = myFontCollection.Families[0];
             BackColor = bgColor;
             MainTimer.Tick += new EventHandler(Update);
             MainTimer.Start();
             visibleTimer.Start();
-            ActiveKeys = new List<Keys>();
             KeyDown += AddKeys;
             KeyUp += RemoveKeys;
-            MusicPlayer.PlayLooping();
+            musicPlayer.PlayLooping();
             Text = "Vampire Survivors 2";
-            Icon = View.Resources.skull1;
+            Icon = View.Resources.iconScull;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -91,8 +87,15 @@ namespace VampireSurvivors2
             g.FillRectangle(Brushes.Black, XPBg);
             g.FillRectangle(Brushes.Blue, XPRectangle);
 
-            g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X,
-                player.CentralPosition.Y, player.AttackRange));
+            foreach (var weapon in player.Weapons)
+            {
+                if (weapon is ProtectionBookWeapon)
+                {
+                    var book = (ProtectionBookWeapon)weapon;
+                    g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X,
+                    player.CentralPosition.Y, book.AttackRange));
+                }
+            }
             g.DrawString("LV " + player.Level.ToString(), new Font(myFont, 14),
                 Brushes.AntiqueWhite, levelPosition);
         }
@@ -102,8 +105,7 @@ namespace VampireSurvivors2
             var skullRect = new RectangleF(world.WorldWidth - 300, 40, 25, 25);
             var textPosition = new PointF(skullRect.Location.X + skullRect.Width + 10, skullRect.Location.Y - 4);
             g.DrawImage(View.Resources.skull, skullRect);
-            g.DrawString(player.Killed.ToString(), new Font(myFont, 14),
-                Brushes.AntiqueWhite, textPosition);
+            g.DrawString(player.Killed.ToString(), new Font(myFont, 14), Brushes.AntiqueWhite, textPosition);
         }
 
         private void DrawTime(Graphics g)
@@ -121,9 +123,7 @@ namespace VampireSurvivors2
         private void DrawEntities(Graphics g)
         {
             foreach (var entity in world.Entities)
-            {
                 g.DrawImage(entity.Image, entity.Position);
-            }
         }
         
         private void DrawMonsters(Graphics g)
@@ -131,13 +131,14 @@ namespace VampireSurvivors2
             foreach (var monster in world.Monsters.ToList())
             {
                 var healthWidth = (monster.Health / monster.MaxHealth) * monster.Size.Width;
+                var healthHeight = 3;
                 g.DrawImage(monster.Image, monster.Position.X, monster.Position.Y, monster.Size.Width, monster.Size.Height);
                 if (monster.Health != monster.MaxHealth)
                 {
                     g.FillRectangle(Brushes.Red, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
-                        healthWidth, 5);
+                        healthWidth, healthHeight);
                     g.DrawRectangle(Pens.Black, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
-                       monster.Size.Width, 5);
+                       monster.Size.Width, healthHeight);
                 }
             }
         }
@@ -163,26 +164,26 @@ namespace VampireSurvivors2
         {
             if (e.KeyCode == Keys.Escape)
                 Application.Exit();
-            if (!ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Add(e.KeyCode);
+            if (!activeKeys.Contains(e.KeyCode))
+                activeKeys.Add(e.KeyCode);
         }
 
         private void RemoveKeys(object sender, KeyEventArgs e)
         {
-            if (ActiveKeys.Contains(e.KeyCode))
-                ActiveKeys.Remove(e.KeyCode);
+            if (activeKeys.Contains(e.KeyCode))
+                activeKeys.Remove(e.KeyCode);
         }
 
         private Vector GetPlayerDirection()
         {
             var direction = new Vector();
-            if (ActiveKeys.Contains(Keys.W))
+            if (activeKeys.Contains(Keys.W))
                 direction.Y += -1;
-            if (ActiveKeys.Contains(Keys.A))
+            if (activeKeys.Contains(Keys.A))
                 direction.X += -1;
-            if (ActiveKeys.Contains(Keys.S))
+            if (activeKeys.Contains(Keys.S))
                 direction.Y += 1;
-            if (ActiveKeys.Contains(Keys.D))
+            if (activeKeys.Contains(Keys.D))
                 direction.X += 1;
             if (direction.X == 0 && direction.Y == 0)
                 return new Vector(0, 0);

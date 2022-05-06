@@ -47,8 +47,8 @@ namespace VampireSurvivors2
             Animator = new Animator(this);
             Image = Animator.GetCurrentFrame();
             Position = position;
-            Health = 20;
-            MaxHealth = 20;
+            Health = 30;
+            MaxHealth = 30;
             Speed = 2.5f;
             Size = new System.Drawing.Size((int)(Image.Width * 1.3), (int)(Image.Height * 1.3));
             Damage = 3;
@@ -100,18 +100,15 @@ namespace VampireSurvivors2
 
         public void TryToGetBookDamage(Vector vector)
         {
-            var rnd = new Random();
-            var damage = World.Player.Damage + rnd.Next((int)(-World.Player.Damage * 0.2), (int)(World.Player.Damage * 0.2));
-            if (vector.Length <= World.Player.AttackRange)
-                if (World.Player.CurrentCooldown == 0)
+            foreach (var weapon in World.Player.Weapons)
+            {
+                if (weapon is ProtectionBookWeapon)
                 {
-                    GetDamage(damage, World);
-                    World.Player.CurrentCooldown++;
+                    var bookWeapon = (ProtectionBookWeapon)weapon;
+                    if (vector.Length <= bookWeapon.AttackRange)
+                        GetDamage(bookWeapon.DoDamage(vector), World);
                 }
-                else if (World.Player.CurrentCooldown == World.Player.Cooldown)
-                    World.Player.CurrentCooldown = 0;
-                else
-                    World.Player.CurrentCooldown++;
+            }
         }
     }
 }

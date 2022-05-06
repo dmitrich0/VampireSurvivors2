@@ -56,9 +56,11 @@ namespace VampireSurvivors2
 
         public void TryToDamage()
         {
+            var rnd = new Random();
+            var damage = Damage + rnd.Next((int)(Damage * 0.2), (int)(Damage * 0.2));
             if (VectorToTarget.Length < 5)
             {
-                Target.GetDamage(Damage, World);
+                Target.GetDamage(damage, World);
                 World.RacingSoulBullets.Remove(this);
             }
         }

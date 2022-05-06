@@ -351,6 +351,16 @@ namespace VampireSurvivors2.View {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon iconScull {
+            get {
+                object obj = ResourceManager.GetObject("iconScull", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap idle {
@@ -407,16 +417,6 @@ namespace VampireSurvivors2.View {
             get {
                 object obj = ResourceManager.GetObject("skull", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
-        /// </summary>
-        internal static System.Drawing.Icon skull1 {
-            get {
-                object obj = ResourceManager.GetObject("skull1", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         

@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VampireSurvivors2.View
@@ -30,14 +24,13 @@ namespace VampireSurvivors2.View
         {
             base.OnLoad(e);
             FormBorderStyle = FormBorderStyle.None;
-            DoubleBuffered = true;
             WindowState = FormWindowState.Maximized;
-            base.OnLoad(e);
+            DoubleBuffered = true;
             myFontCollection = new PrivateFontCollection();
             myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font2.otf");
             MusicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\menuMusic.wav");
             myFont = myFontCollection.Families[0];
-            this.Text = "Main Menu";
+            Text = "Main Menu";
             SizeChanged += Update;
             MusicPlayer.PlayLooping();
             BackgroundImage = Resources.menuBg1;
@@ -85,14 +78,13 @@ namespace VampireSurvivors2.View
                 Font = new Font(myFont, 22),
                 Height = 60,
                 Width = 300,
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                FlatStyle = FlatStyle.Flat,
             };
             exitButton.Location = new Point(Size.Width / 2 - exitButton.Width / 2, Size.Height / 2 + 120);
-            exitButton.FlatStyle = FlatStyle.Flat;
             Controls.Add(exitButton);
             exitButton.Click += (s, e) => { Application.Exit(); };
         }
-
 
         private void StartGame(object sender, EventArgs e)
         {
