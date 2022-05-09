@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Chest.cs" />
+    <Compile Include="Model\Class1.cs" />
     <Compile Include="Model\RacingSoulBullet.cs" />
     <Compile Include="Model\RacingSoulWeapon.cs" />
     <Compile Include="Model\ProtectionBookWeapon.cs" />
@@ -250,6 +251,7 @@
     <None Include="Resources\allHP.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\wrath.png" />
     <None Include="Resources\protectionBook.png" />
     <None Include="Resources\weapons.png" />
     <None Include="Resources\playBtn.png" />
