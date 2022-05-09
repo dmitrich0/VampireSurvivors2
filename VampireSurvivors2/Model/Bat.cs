@@ -50,7 +50,7 @@ namespace VampireSurvivors2
             MaxHealth = 10;
             Speed = 2;
             Size = new Size((int)(Image.Width * 1.5), (int)(Image.Height * 1.5));
-            Damage = 1;
+            Damage = 2;
             CurrentCooldown = 0;
             CoolDown = 5;
             AttackRange = 30;
