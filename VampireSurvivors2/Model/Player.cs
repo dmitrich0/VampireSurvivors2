@@ -46,7 +46,7 @@ namespace VampireSurvivors2
         public Player(WorldModel world)
         {
             CurrentXP = 0;
-            XPToNextLevel = 100;
+            XPToNextLevel = 10;
             Level = 1;
             Health = 100;
             Speed = 5;

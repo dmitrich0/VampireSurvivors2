@@ -66,6 +66,12 @@
     <Compile Include="Model\IMonster.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\WorldModel.cs" />
+    <Compile Include="View\NewLevelMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewLevelMenu.Designer.cs">
+      <DependentUpon>NewLevelMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\NewLevelPrizeSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,7 @@
     <None Include="Resources\allHP.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\nextLevel.png" />
     <None Include="Resources\wrath.png" />
     <None Include="Resources\protectionBook.png" />
     <None Include="Resources\weapons.png" />

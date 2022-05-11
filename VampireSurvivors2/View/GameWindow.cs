@@ -22,6 +22,8 @@ namespace VampireSurvivors2
         private List<Keys> activeKeys;
         private SoundPlayer musicPlayer;
         public Timer MainTimer;
+        private PointF menuPos;
+        private Image menuImage;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -48,6 +50,8 @@ namespace VampireSurvivors2
             musicPlayer.PlayLooping();
             Text = "Vampire Survivors 2";
             Icon = View.Resources.iconScull;
+            menuImage = View.Resources.nextLevel;
+            menuPos = new PointF((float)(Size.Width / 2 - menuImage.Width / 1.5), 120);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -62,6 +66,7 @@ namespace VampireSurvivors2
             DrawKillsCounter(g);
             DrawWeaponsTable(g);
             DrawRacingSoulBullets(g);
+            ShowNewLevelWindow(g);
         }
 
         private void DrawPlayerAndHUD(Graphics g)
@@ -184,6 +189,13 @@ namespace VampireSurvivors2
                 return new Vector(0, 0);
             direction.Normalize();
             return direction;
+        }
+
+        public void ShowNewLevelWindow(Graphics g)
+        {
+            if (!world.IsLevelChanged()) return;
+            MainTimer.Stop();
+            g.DrawImage(menuImage, menuPos);
         }
 
         public void Update(object sender, EventArgs e)
