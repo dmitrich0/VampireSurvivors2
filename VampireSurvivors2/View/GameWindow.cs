@@ -192,6 +192,7 @@ namespace VampireSurvivors2
             world.MoveMonsters();
             world.CheckEntities();
             world.CheckBullets();
+            world.CheckDeathRing();
             player.Move(GetPlayerDirection());
             player.MakeAnim();
             Invalidate();

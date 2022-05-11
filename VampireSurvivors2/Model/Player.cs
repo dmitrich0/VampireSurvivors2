@@ -41,6 +41,7 @@ namespace VampireSurvivors2
 
         public ProtectionBookWeapon ProtectionBookWeapon { get; set; }
         public RacingSoulWeapon RacingSoulWeapon { get; set; }
+        public DeathRingWeapon DeathRingWeapon { get; set; }
 
         public Player(WorldModel world)
         {
@@ -64,9 +65,11 @@ namespace VampireSurvivors2
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
             PickupRange = 50;
+
             ProtectionBookWeapon = new ProtectionBookWeapon();
             RacingSoulWeapon = new RacingSoulWeapon(world);
-            Weapons = new List<IWeapon>() { ProtectionBookWeapon, RacingSoulWeapon };
+            DeathRingWeapon = new DeathRingWeapon(world);
+            Weapons = new List<IWeapon>() { ProtectionBookWeapon, RacingSoulWeapon, DeathRingWeapon };
         }
 
         public void GetDamage(int damage)

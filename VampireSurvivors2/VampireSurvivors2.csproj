@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Chest.cs" />
-    <Compile Include="Model\Class1.cs" />
+    <Compile Include="Model\DeathRingWeapon.cs" />
     <Compile Include="Model\RacingSoulBullet.cs" />
     <Compile Include="Model\RacingSoulWeapon.cs" />
     <Compile Include="Model\ProtectionBookWeapon.cs" />

@@ -24,7 +24,7 @@ namespace VampireSurvivors2
             Icon = View.Resources.protectionBook;
             Image = null;
             CoolDown = 20;
-            AttackRange = 120;
+            AttackRange = 120 + 10 * WeaponLevel;
         }
 
         public int DoDamage(Vector vectorToTarget)

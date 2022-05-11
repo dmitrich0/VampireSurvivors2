@@ -112,6 +112,12 @@ namespace VampireSurvivors2
             return false;
         }
 
+        public void CheckDeathRing()
+        {
+            if (Player.DeathRingWeapon != null)
+                Player.DeathRingWeapon.DoDamage();
+        }
+
         public void CheckBullets()
         {
             if (Player.RacingSoulWeapon != null)
