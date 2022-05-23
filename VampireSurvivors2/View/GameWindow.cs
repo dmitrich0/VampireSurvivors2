@@ -235,7 +235,10 @@ namespace VampireSurvivors2
                         {
                             Controls.Remove(this);
                             if (player.RacingSoulWeapon == null)
+                            {
                                 player.RacingSoulWeapon = new RacingSoulWeapon(world);
+                                player.Weapons.Add(player.RacingSoulWeapon);
+                            }
                             else
                                 player.RacingSoulWeapon.WeaponLevel++;
                             MainTimer.Start();
@@ -247,7 +250,10 @@ namespace VampireSurvivors2
                         {
                             Controls.Remove(this);
                             if (player.DeathRingWeapon == null)
+                            {
                                 player.DeathRingWeapon = new DeathRingWeapon(world);
+                                player.Weapons.Add(player.DeathRingWeapon);
+                            }
                             else
                                 player.DeathRingWeapon.WeaponLevel++;
                             MainTimer.Start();
@@ -259,7 +265,10 @@ namespace VampireSurvivors2
                         {
                             Controls.Remove(this);
                             if (player.ProtectionBookWeapon == null)
+                            {
                                 player.ProtectionBookWeapon = new ProtectionBookWeapon();
+                                player.Weapons.Add(player.ProtectionBookWeapon);
+                            }
                             else
                                 player.ProtectionBookWeapon.WeaponLevel++;
                             MainTimer.Start();

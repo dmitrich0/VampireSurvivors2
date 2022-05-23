@@ -67,9 +67,9 @@ namespace VampireSurvivors2
             PickupRange = 50;
 
             ProtectionBookWeapon = new ProtectionBookWeapon();
-            RacingSoulWeapon = new RacingSoulWeapon(world);
-            DeathRingWeapon = new DeathRingWeapon(world);
-            Weapons = new List<IWeapon>() { ProtectionBookWeapon, RacingSoulWeapon, DeathRingWeapon };
+            RacingSoulWeapon = null;
+            DeathRingWeapon = null;
+            Weapons = new List<IWeapon>() { ProtectionBookWeapon };
         }
 
         public void GetDamage(int damage)
