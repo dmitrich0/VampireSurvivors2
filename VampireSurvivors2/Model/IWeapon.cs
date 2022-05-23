@@ -16,5 +16,6 @@ namespace VampireSurvivors2
         Image Image { get; set; }
         int CoolDown { get; set; }
         int CurrentCooldown { get; set; }
+        string LevelUpDescription { get; set; }
     }
 }

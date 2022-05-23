@@ -17,6 +17,7 @@ namespace VampireSurvivors2
         public int Damage { get; set; }
         public Image Icon { get; set; }
         public WorldModel World { get; set; }
+        public string LevelUpDescription { get; set; }
 
         public DeathRingWeapon(WorldModel world)
         {
@@ -28,10 +29,12 @@ namespace VampireSurvivors2
             Icon = View.Resources.wrath;
             Image = null;
             World = world;
+            LevelUpDescription = "Kills all enemies every 2 minutes.";
         }
 
         public void DoDamage()
         {
+            CoolDown = 4200 - 165 * WeaponLevel;
             if (CurrentCooldown == 0)
             {
                 CurrentCooldown++;

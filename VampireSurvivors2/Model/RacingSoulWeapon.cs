@@ -18,6 +18,7 @@ namespace VampireSurvivors2
         public int CoolDown { get; set; }
         public int CurrentCooldown { get; set; }
         public WorldModel World { get; set; }
+        public string LevelUpDescription { get; set; }
 
         public RacingSoulWeapon(WorldModel world)
         {
@@ -29,6 +30,7 @@ namespace VampireSurvivors2
             World = world;
             BaseDamage = 5;
             Damage = WeaponLevel * BaseDamage;
+            LevelUpDescription = $"Shoots at the nearest enemy.";
         }
 
         public void CreateBullet()
@@ -48,6 +50,7 @@ namespace VampireSurvivors2
             }
             if (target != null && CurrentCooldown > CoolDown)
             {
+                Damage = WeaponLevel * BaseDamage;
                 World.RacingSoulBullets.Add(new RacingSoulBullet(World.Player.Position, Damage, World, target));
                 CurrentCooldown = 0;
             }

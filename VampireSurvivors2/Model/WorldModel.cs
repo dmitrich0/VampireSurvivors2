@@ -29,6 +29,7 @@ namespace VampireSurvivors2
         public int LastPlayerLevel;
         public int HeartChance { get; set; }
         public int ChestChance { get; set; }
+        public List<IWeapon> AllWeapons;
 
         public WorldModel(float width, float height, int spawnCooldown)
         {
@@ -50,6 +51,7 @@ namespace VampireSurvivors2
             HeartChance = 30;
             ChestChance = 100;
             LastPlayerLevel = 1;
+            AllWeapons = new List<IWeapon>() { new RacingSoulWeapon(this), new DeathRingWeapon(this), new ProtectionBookWeapon() };
         }
 
         public void SpawnMonster()

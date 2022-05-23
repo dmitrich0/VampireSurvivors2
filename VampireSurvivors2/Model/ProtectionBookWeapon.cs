@@ -13,7 +13,7 @@ namespace VampireSurvivors2
         public int CoolDown { get; set; }
         public int CurrentCooldown { get; set; }
         public int Damage { get; set; }
-
+        public string LevelUpDescription { get; set; }
         public int AttackRange { get; set; }
 
         public ProtectionBookWeapon()
@@ -25,11 +25,13 @@ namespace VampireSurvivors2
             Image = null;
             CoolDown = 20;
             AttackRange = 120 + 10 * WeaponLevel;
+            LevelUpDescription = "Creates an aura around the player that deals damage.";
         }
 
         public int DoDamage(Vector vectorToTarget)
         {
             var rnd = new Random();
+            Damage = BaseDamage * WeaponLevel;
             var damage = Damage + rnd.Next((int)(Damage * 0.2), (int)(Damage * 0.2));
             if (vectorToTarget.Length <= AttackRange)
                 if (CurrentCooldown == 0)

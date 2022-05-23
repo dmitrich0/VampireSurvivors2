@@ -200,6 +200,16 @@ namespace VampireSurvivors2
             var levelPos = new PointF(menuPos.X + 375, menuPos.Y + 179);
             g.DrawImage(menuImage, menuPos);
             g.DrawString(player.Level.ToString(), new Font(myFont, 20), Brushes.DarkGoldenrod, levelPos);
+            var dy = 115;
+            var i = 0;
+            foreach (var weapon in world.AllWeapons)
+            {
+                var pos = new PointF(menuPos.X + 180, menuPos.Y + 260 + i * dy);
+                g.DrawImage(weapon.Icon, pos);
+                var textPos = new PointF(pos.X + 60, pos.Y + 5);
+                g.DrawString(weapon.LevelUpDescription, new Font(myFont, 8), Brushes.Black, textPos);
+                i++;
+            }
             AddButtonsOnLevelWindow();
         }
 
@@ -218,12 +228,56 @@ namespace VampireSurvivors2
                     BackColor = Color.Transparent,
                 };
                 button.FlatAppearance.BorderSize = 0;
+                switch (i)
+                {
+                    case 0:
+                        button.Click += (s, e) =>
+                        {
+                            Controls.Remove(this);
+                            if (player.RacingSoulWeapon == null)
+                                player.RacingSoulWeapon = new RacingSoulWeapon(world);
+                            else
+                                player.RacingSoulWeapon.WeaponLevel++;
+                            MainTimer.Start();
+                            isMenuOpened = false;
+                        };
+                        break;
+                    case 1:
+                        button.Click += (s, e) =>
+                        {
+                            Controls.Remove(this);
+                            if (player.DeathRingWeapon == null)
+                                player.DeathRingWeapon = new DeathRingWeapon(world);
+                            else
+                                player.DeathRingWeapon.WeaponLevel++;
+                            MainTimer.Start();
+                            isMenuOpened = false;
+                        };
+                        break;
+                    case 2:
+                        button.Click += (s, e) =>
+                        {
+                            Controls.Remove(this);
+                            if (player.ProtectionBookWeapon == null)
+                                player.ProtectionBookWeapon = new ProtectionBookWeapon();
+                            else
+                                player.ProtectionBookWeapon.WeaponLevel++;
+                            MainTimer.Start();
+                            isMenuOpened = false;
+                        };
+                        break;
+                }
                 Controls.Add(button);
             }
         }
 
         public void Update(object sender, EventArgs e)
         {
+            if (!isMenuOpened)
+            {
+                foreach (Control control in Controls)
+                    Controls.Remove((Control)control);
+            }
             world.SpawnMonster();
             world.MoveMonsters();
             world.CheckEntities();
