@@ -88,6 +88,7 @@ namespace VampireSurvivors2.View
 
         private void StartGame(object sender, EventArgs e)
         {
+            MainTimer.Stop();
             Hide();
             new GameWindow().Show();
         }

@@ -24,6 +24,7 @@ namespace VampireSurvivors2
         public Timer MainTimer;
         private PointF menuPos;
         private Image menuImage;
+        private bool isMenuOpened;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -66,7 +67,8 @@ namespace VampireSurvivors2
             DrawKillsCounter(g);
             DrawWeaponsTable(g);
             DrawRacingSoulBullets(g);
-            ShowNewLevelWindow(g);
+            if (world.IsLevelChanged() || isMenuOpened)
+                ShowNewLevelWindow(g);
         }
 
         private void DrawPlayerAndHUD(Graphics g)
@@ -193,9 +195,31 @@ namespace VampireSurvivors2
 
         public void ShowNewLevelWindow(Graphics g)
         {
-            if (!world.IsLevelChanged()) return;
             MainTimer.Stop();
+            isMenuOpened = true;
+            var levelPos = new PointF(menuPos.X + 375, menuPos.Y + 179);
             g.DrawImage(menuImage, menuPos);
+            g.DrawString(player.Level.ToString(), new Font(myFont, 20), Brushes.DarkGoldenrod, levelPos);
+            AddButtonsOnLevelWindow();
+        }
+
+        public void AddButtonsOnLevelWindow()
+        {
+            var btnHeight = 87;
+            var btnWidth = 385;
+            var dy = 115;
+            for (var i = 0; i < 3; i++)
+            {
+                var button = new Button()
+                {
+                    Location = new System.Drawing.Point((int)menuPos.X + 153, (int)menuPos.Y + 230 + i * dy),
+                    Size = new System.Drawing.Size(btnWidth, btnHeight),
+                    FlatStyle = FlatStyle.Flat,
+                    BackColor = Color.Transparent,
+                };
+                button.FlatAppearance.BorderSize = 0;
+                Controls.Add(button);
+            }
         }
 
         public void Update(object sender, EventArgs e)
