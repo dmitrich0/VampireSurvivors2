@@ -28,7 +28,7 @@ namespace VampireSurvivors2
             CoolDown = 80;
             CurrentCooldown = 0;
             World = world;
-            BaseDamage = 5;
+            BaseDamage = 4;
             Damage = WeaponLevel * BaseDamage;
             LevelUpDescription = $"Shoots at the nearest enemy.";
         }

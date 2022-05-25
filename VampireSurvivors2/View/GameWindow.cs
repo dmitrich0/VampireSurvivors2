@@ -37,12 +37,12 @@ namespace VampireSurvivors2
             myFontCollection = new PrivateFontCollection();
             activeKeys = new List<Keys>();
             MainTimer = new Timer { Interval = 30 };
-            world = new WorldModel(ClientSize.Width, ClientSize.Height, MainTimer.Interval);
+            world = new WorldModel(ClientSize.Width, ClientSize.Height, 100);
             player = world.Player;
             musicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\music.wav");
             myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font2.otf");
             myFont = myFontCollection.Families[0];
-            BackColor = bgColor;
+            BackgroundImage = View.Resources.bg;
             MainTimer.Tick += new EventHandler(Update);
             MainTimer.Start();
             visibleTimer.Start();

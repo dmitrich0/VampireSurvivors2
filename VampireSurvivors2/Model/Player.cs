@@ -42,10 +42,10 @@ namespace VampireSurvivors2
         public Player(WorldModel world)
         {
             CurrentXP = 0;
-            XPToNextLevel = 10;
+            XPToNextLevel = 100;
             Level = 1;
             Health = 100;
-            Speed = 5;
+            Speed = 3;
             Position = new PointF(800f, 400f);
             MaxHealth = 100;
             World = world;

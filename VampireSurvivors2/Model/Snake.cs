@@ -49,7 +49,7 @@ namespace VampireSurvivors2
             Position = position;
             Health = 50;
             MaxHealth = 50;
-            Speed = 2.3f;
+            Speed = 2f;
             Size = new System.Drawing.Size((int)(Image.Width * 1.3), (int)(Image.Height * 1.3));
             Damage = 4;
             CurrentCooldown = 0;

@@ -72,12 +72,6 @@
     <Compile Include="View\NewLevelMenu.Designer.cs">
       <DependentUpon>NewLevelMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\NewLevelPrizeSelection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\NewLevelPrizeSelection.Designer.cs">
-      <DependentUpon>NewLevelPrizeSelection.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\GameMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,7 +256,6 @@
     <None Include="Resources\protectionBook.png" />
     <None Include="Resources\weapons.png" />
     <None Include="Resources\playBtn.png" />
-    <None Include="Resources\bg.jpg" />
     <None Include="Resources\menuBg.gif" />
     <None Include="Resources\menuBg.jpg" />
     <None Include="Resources\heart.png" />
@@ -271,6 +264,7 @@
     <None Include="Resources\bulletIcon.png" />
     <None Include="Resources\final_bullet.png" />
     <None Include="Resources\chest.png" />
+    <None Include="Resources\bg.jpg" />
     <Content Include="Resources\menuMusic.wav" />
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />

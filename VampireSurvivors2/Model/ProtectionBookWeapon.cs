@@ -19,12 +19,12 @@ namespace VampireSurvivors2
         public ProtectionBookWeapon()
         {
             WeaponLevel = 1;
-            BaseDamage = 5;
+            BaseDamage = 3;
             Damage = BaseDamage * WeaponLevel;
             Icon = View.Resources.protectionBook;
             Image = null;
             CoolDown = 40;
-            AttackRange = 120 + 10 * WeaponLevel;
+            AttackRange = 120 + 5 * WeaponLevel;
             LevelUpDescription = "Creates an aura around the player that deals damage.";
         }
 
