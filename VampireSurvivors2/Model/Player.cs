@@ -17,13 +17,6 @@ namespace VampireSurvivors2
         public Image[] Up { get; set; }
         public Image[] Down { get; set; }
         public int PickupRange { get; set; }
-
-        public PointF CentralPosition
-        {
-            get { return new PointF((float)(Position.X + Size.Width / 2),
-                (float)(Position.Y + Size.Height / 2)); }
-        }
-
         public int MaxHealth { get; }
         public System.Windows.Size Size { get; }
         public float Speed { get; }
@@ -38,15 +31,18 @@ namespace VampireSurvivors2
         public int Level { get; set; }
         public int Killed { get; set; }
         public List<IWeapon> Weapons { get; set; }
-
         public ProtectionBookWeapon ProtectionBookWeapon { get; set; }
         public RacingSoulWeapon RacingSoulWeapon { get; set; }
         public DeathRingWeapon DeathRingWeapon { get; set; }
+        public PointF CentralPosition
+        {
+            get { return new PointF((float)(Position.X + Size.Width / 2), (float)(Position.Y + Size.Height / 2)); }
+        }
 
         public Player(WorldModel world)
         {
             CurrentXP = 0;
-            XPToNextLevel = 100;
+            XPToNextLevel = 10;
             Level = 1;
             Health = 100;
             Speed = 5;
@@ -65,7 +61,6 @@ namespace VampireSurvivors2
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
             PickupRange = 50;
-
             ProtectionBookWeapon = new ProtectionBookWeapon();
             RacingSoulWeapon = null;
             DeathRingWeapon = null;
@@ -111,8 +106,7 @@ namespace VampireSurvivors2
         public void GetHP(int hp)
         {
             Health += hp;
-            if (Health > 100)
-                Health = 100;
+            Health = Health > 100 ? 100 : Health;
         }
 
         public void MakeAnim()

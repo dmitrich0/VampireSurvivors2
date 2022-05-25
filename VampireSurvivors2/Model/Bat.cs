@@ -46,8 +46,8 @@ namespace VampireSurvivors2
             Animator = new Animator(this);
             Image = Animator.GetCurrentFrame();
             Position = position;
-            Health = 10;
-            MaxHealth = 10;
+            Health = 20;
+            MaxHealth = 20;
             Speed = 2;
             Size = new Size((int)(Image.Width * 1.5), (int)(Image.Height * 1.5));
             Damage = 2;
@@ -89,12 +89,9 @@ namespace VampireSurvivors2
         {
             foreach (var weapon in World.Player.Weapons)
             {
-                if (weapon is ProtectionBookWeapon)
-                {
-                    var bookWeapon = (ProtectionBookWeapon)weapon;
+                if (weapon is ProtectionBookWeapon bookWeapon)
                     if (vector.Length <= bookWeapon.AttackRange)
                         GetDamage(bookWeapon.DoDamage(vector), World);
-                }
             }
         }
 

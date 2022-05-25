@@ -270,7 +270,10 @@ namespace VampireSurvivors2
                                 player.Weapons.Add(player.ProtectionBookWeapon);
                             }
                             else
+                            {
                                 player.ProtectionBookWeapon.WeaponLevel++;
+                                player.ProtectionBookWeapon.AttackRange = 120 + 10 * player.ProtectionBookWeapon.WeaponLevel;
+                            }
                             MainTimer.Start();
                             isMenuOpened = false;
                         };
@@ -280,13 +283,17 @@ namespace VampireSurvivors2
             }
         }
 
+        public void DestroyButtons()
+        {
+            foreach (var control in Controls)
+                if (control is Button)
+                    Controls.Remove((Control)control);
+        }
+
         public void Update(object sender, EventArgs e)
         {
             if (!isMenuOpened)
-            {
-                foreach (Control control in Controls)
-                    Controls.Remove((Control)control);
-            }
+                DestroyButtons();
             world.SpawnMonster();
             world.MoveMonsters();
             world.CheckEntities();

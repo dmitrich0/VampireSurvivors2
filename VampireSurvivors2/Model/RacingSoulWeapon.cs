@@ -25,7 +25,7 @@ namespace VampireSurvivors2
             WeaponLevel = 1;
             Icon = View.Resources.bulletIcon;
             Image = null;
-            CoolDown = 60;
+            CoolDown = 80;
             CurrentCooldown = 0;
             World = world;
             BaseDamage = 5;

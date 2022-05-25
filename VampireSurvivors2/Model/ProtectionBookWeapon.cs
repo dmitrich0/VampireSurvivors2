@@ -23,7 +23,7 @@ namespace VampireSurvivors2
             Damage = BaseDamage * WeaponLevel;
             Icon = View.Resources.protectionBook;
             Image = null;
-            CoolDown = 20;
+            CoolDown = 40;
             AttackRange = 120 + 10 * WeaponLevel;
             LevelUpDescription = "Creates an aura around the player that deals damage.";
         }

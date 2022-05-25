@@ -166,16 +166,16 @@ namespace VampireSurvivors2
                     vector = new Vector(Player.CentralPosition.X - newEntityPos.X, Player.CentralPosition.Y - newEntityPos.Y);
                     if (vector.Length <= 5)
                     {
-                        if (entity is Heart)
+                        if (entity is Heart heart)
                         {
                             Player.GetHP(entity.Value);
-                            Hearts.Remove((Heart)entity);
+                            Hearts.Remove(heart);
                             Entities.Remove(entity);
                         }
-                        else if (entity is Crystal)
+                        else if (entity is Crystal crystal)
                         {
                             Player.GetXP(entity.Value);
-                            Crystals.Remove((Crystal)entity);
+                            Crystals.Remove(crystal);
                             Entities.Remove(entity);
                         }
                     }
