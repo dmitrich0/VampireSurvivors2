@@ -27,8 +27,8 @@ namespace VampireSurvivors2.View
             WindowState = FormWindowState.Maximized;
             DoubleBuffered = true;
             myFontCollection = new PrivateFontCollection();
-            myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font2.otf");
-            MusicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\menuMusic.wav");
+            myFontCollection.AddFontFile(@"..\..\View\font2.otf");
+            MusicPlayer = new SoundPlayer(@"..\..\Resources\menuMusic.wav");
             myFont = myFontCollection.Families[0];
             Text = "Main Menu";
             SizeChanged += Update;

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Windows;
@@ -37,8 +38,8 @@ namespace VampireSurvivors2
             MainTimer = new Timer { Interval = 30 };
             world = new WorldModel(ClientSize.Width, ClientSize.Height, 100);
             player = world.Player;
-            musicPlayer = new SoundPlayer(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\Resources\music.wav");
-            myFontCollection.AddFontFile(@"C:\Users\ivano\source\repos\VampireSurvivors2\VampireSurvivors2\View\font2.otf");
+            musicPlayer = new SoundPlayer(@"..\..\Resources\music.wav");
+            myFontCollection.AddFontFile(@"..\..\View\font2.otf");
             myFont = myFontCollection.Families[0];
             BackgroundImage = View.Resources.bg;
             MainTimer.Tick += new EventHandler(Update);
