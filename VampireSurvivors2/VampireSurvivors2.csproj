@@ -66,12 +66,6 @@
     <Compile Include="Model\IMonster.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\WorldModel.cs" />
-    <Compile Include="View\NewLevelMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\NewLevelMenu.Designer.cs">
-      <DependentUpon>NewLevelMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\GameMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,15 +112,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="View\font.ttf" />
-    <None Include="View\font2.otf" />
+    <None Include="View\font.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Assets\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\player.png" />
   </ItemGroup>
