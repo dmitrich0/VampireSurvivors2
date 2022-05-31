@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -45,7 +42,7 @@ namespace VampireSurvivors2
             XPToNextLevel = 100;
             Level = 1;
             Health = 100;
-            Speed = 3;
+            Speed = 4;
             Position = new PointF(800f, 400f);
             MaxHealth = 100;
             World = world;

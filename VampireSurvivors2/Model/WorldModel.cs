@@ -178,6 +178,12 @@ namespace VampireSurvivors2
                             Crystals.Remove(crystal);
                             Entities.Remove(entity);
                         }
+                        else if (entity is Chest chest)
+                        {
+                            Player.GetXP((int)Player.XPToNextLevel - (int)Player.CurrentXP + 1);
+                            Chests.Remove(chest);
+                            Entities.Remove(entity);
+                        }
                     }
                 }
             }

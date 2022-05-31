@@ -47,9 +47,9 @@ namespace VampireSurvivors2
             Animator = new Animator(this);
             Image = Animator.GetCurrentFrame();
             Position = position;
-            Health = 50;
-            MaxHealth = 50;
-            Speed = 2f;
+            Health = 40;
+            MaxHealth = Health;
+            Speed = 2.4f;
             Size = new System.Drawing.Size((int)(Image.Width * 1.3), (int)(Image.Height * 1.3));
             Damage = 4;
             CurrentCooldown = 0;

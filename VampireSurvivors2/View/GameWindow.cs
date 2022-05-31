@@ -17,7 +17,6 @@ namespace VampireSurvivors2
         private Stopwatch visibleTimer;
         private PrivateFontCollection myFontCollection;
         private FontFamily myFont;
-        private Color bgColor;
         private Player player;
         private List<Keys> activeKeys;
         private SoundPlayer musicPlayer;
@@ -31,7 +30,6 @@ namespace VampireSurvivors2
             base.OnLoad(e);
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
-            bgColor = Color.FromArgb(112, 85, 23);
             DoubleBuffered = true;
             visibleTimer = new Stopwatch();
             myFontCollection = new PrivateFontCollection();
