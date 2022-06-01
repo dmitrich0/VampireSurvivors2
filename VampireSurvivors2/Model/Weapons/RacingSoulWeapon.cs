@@ -31,7 +31,7 @@ namespace VampireSurvivors2
         public void CreateBullet()
         {
             CurrentCooldown++;
-            IMonster target = null;
+            Monster target = null;
             var minVector = new Vector(double.MaxValue, double.MaxValue);
             foreach (var monster in World.Monsters)
             {

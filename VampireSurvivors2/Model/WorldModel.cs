@@ -9,7 +9,7 @@ namespace VampireSurvivors2
 {
     internal class WorldModel
     {
-        public List<IMonster> Monsters;
+        public List<Monster> Monsters;
         public Player Player;
         public Random Random;
         public Stopwatch Timer;
@@ -18,11 +18,8 @@ namespace VampireSurvivors2
         public int SpawnCooldown;
         public int SpawnCooldownRemaining;
         public int MonstersSpawned;
-        public List<IEntity> Entities;
-        public List<Crystal> Crystals;
-        public List<Heart> Hearts;
+        public List<Entity> Entities;
         public List<RacingSoulBullet> RacingSoulBullets;
-        public List<Chest> Chests;
         public int LastPlayerLevel;
         public int HeartChance { get; set; }
         public int ChestChance { get; set; }
@@ -32,18 +29,15 @@ namespace VampireSurvivors2
         {
             WorldHeight = height;
             WorldWidth = width;
-            Monsters = new List<IMonster>();
+            Monsters = new List<Monster>();
             Player = new Player(this);
             Random = new Random();
             Timer = new Stopwatch();
             Timer.Start();
             SpawnCooldown = spawnCooldown;
             SpawnCooldownRemaining = SpawnCooldown;
-            Crystals = new List<Crystal>();
-            Hearts = new List<Heart>();
-            Entities = new List<IEntity>();
+            Entities = new List<Entity>();
             RacingSoulBullets = new List<RacingSoulBullet>();
-            Chests = new List<Chest>();
             MonstersSpawned = 0;
             HeartChance = 30;
             ChestChance = 100;
@@ -125,7 +119,7 @@ namespace VampireSurvivors2
                 bullet.MoveToTarget();
         }
 
-        public void SpawnFeaturesAfterDying(IMonster monster)
+        public void SpawnFeaturesAfterDying(Monster monster)
         {
             Monsters.Remove(monster);
             Player.Killed++;
@@ -133,19 +127,16 @@ namespace VampireSurvivors2
             if (rand.Next(1, ChestChance + 1) == 1)
             {
                 var chest = new Chest(this, monster.CentralPosition);
-                Chests.Add(chest);
                 Entities.Add(chest);
             }
             else if (rand.Next(1, HeartChance + 1) == 1)
             {
-                var heart = new Heart(monster.CentralPosition);
-                Hearts.Add(heart);
+                var heart = new Heart(this, monster.CentralPosition);
                 Entities.Add(heart);
             }
             else
             {
-                var crystal = new Crystal(monster.CentralPosition, monster.XP);
-                Crystals.Add(crystal);
+                var crystal = new Crystal(this, monster.CentralPosition, monster.XP);
                 Entities.Add(crystal);
             }
         }
@@ -163,22 +154,19 @@ namespace VampireSurvivors2
                     vector = new Vector(Player.CentralPosition.X - newEntityPos.X, Player.CentralPosition.Y - newEntityPos.Y);
                     if (vector.Length <= 5)
                     {
-                        if (entity is Heart heart)
+                        if (entity is Heart)
                         {
                             Player.GetHP(entity.Value);
-                            Hearts.Remove(heart);
                             Entities.Remove(entity);
                         }
-                        else if (entity is Crystal crystal)
+                        else if (entity is Crystal)
                         {
                             Player.GetXP(entity.Value);
-                            Crystals.Remove(crystal);
                             Entities.Remove(entity);
                         }
-                        else if (entity is Chest chest)
+                        else if (entity is Chest)
                         {
                             Player.GetXP((int)Player.XPToNextLevel - (int)Player.CurrentXP + 1);
-                            Chests.Remove(chest);
                             Entities.Remove(entity);
                         }
                     }
