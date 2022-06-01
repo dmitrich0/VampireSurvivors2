@@ -10,8 +10,8 @@ namespace VampireSurvivors2.View
     public partial class GameMenu : Form
     {
         private PrivateFontCollection myFontCollection;
-        public FontFamily myFont;
-        public Timer MainTimer;
+        private FontFamily myFont;
+        private Timer mainTimer;
         private float titleDy;
         private bool isTitleGoingUp;
         private SoundPlayer MusicPlayer;
@@ -34,9 +34,9 @@ namespace VampireSurvivors2.View
             SizeChanged += Update;
             MusicPlayer.PlayLooping();
             BackgroundImage = Resources.menuBg1;
-            MainTimer = new Timer { Interval = 570 };
-            MainTimer.Tick += new EventHandler(Update);
-            MainTimer.Start();
+            mainTimer = new Timer { Interval = 570 };
+            mainTimer.Tick += new EventHandler(Update);
+            mainTimer.Start();
             titleDy = 3;
         }
 
@@ -88,7 +88,7 @@ namespace VampireSurvivors2.View
 
         private void StartGame(object sender, EventArgs e)
         {
-            MainTimer.Stop();
+            mainTimer.Stop();
             Hide();
             new GameWindow().Show();
         }
