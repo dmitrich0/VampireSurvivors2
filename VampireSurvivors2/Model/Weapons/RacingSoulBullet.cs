@@ -16,7 +16,7 @@ namespace VampireSurvivors2
         public PointF Position { get; set; }
         public System.Windows.Size Size { get; }
         public WorldModel World { get; set; }
-        public IMonster Target { get; set; }
+        public Monster Target { get; set; }
         public Vector VectorToTarget
         {
             get { return new Vector(Target.CentralPosition.X - Position.X, Target.CentralPosition.Y - Position.Y); }
@@ -30,7 +30,7 @@ namespace VampireSurvivors2
             }
         }
 
-        public RacingSoulBullet(PointF pos, int damage, WorldModel world, IMonster target)
+        public RacingSoulBullet(PointF pos, int damage, WorldModel world, Monster target)
         {
             Position = pos;
             Damage = damage;

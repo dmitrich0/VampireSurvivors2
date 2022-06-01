@@ -50,20 +50,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Entities\Chest.cs" />
+    <Compile Include="Model\Entities\Entity.cs" />
+    <Compile Include="Model\Monsters\Monster.cs" />
     <Compile Include="Model\Weapons\DeathRingWeapon.cs" />
     <Compile Include="Model\Weapons\RacingSoulBullet.cs" />
     <Compile Include="Model\Weapons\RacingSoulWeapon.cs" />
     <Compile Include="Model\Weapons\ProtectionBookWeapon.cs" />
     <Compile Include="Model\Entities\Heart.cs" />
     <Compile Include="Model\Entities\Crystal.cs" />
-    <Compile Include="Model\Interfaces\IEntity.cs" />
     <Compile Include="Model\Interfaces\IWeapon.cs" />
     <Compile Include="Model\Monsters\Snake.cs" />
     <Compile Include="Model\Interfaces\IAnimarable.cs" />
     <Compile Include="Model\Monsters\Bat.cs" />
     <Compile Include="Model\Animator.cs" />
     <Compile Include="Model\Extenstions.cs" />
-    <Compile Include="Model\Interfaces\IMonster.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\WorldModel.cs" />
     <Compile Include="View\GameMenu.cs">
