@@ -10,13 +10,13 @@ namespace VampireSurvivors2
 {
     internal class RacingSoulBullet
     {
-        public int Damage { get; set; }
+        private int Damage { get; set; }
         public Image Image { get; set; }
-        public int Speed { get; set; }
+        private int Speed { get; set; }
         public PointF Position { get; set; }
         public System.Windows.Size Size { get; }
         public WorldModel World { get; set; }
-        public Monster Target { get; set; }
+        private Monster Target { get; set; }
         public Vector VectorToTarget
         {
             get { return new Vector(Target.CentralPosition.X - Position.X, Target.CentralPosition.Y - Position.Y); }
@@ -38,7 +38,7 @@ namespace VampireSurvivors2
             Size = new System.Windows.Size(Image.Width, Image.Height);
             Speed = 9;
             World = world;
-            Target = target;
+            this.Target = target;
         }
 
         public void MoveToTarget()

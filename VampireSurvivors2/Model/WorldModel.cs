@@ -39,8 +39,8 @@ namespace VampireSurvivors2
             Entities = new List<Entity>();
             RacingSoulBullets = new List<RacingSoulBullet>();
             MonstersSpawned = 0;
-            HeartChance = 3;
-            ChestChance = 5;
+            HeartChance = 30;
+            ChestChance = 100;
             LastPlayerLevel = 1;
             AllWeapons = new List<IWeapon>() { new RacingSoulWeapon(this), new DeathRingWeapon(this), new ProtectionBookWeapon() };
         }

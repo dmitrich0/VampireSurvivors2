@@ -14,7 +14,7 @@ namespace VampireSurvivors2
         public PointF Position { get; set; }
         public int Value { get; set; }
         public System.Windows.Size Size { get; protected set; }
-        public float Speed { get; set; }
+        protected float Speed { get; set; }
         WorldModel World { get; set; }
         public PointF CentralPosition
         {

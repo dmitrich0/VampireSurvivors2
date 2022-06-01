@@ -208,7 +208,8 @@ namespace VampireSurvivors2
                 g.DrawString(weapon.LevelUpDescription, new Font(myFont, 8), Brushes.Black, textPos);
                 i++;
             }
-            AddButtonsOnLevelWindow();
+            if (Controls.Count == 0)
+                AddButtonsOnLevelWindow();
         }
 
         public void AddButtonsOnLevelWindow()
@@ -231,7 +232,6 @@ namespace VampireSurvivors2
                     case 0:
                         button.Click += (s, e) =>
                         {
-                            Controls.Remove(this);
                             if (player.RacingSoulWeapon == null)
                             {
                                 player.RacingSoulWeapon = new RacingSoulWeapon(world);
@@ -241,12 +241,12 @@ namespace VampireSurvivors2
                                 player.RacingSoulWeapon.WeaponLevel++;
                             MainTimer.Start();
                             isMenuOpened = false;
+                            Controls.Clear();
                         };
                         break;
                     case 1:
                         button.Click += (s, e) =>
                         {
-                            Controls.Remove(this);
                             if (player.DeathRingWeapon == null)
                             {
                                 player.DeathRingWeapon = new DeathRingWeapon(world);
@@ -256,12 +256,12 @@ namespace VampireSurvivors2
                                 player.DeathRingWeapon.WeaponLevel++;
                             MainTimer.Start();
                             isMenuOpened = false;
+                            Controls.Clear();
                         };
                         break;
                     case 2:
                         button.Click += (s, e) =>
                         {
-                            Controls.Remove(this);
                             if (player.ProtectionBookWeapon == null)
                             {
                                 player.ProtectionBookWeapon = new ProtectionBookWeapon();
@@ -274,6 +274,7 @@ namespace VampireSurvivors2
                             }
                             MainTimer.Start();
                             isMenuOpened = false;
+                            Controls.Clear();
                         };
                         break;
                 }
@@ -281,17 +282,8 @@ namespace VampireSurvivors2
             }
         }
 
-        public void DestroyButtons()
-        {
-            foreach (var control in Controls)
-                if (control is Button)
-                    Controls.Remove((Control)control);
-        }
-
         public void Update(object sender, EventArgs e)
         {
-            if (!isMenuOpened)
-                DestroyButtons();
             world.SpawnMonster();
             world.MoveMonsters();
             world.CheckEntities();
