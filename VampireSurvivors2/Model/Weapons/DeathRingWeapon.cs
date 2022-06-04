@@ -39,7 +39,7 @@ namespace VampireSurvivors2
             {
                 CurrentCooldown++;
                 foreach (var monster in World.Monsters.ToArray())
-                    monster.GetDamage(Damage, World);
+                    monster.GetDamage(Damage);
             }
             else if (CurrentCooldown == CoolDown)
                 CurrentCooldown = 0;

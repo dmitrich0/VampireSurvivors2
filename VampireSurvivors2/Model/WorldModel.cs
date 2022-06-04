@@ -74,8 +74,8 @@ namespace VampireSurvivors2
                         break;
                 }
                 var monsterPos = new PointF(x, y);
-                var monsterId = Random.Next(0, 100);
-                if (monsterId > 95)
+                var monsterId = Random.Next(0, 101);
+                if (monsterId > 90)
                     Monsters.Add(new Snake(this, monsterPos));
                 else if (monsterId > 80)
                     Monsters.Add(new Bee(this, monsterPos));

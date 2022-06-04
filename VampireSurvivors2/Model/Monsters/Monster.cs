@@ -8,7 +8,7 @@ namespace VampireSurvivors2
         public Image[] Idle { get; set; }
         public Image[] Right { get; set; }
         public Image[] Left { get; set; }
-        public int CurrentCooldown { get; set; }
+        public int CurrentCooldown { get; set; }   
         public int CoolDown { get; set; }
         public int AttackRange { get; set; }
         public int XP { get; set; }
@@ -68,11 +68,11 @@ namespace VampireSurvivors2
             {
                 if (weapon is ProtectionBookWeapon bookWeapon)
                     if (vector.Length <= bookWeapon.AttackRange)
-                        GetDamage(bookWeapon.DoDamage(vector), World);
+                        GetDamage(bookWeapon.DoDamage(vector));
             }
         }
 
-        public void GetDamage(int damage, WorldModel world)
+        public void GetDamage(int damage)
         {
             Health -= damage;
             if (Health <= 0)
