@@ -55,7 +55,6 @@ namespace VampireSurvivors2
             var monster = world.Monsters[0];
             var distance = new Vector(world.Player.Position.X - monster.Position.X,
                 world.Player.Position.Y - monster.Position.Y).Length;
-            var pos = new Vector(monster.Position.X, monster.Position.Y);
             monster.Move();
             var newDistance = new Vector(world.Player.Position.X - monster.Position.X,
                 world.Player.Position.Y - monster.Position.Y).Length;
