@@ -60,7 +60,7 @@ namespace VampireSurvivors2
             var damage = Damage + rnd.Next((int)(Damage * 0.2), (int)(Damage * 0.2));
             if (VectorToTarget.Length < 5)
             {
-                Target.GetDamage(damage, World);
+                Target.GetDamage(damage);
                 World.RacingSoulBullets.Remove(this);
             }
         }
