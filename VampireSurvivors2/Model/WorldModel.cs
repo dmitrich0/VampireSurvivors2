@@ -11,18 +11,18 @@ namespace VampireSurvivors2
     {
         public List<Monster> Monsters;
         public Player Player;
-        public Random Random;
-        public Stopwatch Timer;
+        private readonly Random random;
+        private readonly Stopwatch timer;
         public float WorldHeight;
         public float WorldWidth;
-        public int SpawnCooldown;
-        public int SpawnCooldownRemaining;
+        private int spawnCooldown;
+        private int spawnCooldownRemaining;
         public int MonstersSpawned;
         public List<Entity> Entities;
         public List<RacingSoulBullet> RacingSoulBullets;
         public int LastPlayerLevel;
-        public int HeartChance { get; set; }
-        public int ChestChance { get; set; }
+        private readonly int heartChance;
+        private readonly int chestChance;
         public List<IWeapon> AllWeapons;
 
         public WorldModel(float width, float height, int spawnCooldown)
@@ -31,60 +31,60 @@ namespace VampireSurvivors2
             WorldWidth = width;
             Monsters = new List<Monster>();
             Player = new Player(this);
-            Random = new Random();
-            Timer = new Stopwatch();
-            Timer.Start();
-            SpawnCooldown = spawnCooldown;
-            SpawnCooldownRemaining = SpawnCooldown;
+            random = new Random();
+            timer = new Stopwatch();
+            timer.Start();
+            this.spawnCooldown = spawnCooldown;
+            spawnCooldownRemaining = this.spawnCooldown;
             Entities = new List<Entity>();
             RacingSoulBullets = new List<RacingSoulBullet>();
             MonstersSpawned = 0;
-            HeartChance = 30;
-            ChestChance = 100;
+            heartChance = 30;
+            chestChance = 100;
             LastPlayerLevel = 1;
             AllWeapons = new List<IWeapon>() { new RacingSoulWeapon(this), new DeathRingWeapon(this), new ProtectionBookWeapon() };
         }
 
         public void SpawnMonster()
         {
-            if (SpawnCooldownRemaining != 0)
-                SpawnCooldownRemaining--;
+            if (spawnCooldownRemaining != 0)
+                spawnCooldownRemaining--;
             else
             {
-                var sideId = Random.Next(0, 4);
+                var sideId = random.Next(0, 4);
                 var x = 0f;
                 var y = 0f;
                 switch (sideId)
                 {
                     case 0:
                         y = -10f;
-                        x = (float)Random.NextDouble() * WorldWidth;
+                        x = (float)random.NextDouble() * WorldWidth;
                         break;
                     case 1:
-                        y = (float)Random.NextDouble() * WorldHeight;
+                        y = (float)random.NextDouble() * WorldHeight;
                         x = WorldWidth + 10;
                         break;
                     case 2:
                         y = WorldHeight + 10;
-                        x = (float)Random.NextDouble() * WorldWidth;
+                        x = (float)random.NextDouble() * WorldWidth;
                         break;
                     case 3:
-                        y = (float)Random.NextDouble() * WorldHeight;
+                        y = (float)random.NextDouble() * WorldHeight;
                         x = -10f;
                         break;
                 }
                 var monsterPos = new PointF(x, y);
-                var monsterId = Random.Next(0, 101);
+                var monsterId = random.Next(0, 101);
                 if (monsterId > 90)
                     Monsters.Add(new Snake(this, monsterPos));
                 else if (monsterId > 80)
                     Monsters.Add(new Bee(this, monsterPos));
                 else
                     Monsters.Add(new Bat(this, monsterPos));
-                SpawnCooldownRemaining = SpawnCooldown;
+                spawnCooldownRemaining = spawnCooldown;
                 MonstersSpawned++;
-                if (MonstersSpawned % 30 == 0 && SpawnCooldown != 1)
-                    SpawnCooldown--;
+                if (MonstersSpawned % 30 == 0 && spawnCooldown != 1)
+                    spawnCooldown--;
             }
         }
 
@@ -126,12 +126,12 @@ namespace VampireSurvivors2
             Monsters.Remove(monster);
             Player.Killed++;
             var rand = new Random();
-            if (rand.Next(1, ChestChance + 1) == 1)
+            if (rand.Next(1, chestChance + 1) == 1)
             {
                 var chest = new Chest(this, monster.CentralPosition);
                 Entities.Add(chest);
             }
-            else if (rand.Next(1, HeartChance + 1) == 1)
+            else if (rand.Next(1, heartChance + 1) == 1)
             {
                 var heart = new Heart(this, monster.CentralPosition);
                 Entities.Add(heart);

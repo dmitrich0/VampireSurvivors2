@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace VampireSurvivors2
 {
     internal class Animator
     {
-        public IAnimarable Entity { get; set; }
-        public Image[] CurrentAnimation { get; set; }
-        public int CurrentFrame { get; set; }
+        private IAnimarable Entity { get; set; }
+        private Image[] CurrentAnimation { get; set; }
+        private int CurrentFrame { get; set; }
         private int CoolDown { get; set; }
         private int CurrentCoolDown { get; set; }
         public Animator(IAnimarable entity)
