@@ -39,7 +39,7 @@ namespace VampireSurvivors2
         public Player(WorldModel world)
         {
             CurrentXP = 0;
-            XPToNextLevel = 100;
+            XPToNextLevel = 70;
             Level = 1;
             Health = 100;
             Speed = 4;
@@ -58,10 +58,10 @@ namespace VampireSurvivors2
             Image = Animator.GetCurrentFrame();
             Size = new System.Windows.Size(Image.Width * 2, Image.Height * 2);
             PickupRange = 50;
-            ProtectionBookWeapon = new ProtectionBookWeapon();
-            RacingSoulWeapon = null;
+            ProtectionBookWeapon = null;
+            RacingSoulWeapon = new RacingSoulWeapon(world);
             DeathRingWeapon = null;
-            Weapons = new List<IWeapon>() { ProtectionBookWeapon };
+            Weapons = new List<IWeapon>() { RacingSoulWeapon };
         }
 
         public void GetDamage(int damage)
