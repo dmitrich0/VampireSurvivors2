@@ -10,19 +10,13 @@ namespace VampireSurvivors2
         public int Value { get; set; }
         public System.Windows.Size Size { get; protected set; }
         protected float Speed { get; set; }
-        WorldModel World { get; set; }
-        public PointF CentralPosition
-        {
-            get
-            {
-                return new PointF((float)(Position.X + Size.Width / 2),
-              (float)(Position.Y + Size.Height / 2));
-            }
-        }
 
-        public Entity(WorldModel world, PointF pos)
+        public PointF CentralPosition =>
+            new PointF((float)(Position.X + Size.Width / 2),
+                (float)(Position.Y + Size.Height / 2));
+
+        public Entity(PointF pos)
         {
-            World = world;
             Position = pos;
         }
 

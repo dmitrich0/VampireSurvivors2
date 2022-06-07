@@ -47,7 +47,7 @@ namespace VampireSurvivors2
             KeyDown += AddKeys;
             KeyUp += RemoveKeys;
             musicPlayer.PlayLooping();
-            Text = "Vampire Survivors 2";
+            Text = @"Vampire Survivors 2";
             Icon = View.Resources.iconScull;
             menuImage = View.Resources.nextLevel;
             menuPos = new PointF((float)(Size.Width / 2 - menuImage.Width / 1.5), 120);
@@ -61,7 +61,7 @@ namespace VampireSurvivors2
             DrawTime(g);
             DrawEntities(g);
             DrawMonsters(g);
-            DrawPlayerAndHUD(g);
+            DrawPlayerAndHud(g);
             DrawKillsCounter(g);
             DrawWeaponsTable(g);
             DrawRacingSoulBullets(g);
@@ -69,31 +69,31 @@ namespace VampireSurvivors2
                 ShowNewLevelWindow(g);
         }
 
-        private void DrawPlayerAndHUD(Graphics g)
+        private void DrawPlayerAndHud(Graphics g)
         {
-            var XPPadding = 8;
-            var xpBorders = 2;
-            var XPWidth = (int)(((float)player.CurrentXP / (float)player.XPToNextLevel) * world.WorldWidth - 2 * XPPadding);
-            var levelPosition = new PointF(world.WorldWidth - 80, XPPadding - 2);
-            var XPRectangle = new Rectangle(XPPadding, XPPadding, XPWidth, 25);
-            var XPBg = new Rectangle(XPPadding - xpBorders, XPPadding - xpBorders,
-                (int)(world.WorldWidth - 2 * XPPadding) + xpBorders * 2, 25 + xpBorders * 2);
-            var XPBorder = new Rectangle(XPPadding - xpBorders * 2, XPPadding - xpBorders * 2,
-                (int)(world.WorldWidth - 2 * XPPadding) + xpBorders * 4, 25 + xpBorders * 4);
+            const int xpPadding = 8;
+            const int xpBorders = 2;
+            var xpWidth = (int)(((float)player.CurrentXp / (float)player.XpToNextLevel) * world.WorldWidth - 2 * xpPadding);
+            var levelPosition = new PointF(world.WorldWidth - 80, xpPadding - 2);
+            var xpRectangle = new Rectangle(xpPadding, xpPadding, xpWidth, 25);
+            var xpBg = new Rectangle(xpPadding - xpBorders, xpPadding - xpBorders,
+                (int)(world.WorldWidth - 2 * xpPadding) + xpBorders * 2, 25 + xpBorders * 2);
+            var xpBorder = new Rectangle(xpPadding - xpBorders * 2, xpPadding - xpBorders * 2,
+                (int)(world.WorldWidth - 2 * xpPadding) + xpBorders * 4, 25 + xpBorders * 4);
 
             g.DrawImage(player.Image, player.Position.X, player.Position.Y,
                 (float)player.Size.Width, (float)player.Size.Height);
 
-            g.FillRectangle(Brushes.LightYellow, XPPadding - 2, 50 - 2, player.MaxHealth * 3 + 4, 25 + 4);
-            g.FillRectangle(Brushes.Black, XPPadding, 50, player.MaxHealth * 3, 25);
-            g.FillRectangle(Brushes.DarkRed, XPPadding, 50, player.Health * 3, 25);
+            g.FillRectangle(Brushes.LightYellow, xpPadding - 2, 50 - 2, player.MaxHealth * 3 + 4, 25 + 4);
+            g.FillRectangle(Brushes.Black, xpPadding, 50, player.MaxHealth * 3, 25);
+            g.FillRectangle(Brushes.DarkRed, xpPadding, 50, player.Health * 3, 25);
 
-            g.FillRectangle(Brushes.Gold, XPBorder);
-            g.FillRectangle(Brushes.Black, XPBg);
-            g.FillRectangle(Brushes.Blue, XPRectangle);
+            g.FillRectangle(Brushes.Gold, xpBorder);
+            g.FillRectangle(Brushes.Black, xpBg);
+            g.FillRectangle(Brushes.Blue, xpRectangle);
 
             if (player.ProtectionBookWeapon != null)
-                g.DrawEllipse(Pens.Gold, Extenstions.GetCircleRect(player.CentralPosition.X, 
+                g.DrawEllipse(Pens.Gold, Extensions.GetCircleRect(player.CentralPosition.X, 
                     player.CentralPosition.Y, player.ProtectionBookWeapon.AttackRange));
 
             g.DrawString("LV " + player.Level.ToString(), new Font(myFont, 14),
@@ -113,11 +113,11 @@ namespace VampireSurvivors2
             var seconds = (int)visibleTimer.Elapsed.TotalSeconds % 60;
             var minutes = (int)visibleTimer.Elapsed.TotalMinutes;
             var timePosition = new PointF((float)(ClientSize.Width / 2.15), 30);
-            var tagetTimePosition = new PointF((float)(ClientSize.Width / 2.082), 90);
+            var targetTimePosition = new PointF((float)(ClientSize.Width / 2.082), 90);
             var totalTime = seconds % 60 >= 10 ? minutes.ToString() + ":" + seconds.ToString()
                 : minutes.ToString() + ":0" + seconds.ToString();
             g.DrawString(totalTime, new Font(myFont, 36), Brushes.BlanchedAlmond, timePosition);
-            g.DrawString("15:00", new Font(myFont, 18), Brushes.Gray, tagetTimePosition);
+            g.DrawString("15:00", new Font(myFont, 18), Brushes.Gray, targetTimePosition);
         }
 
         private void DrawEntities(Graphics g)
@@ -133,7 +133,7 @@ namespace VampireSurvivors2
                 var healthWidth = (monster.Health / monster.MaxHealth) * monster.Size.Width;
                 var healthHeight = 3;
                 g.DrawImage(monster.Image, monster.Position.X, monster.Position.Y, monster.Size.Width, monster.Size.Height);
-                if (monster.Health != monster.MaxHealth)
+                if (Math.Abs(monster.Health - monster.MaxHealth) > 0)
                 {
                     g.FillRectangle(Brushes.Red, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
                         healthWidth, healthHeight);

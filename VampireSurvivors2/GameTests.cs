@@ -11,7 +11,7 @@ namespace VampireSurvivors2
         public void HighHPTest()
         {
             var world = new WorldModel(1920, 1080, 30);
-            world.Player.GetHP(1000);
+            world.Player.GetHp(1000);
             if (world.Player.Health != 100)
                 throw new Exception();
         }
@@ -42,7 +42,7 @@ namespace VampireSurvivors2
         public void GetXPTest()
         {
             var world = new WorldModel(1920, 1080, 30);
-            world.Player.GetXP((int)world.Player.XPToNextLevel);
+            world.Player.GetXp((int)world.Player.XpToNextLevel);
             if (world.Player.Level != 2)
                 throw new Exception();
         }

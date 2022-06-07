@@ -4,7 +4,7 @@ namespace VampireSurvivors2
 {
     internal class Heart : Entity
     {
-        public Heart(WorldModel world, PointF pos) : base(world, pos)
+        public Heart(PointF pos) : base(pos)
         {
             Position = pos;
             Value = 25;

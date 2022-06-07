@@ -20,26 +20,23 @@ namespace VampireSurvivors2
         public float Health { get; private set; }
         public PointF Position { get; private set; }
         public Image Image { get; private set; }
-        public WorldModel World { get; private set; }
+        public WorldModel World { get; }
         public Vector Direction { get; set; }
         public Animator Animator { get; set; }
-        public double CurrentXP { get; set; }
-        public double XPToNextLevel { get; set; }
+        public double CurrentXp { get; set; }
+        public double XpToNextLevel { get; set; }
         public int Level { get; set; }
         public int Killed { get; set; }
         public List<IWeapon> Weapons { get; set; }
         public ProtectionBookWeapon ProtectionBookWeapon { get; set; }
         public RacingSoulWeapon RacingSoulWeapon { get; set; }
         public DeathRingWeapon DeathRingWeapon { get; set; }
-        public PointF CentralPosition
-        {
-            get { return new PointF((float)(Position.X + Size.Width / 2), (float)(Position.Y + Size.Height / 2)); }
-        }
+        public PointF CentralPosition => new PointF((float)(Position.X + Size.Width / 2), (float)(Position.Y + Size.Height / 2));
 
         public Player(WorldModel world)
         {
-            CurrentXP = 0;
-            XPToNextLevel = 70;
+            CurrentXp = 0;
+            XpToNextLevel = 70;
             Level = 1;
             Health = 100;
             Speed = 4;
@@ -49,7 +46,7 @@ namespace VampireSurvivors2
             Idle = new Image[] { View.Resources.idle };
             Right = new Image[] { View.Resources.walk1, View.Resources.walk2,
                 View.Resources.walk3, View.Resources.walk4, View.Resources.walk5, View.Resources.walk6 };
-            Left = Right.Select(x => Extenstions.Flip(x)).ToArray();
+            Left = Right.Select(Extensions.Flip).ToArray();
             Up = new Image[] { View.Resources.up1, View.Resources.up2, 
                 View.Resources.up3, View.Resources.up4, View.Resources.up5, View.Resources.up6 };
             Down = new Image[] { View.Resources.down1, View.Resources.down2, 
@@ -74,12 +71,11 @@ namespace VampireSurvivors2
         public bool CanMove(Vector direction)
         {
             var newPosition = new PointF((float)(Position.X + direction.X), (float)(Position.Y + direction.Y));
-            if (newPosition.X.EqualTo(0, 3) && direction.X < 0 
-                || newPosition.X.EqualTo(World.WorldWidth, 3) && direction.X > 0
-                || newPosition.Y.EqualTo(0, 3) && direction.Y < 0
-                || newPosition.Y.EqualTo(World.WorldHeight, 3) && direction.Y > 0)
-                return false;
-            return true;
+            return (!newPosition.X.EqualTo(0, 3) || !(direction.X < 0)) 
+                   && (!newPosition.X.EqualTo(World.WorldWidth, 3) 
+                       || !(direction.X > 0)) && (!newPosition.Y.EqualTo(0, 3) 
+                                                  || !(direction.Y < 0)) 
+                   && (!newPosition.Y.EqualTo(World.WorldHeight, 3) || !(direction.Y > 0));
         }
 
         public void Move(Vector direction)
@@ -89,18 +85,16 @@ namespace VampireSurvivors2
             Direction = direction;
         }
 
-        public void GetXP(int xp)
+        public void GetXp(int xp)
         {
-            CurrentXP += xp;
-            if (CurrentXP >= XPToNextLevel)
-            {
-                CurrentXP -= XPToNextLevel;
-                Level++;
-                XPToNextLevel *= 1.2;
-            }
+            CurrentXp += xp;
+            if (!(CurrentXp >= XpToNextLevel)) return;
+            CurrentXp -= XpToNextLevel;
+            Level++;
+            XpToNextLevel *= 1.2;
         }
 
-        public void GetHP(int hp)
+        public void GetHp(int hp)
         {
             Health += hp;
             Health = Health > 100 ? 100 : Health;

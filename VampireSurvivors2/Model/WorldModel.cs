@@ -12,7 +12,6 @@ namespace VampireSurvivors2
         public List<Monster> Monsters;
         public Player Player;
         private readonly Random random;
-        private readonly Stopwatch timer;
         public float WorldHeight;
         public float WorldWidth;
         private int spawnCooldown;
@@ -32,7 +31,7 @@ namespace VampireSurvivors2
             Monsters = new List<Monster>();
             Player = new Player(this);
             random = new Random();
-            timer = new Stopwatch();
+            var timer = new Stopwatch();
             timer.Start();
             this.spawnCooldown = spawnCooldown;
             spawnCooldownRemaining = this.spawnCooldown;
@@ -128,17 +127,17 @@ namespace VampireSurvivors2
             var rand = new Random();
             if (rand.Next(1, chestChance + 1) == 1)
             {
-                var chest = new Chest(this, monster.CentralPosition);
+                var chest = new Chest(monster.CentralPosition);
                 Entities.Add(chest);
             }
             else if (rand.Next(1, heartChance + 1) == 1)
             {
-                var heart = new Heart(this, monster.CentralPosition);
+                var heart = new Heart(monster.CentralPosition);
                 Entities.Add(heart);
             }
             else
             {
-                var crystal = new Crystal(this, monster.CentralPosition, monster.XP);
+                var crystal = new Crystal(monster.CentralPosition, monster.Xp);
                 Entities.Add(crystal);
             }
         }
@@ -158,17 +157,17 @@ namespace VampireSurvivors2
                     {
                         if (entity is Heart)
                         {
-                            Player.GetHP(entity.Value);
+                            Player.GetHp(entity.Value);
                             Entities.Remove(entity);
                         }
                         else if (entity is Crystal)
                         {
-                            Player.GetXP(entity.Value);
+                            Player.GetXp(entity.Value);
                             Entities.Remove(entity);
                         }
                         else if (entity is Chest)
                         {
-                            Player.GetXP((int)Player.XPToNextLevel - (int)Player.CurrentXP + 1);
+                            Player.GetXp((int)Player.XpToNextLevel - (int)Player.CurrentXp + 1);
                             Entities.Remove(entity);
                         }
                     }
