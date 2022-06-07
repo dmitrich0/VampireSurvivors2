@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace VampireSurvivors2
 {
-    public static class Extenstions
+    public static class Extensions
     {
         public static bool EqualTo(this float value1, float value2, float epsilon)
         {

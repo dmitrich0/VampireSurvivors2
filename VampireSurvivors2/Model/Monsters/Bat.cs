@@ -2,7 +2,7 @@
 
 namespace VampireSurvivors2
 {
-    internal class Bat : Monster, IAnimarable
+    internal class Bat : Monster
     {
         public Bat(WorldModel world, PointF pos) : base(world, pos)
         {
@@ -18,8 +18,8 @@ namespace VampireSurvivors2
             Damage = 2;
             CoolDown = 5;
             AttackRange = 30;
-            XP = 10;
-            Size = new System.Drawing.Size((int)(Image.Width * 1.5), (int)(Image.Height * 1.5));
+            Xp = 10;
+            Size = new Size((int)(Image.Width * 1.5), (int)(Image.Height * 1.5));
         }
     }
 }

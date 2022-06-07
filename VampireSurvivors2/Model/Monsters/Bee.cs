@@ -2,7 +2,7 @@
 
 namespace VampireSurvivors2
 {
-    internal class Bee : Monster, IAnimarable
+    internal class Bee : Monster
     {
         public Bee(WorldModel world, PointF pos) : base(world, pos)
         {
@@ -17,7 +17,7 @@ namespace VampireSurvivors2
             Damage = 3;
             CoolDown = 5;
             AttackRange = 30;
-            XP = 20;
+            Xp = 20;
             Size = new Size((int)(Image.Width * 1.5), (int)(Image.Height * 1.5));
         }
     }

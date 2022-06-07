@@ -4,7 +4,7 @@ namespace VampireSurvivors2
 {
     internal class Crystal : Entity
     {
-        public Crystal(WorldModel world, PointF pos, int xp) : base(world, pos)
+        public Crystal(PointF pos, int xp) : base(pos)
         {
             Position = pos;
             Value = xp;

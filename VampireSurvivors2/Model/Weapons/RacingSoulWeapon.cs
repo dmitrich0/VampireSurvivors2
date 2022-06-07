@@ -37,18 +37,14 @@ namespace VampireSurvivors2
             {
                 var vector = new Vector(World.Player.CentralPosition.X - monster.CentralPosition.X,
                     World.Player.CentralPosition.Y - monster.CentralPosition.Y);
-                if (vector.Length < minVector.Length)
-                {
-                    minVector = vector;
-                    target = monster;
-                }
+                if (!(vector.Length < minVector.Length)) continue;
+                minVector = vector;
+                target = monster;
             }
-            if (target != null && CurrentCooldown > CoolDown)
-            {
-                Damage = WeaponLevel * BaseDamage;
-                World.RacingSoulBullets.Add(new RacingSoulBullet(World.Player.Position, Damage, World, target));
-                CurrentCooldown = 0;
-            }
+            if (target == null || CurrentCooldown <= CoolDown) return;
+            Damage = WeaponLevel * BaseDamage;
+            World.RacingSoulBullets.Add(new RacingSoulBullet(World.Player.Position, Damage, World, target));
+            CurrentCooldown = 0;
         }
     }
 }

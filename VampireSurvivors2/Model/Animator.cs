@@ -4,7 +4,7 @@ namespace VampireSurvivors2
 {
     internal class Animator
     {
-        private IAnimarable Entity { get; set; }
+        private IAnimarable Entity { get; }
         private Image[] CurrentAnimation { get; set; }
         private int CurrentFrame { get; set; }
         private int CoolDown { get; set; }
@@ -24,29 +24,23 @@ namespace VampireSurvivors2
                 CurrentCoolDown++;
                 return CurrentAnimation[CurrentFrame % CurrentAnimation.Length];
             }
+            CurrentCoolDown = 0;
+            var oldCurrentAnim = CurrentAnimation;
+            if (Entity.Direction.Length == 0)
+                CurrentAnimation = Entity.Idle;
+            else if (Entity.Direction.X > 0)
+                CurrentAnimation = Entity.Right;
+            else if (Entity.Direction.X < 0)
+                CurrentAnimation = Entity.Left;
             else
+                CurrentAnimation = Entity.Right;
+            if (oldCurrentAnim == CurrentAnimation)
             {
-                CurrentCoolDown = 0;
-                var oldCurrentAnim = CurrentAnimation;
-                if (Entity.Direction.Length == 0)
-                    CurrentAnimation = Entity.Idle;
-                else if (Entity.Direction.X > 0)
-                    CurrentAnimation = Entity.Right;
-                else if (Entity.Direction.X < 0)
-                    CurrentAnimation = Entity.Left;
-                else
-                    CurrentAnimation = Entity.Right;
-                if (oldCurrentAnim == CurrentAnimation)
-                {
-                    CurrentFrame++;
-                    return CurrentAnimation[CurrentFrame % CurrentAnimation.Length];
-                }
-                else
-                {
-                    CurrentFrame = 0;
-                    return CurrentAnimation[CurrentFrame % CurrentAnimation.Length];
-                }
+                CurrentFrame++;
+                return CurrentAnimation[CurrentFrame % CurrentAnimation.Length];
             }
+            CurrentFrame = 0;
+            return CurrentAnimation[CurrentFrame % CurrentAnimation.Length];
         }
     }
 }

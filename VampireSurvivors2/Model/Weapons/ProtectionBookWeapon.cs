@@ -33,16 +33,16 @@ namespace VampireSurvivors2
             var rnd = new Random();
             Damage = BaseDamage * WeaponLevel;
             var damage = Damage + rnd.Next((int)(Damage * 0.2), (int)(Damage * 0.2));
-            if (vectorToTarget.Length <= AttackRange)
-                if (CurrentCooldown == 0)
-                {
-                    CurrentCooldown++;
-                    return damage;
-                }
-                else if (CurrentCooldown == CoolDown)
-                    CurrentCooldown = 0;
-                else
-                    CurrentCooldown++;
+            if (!(vectorToTarget.Length <= AttackRange)) return 0;
+            if (CurrentCooldown == 0)
+            {
+                CurrentCooldown++;
+                return damage;
+            }
+            if (CurrentCooldown == CoolDown)
+                CurrentCooldown = 0;
+            else
+                CurrentCooldown++;
             return 0;
         }
     }

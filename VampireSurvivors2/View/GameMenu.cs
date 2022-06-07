@@ -14,7 +14,7 @@ namespace VampireSurvivors2.View
         private Timer mainTimer;
         private float titleDy;
         private bool isTitleGoingUp;
-        private SoundPlayer MusicPlayer;
+        private SoundPlayer musicPlayer;
         public GameMenu()
         {
             InitializeComponent();
@@ -28,11 +28,11 @@ namespace VampireSurvivors2.View
             DoubleBuffered = true;
             myFontCollection = new PrivateFontCollection();
             myFontCollection.AddFontFile(@"..\..\View\font.otf");
-            MusicPlayer = new SoundPlayer(@"..\..\Resources\menuMusic.wav");
+            musicPlayer = new SoundPlayer(@"..\..\Resources\menuMusic.wav");
             myFont = myFontCollection.Families[0];
-            Text = "Main Menu";
+            Text = @"Main Menu";
             SizeChanged += Update;
-            MusicPlayer.PlayLooping();
+            musicPlayer.PlayLooping();
             BackgroundImage = Resources.menuBg1;
             mainTimer = new Timer { Interval = 570 };
             mainTimer.Tick += new EventHandler(Update);
@@ -54,14 +54,13 @@ namespace VampireSurvivors2.View
         {
             titleDy = isTitleGoingUp ? titleDy : -titleDy;
             isTitleGoingUp = !isTitleGoingUp;
-            var titlePostiton = new PointF(Size.Width / 4, Size.Height / 6 + titleDy);
-            g.DrawString("Vampire Survivors 2", new Font(myFont, 54), Brushes.DarkRed, titlePostiton);
+            var titlePosition = new PointF(Size.Width / 4, Size.Height / 6 + titleDy);
+            g.DrawString("Vampire Survivors 2", new Font(myFont, 54), Brushes.DarkRed, titlePosition);
         }
 
         private void DrawPlayButton()
         {
-            var btnLocation = new Point(Size.Width / 2, Size.Height / 2);
-            var playButton = new Button() { Text = "Go to battle", BackColor = Color.FromArgb(11, 52, 135),
+            var playButton = new Button() { Text = @"Go to battle", BackColor = Color.FromArgb(11, 52, 135),
                 Font = new Font(myFont, 22), Height = 60, Width = 300, TextAlign = ContentAlignment.MiddleCenter};
             playButton.Location = new Point(Size.Width / 2 - playButton.Width / 2, Size.Height / 2);
             playButton.FlatStyle = FlatStyle.Flat;
@@ -73,7 +72,7 @@ namespace VampireSurvivors2.View
         {
             var exitButton = new Button()
             {
-                Text = "Exit",
+                Text = @"Exit",
                 BackColor = Color.FromArgb(11, 52, 135),
                 Font = new Font(myFont, 22),
                 Height = 60,
@@ -84,13 +83,6 @@ namespace VampireSurvivors2.View
             exitButton.Location = new Point(Size.Width / 2 - exitButton.Width / 2, Size.Height / 2 + 120);
             Controls.Add(exitButton);
             exitButton.Click += (s, e) => { Application.Exit(); };
-        }
-
-        private void StartGame(object sender, EventArgs e)
-        {
-            mainTimer.Stop();
-            Hide();
-            new GameWindow().Show();
         }
 
         public void Update(object sender, EventArgs e)
