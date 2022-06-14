@@ -27,15 +27,15 @@ namespace VampireSurvivors2.View
             WindowState = FormWindowState.Maximized;
             DoubleBuffered = true;
             myFontCollection = new PrivateFontCollection();
-            myFontCollection.AddFontFile(@"..\..\View\font.otf");
-            musicPlayer = new SoundPlayer(@"..\..\Resources\menuMusic.wav");
+            myFontCollection.AddFontFile(@"font.otf");
+            musicPlayer = new SoundPlayer(Resources.menuMusic);
             myFont = myFontCollection.Families[0];
             Text = @"Main Menu";
             SizeChanged += Update;
             musicPlayer.PlayLooping();
             BackgroundImage = Resources.menuBg1;
             mainTimer = new Timer { Interval = 570 };
-            mainTimer.Tick += new EventHandler(Update);
+            mainTimer.Tick += Update;
             mainTimer.Start();
             titleDy = 3;
         }

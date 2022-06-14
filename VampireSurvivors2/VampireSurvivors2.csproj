@@ -94,6 +94,7 @@
     <Compile Include="Model\Entities\Chest.cs" />
     <Compile Include="Model\Entities\Entity.cs" />
     <Compile Include="Model\Monsters\Bee.cs" />
+    <Compile Include="Model\Monsters\Slime.cs" />
     <Compile Include="Model\Monsters\Ghost.cs" />
     <Compile Include="Model\Monsters\Monster.cs" />
     <Compile Include="Model\Weapons\DeathRingWeapon.cs" />
@@ -176,168 +177,22 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\player.png" />
+    <None Include="Resources\slime %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\idle_down.png" />
+    <None Include="Resources\slime %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\down4.png" />
+    <None Include="Resources\slime %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\down5.png" />
+    <None Include="Resources\slime %284%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\down6.png" />
+    <None Include="Resources\slime %285%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\idle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\idle_right_left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\idle_up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\up6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\walk1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\walk2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\walk3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\walk4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\walk5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\walk6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\down1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\down2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\down3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-face %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-face %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-face %284%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-left %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-left %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-left %283%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-left %284%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-right %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-right %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-right %283%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-right %284%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-back %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-back %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-back %283%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-back %284%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bat-face %283%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\currentHP.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\allHP.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\nextLevel.png" />
-    <None Include="Resources\wrath.png" />
-    <None Include="Resources\protectionBook.png" />
-    <None Include="Resources\weapons.png" />
-    <None Include="Resources\playBtn.png" />
-    <None Include="Resources\menuBg.gif" />
-    <None Include="Resources\menuBg.jpg" />
-    <None Include="Resources\heart.png" />
-    <None Include="Resources\heart %281%29.png" />
-    <None Include="Resources\bullet.png" />
-    <None Include="Resources\bulletIcon.png" />
-    <None Include="Resources\final_bullet.png" />
-    <None Include="Resources\chest.png" />
-    <None Include="Resources\bg.jpg" />
-    <None Include="Resources\bee.png" />
-    <None Include="Resources\bee2.png" />
-    <None Include="Resources\ghost_left %281%29.png" />
-    <None Include="Resources\ghost_left %282%29.png" />
-    <None Include="Resources\ghost_left %283%29.png" />
-    <None Include="Resources\ghost_left %284%29.png" />
-    <None Include="Resources\ghost_right %281%29.png" />
-    <None Include="Resources\ghost_right %282%29.png" />
-    <None Include="Resources\ghost_right %283%29.png" />
-    <None Include="Resources\ghost_right %284%29.png" />
-    <Content Include="Resources\menuMusic.wav" />
-    <Content Include="Resources\bg_music_2.wav" />
-    <Content Include="Resources\bat_hit.wav" />
-    <None Include="Resources\crystal.png" />
-    <None Include="Resources\crystal2.png" />
-    <Content Include="Resources\music.wav" />
-    <None Include="Resources\skull.ico" />
-    <None Include="Resources\snake %284%29.png" />
-    <None Include="Resources\snake %283%29.png" />
-    <None Include="Resources\snake %282%29.png" />
-    <None Include="Resources\snake %281%29.png" />
-    <None Include="Resources\snake %287%29.png" />
-    <None Include="Resources\snake %286%29.png" />
-    <None Include="Resources\snake %285%29.png" />
-    <None Include="Resources\skull.png" />
+    <None Include="Resources\slime %286%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

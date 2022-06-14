@@ -42,7 +42,7 @@ namespace VampireSurvivors2
                 target = monster;
             }
             if (target == null || CurrentCooldown <= CoolDown) return;
-            Damage = WeaponLevel * BaseDamage;
+            Damage = BaseDamage + BaseDamage / 2 * (WeaponLevel - 1);
             World.RacingSoulBullets.Add(new RacingSoulBullet(World.Player.Position, Damage, World, target));
             CurrentCooldown = 0;
         }
