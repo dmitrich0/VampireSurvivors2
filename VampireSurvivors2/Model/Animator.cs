@@ -1,13 +1,14 @@
 ﻿using System.Drawing;
+using VampireSurvivors2.Model.Interfaces;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model
 {
     internal class Animator
     {
         private IAnimarable Entity { get; }
         private Image[] CurrentAnimation { get; set; }
         private int CurrentFrame { get; set; }
-        private int CoolDown { get; set; }
+        private int CoolDown { get; }
         private int CurrentCoolDown { get; set; }
         public Animator(IAnimarable entity)
         {

@@ -8,8 +8,10 @@ using System.Linq;
 using System.Media;
 using System.Windows;
 using System.Windows.Forms;
+using VampireSurvivors2.Model;
+using VampireSurvivors2.Model.Weapons;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.View
 {
     internal partial class GameWindow : Form
     {
@@ -35,12 +37,12 @@ namespace VampireSurvivors2
             myFontCollection = new PrivateFontCollection();
             activeKeys = new List<Keys>();
             MainTimer = new Timer { Interval = 30 };
-            world = new WorldModel(ClientSize.Width, ClientSize.Height, 100);
+            world = new WorldModel(ClientSize.Width, ClientSize.Height, 60);
             player = world.Player;
-            musicPlayer = new SoundPlayer(View.Resources.music);
+            musicPlayer = new SoundPlayer(Resources.music);
             myFontCollection.AddFontFile(@"font.otf");
             myFont = myFontCollection.Families[0];
-            BackgroundImage = View.Resources.bg;
+            BackgroundImage = Resources.bg;
             MainTimer.Tick += Update;
             MainTimer.Start();
             visibleTimer.Start();
@@ -48,8 +50,8 @@ namespace VampireSurvivors2
             KeyUp += RemoveKeys;
             musicPlayer.PlayLooping();
             Text = @"Vampire Survivors 2";
-            Icon = View.Resources.iconScull;
-            menuImage = View.Resources.nextLevel;
+            Icon = Resources.iconScull;
+            menuImage = Resources.nextLevel;
             menuPos = new PointF((float)(Size.Width / 2 - menuImage.Width / 1.5), 120);
         }
 
@@ -96,7 +98,7 @@ namespace VampireSurvivors2
                 g.DrawEllipse(Pens.Gold, Extensions.GetCircleRect(player.CentralPosition.X, 
                     player.CentralPosition.Y, player.ProtectionBookWeapon.AttackRange));
 
-            g.DrawString("LV " + player.Level.ToString(), new Font(myFont, 14),
+            g.DrawString("LV " + player.Level, new Font(myFont, 14),
                 Brushes.AntiqueWhite, levelPosition);
         }
 
@@ -104,7 +106,7 @@ namespace VampireSurvivors2
         {
             var skullRect = new RectangleF(world.WorldWidth - 300, 40, 25, 25);
             var textPosition = new PointF(skullRect.Location.X + skullRect.Width + 10, skullRect.Location.Y - 4);
-            g.DrawImage(View.Resources.skull, skullRect);
+            g.DrawImage(Resources.skull, skullRect);
             g.DrawString(player.Killed.ToString(), new Font(myFont, 14), Brushes.AntiqueWhite, textPosition);
         }
 
@@ -117,7 +119,7 @@ namespace VampireSurvivors2
             var totalTime = seconds % 60 >= 10 ? minutes + ":" + seconds
                 : minutes + ":0" + seconds;
             g.DrawString(totalTime, new Font(myFont, 36), Brushes.BlanchedAlmond, timePosition);
-            g.DrawString("15:00", new Font(myFont, 18), Brushes.Gray, targetTimePosition);
+            g.DrawString("10:00", new Font(myFont, 18), Brushes.Gray, targetTimePosition);
         }
 
         private void DrawEntities(Graphics g)
@@ -131,7 +133,7 @@ namespace VampireSurvivors2
             foreach (var monster in world.Monsters.ToList())
             {
                 var healthWidth = (monster.Health / monster.MaxHealth) * monster.Size.Width;
-                var healthHeight = 3;
+                const int healthHeight = 3;
                 g.DrawImage(monster.Image, monster.Position.X, monster.Position.Y, monster.Size.Width, monster.Size.Height);
                 if (!(Math.Abs(monster.Health - monster.MaxHealth) > 0)) continue;
                 g.FillRectangle(Brushes.Red, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,

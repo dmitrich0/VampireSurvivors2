@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Linq;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Monsters
 {
     internal class Snake : Monster
     {

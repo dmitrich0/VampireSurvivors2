@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Windows;
+using VampireSurvivors2.Model;
+using VampireSurvivors2.Model.Monsters;
 
 namespace VampireSurvivors2
 {

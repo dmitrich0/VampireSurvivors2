@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Interfaces
 {
     internal interface IAnimarable
     {

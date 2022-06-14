@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Entities
 {
     internal class Heart : Entity
     {

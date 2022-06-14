@@ -1,4 +1,4 @@
-﻿namespace VampireSurvivors2
+﻿namespace VampireSurvivors2.View
 {
     partial class GameWindow
     {

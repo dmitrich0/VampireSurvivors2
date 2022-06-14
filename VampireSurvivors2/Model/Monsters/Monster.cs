@@ -1,7 +1,9 @@
 ﻿using System.Drawing;
 using System.Windows;
+using VampireSurvivors2.Model.Interfaces;
+using VampireSurvivors2.Model.Weapons;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Monsters
 {
     internal class Monster : IAnimarable
     {
