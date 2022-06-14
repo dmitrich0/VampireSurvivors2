@@ -94,6 +94,7 @@
     <Compile Include="Model\Entities\Chest.cs" />
     <Compile Include="Model\Entities\Entity.cs" />
     <Compile Include="Model\Monsters\Bee.cs" />
+    <Compile Include="Model\Monsters\Ghost.cs" />
     <Compile Include="Model\Monsters\Monster.cs" />
     <Compile Include="Model\Weapons\DeathRingWeapon.cs" />
     <Compile Include="Model\Weapons\RacingSoulBullet.cs" />
@@ -314,6 +315,14 @@
     <None Include="Resources\bg.jpg" />
     <None Include="Resources\bee.png" />
     <None Include="Resources\bee2.png" />
+    <None Include="Resources\ghost_left %281%29.png" />
+    <None Include="Resources\ghost_left %282%29.png" />
+    <None Include="Resources\ghost_left %283%29.png" />
+    <None Include="Resources\ghost_left %284%29.png" />
+    <None Include="Resources\ghost_right %281%29.png" />
+    <None Include="Resources\ghost_right %282%29.png" />
+    <None Include="Resources\ghost_right %283%29.png" />
+    <None Include="Resources\ghost_right %284%29.png" />
     <Content Include="Resources\menuMusic.wav" />
     <Content Include="Resources\bg_music_2.wav" />
     <Content Include="Resources\bat_hit.wav" />
