@@ -20,7 +20,7 @@ namespace VampireSurvivors2
         {
             WeaponLevel = 1;
             BaseDamage = 3;
-            Damage = BaseDamage * WeaponLevel;
+            Damage = BaseDamage;
             Icon = View.Resources.protectionBook;
             Image = null;
             CoolDown = 40;
@@ -31,7 +31,7 @@ namespace VampireSurvivors2
         public int DoDamage(Vector vectorToTarget)
         {
             var rnd = new Random();
-            Damage = BaseDamage * WeaponLevel;
+            Damage = BaseDamage + BaseDamage / 2 * (WeaponLevel - 1);
             var damage = Damage + rnd.Next((int)(Damage * 0.2), (int)(Damage * 0.2));
             if (!(vectorToTarget.Length <= AttackRange)) return 0;
             if (CurrentCooldown == 0)

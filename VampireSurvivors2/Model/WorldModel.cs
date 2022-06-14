@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows;
+using VampireSurvivors2.Model.Monsters;
 
 namespace VampireSurvivors2
 {
@@ -41,7 +42,9 @@ namespace VampireSurvivors2
             heartChance = 30;
             chestChance = 100;
             LastPlayerLevel = 1;
-            AllWeapons = new List<IWeapon>() { new RacingSoulWeapon(this), new DeathRingWeapon(this), new ProtectionBookWeapon() };
+            AllWeapons = new List<IWeapon>
+            { new RacingSoulWeapon(this), new DeathRingWeapon(this),
+                new ProtectionBookWeapon() };
         }
 
         public void SpawnMonster()
@@ -73,18 +76,20 @@ namespace VampireSurvivors2
                         break;
                 }
                 var monsterPos = new PointF(x, y);
-                var monsterId = random.Next(0, 101);
-                if (monsterId > 95)
+                var monsterId = random.Next(0, MonstersSpawned);
+                if (monsterId > 60)
+                    Monsters.Add(new Slime(this, monsterPos));
+                else if (monsterId > 48)
                     Monsters.Add(new Ghost(this, monsterPos));
-                else if (monsterId > 90)
+                else if (monsterId > 24)
                     Monsters.Add(new Snake(this, monsterPos));
-                else if (monsterId > 80)
+                else if (monsterId > 12)
                     Monsters.Add(new Bee(this, monsterPos));
                 else
                     Monsters.Add(new Bat(this, monsterPos));
                 spawnCooldownRemaining = spawnCooldown;
                 MonstersSpawned++;
-                if (MonstersSpawned % 30 == 0 && spawnCooldown != 1)
+                if (MonstersSpawned % 20 == 0 && spawnCooldown != 1)
                     spawnCooldown--;
             }
         }
@@ -100,24 +105,19 @@ namespace VampireSurvivors2
 
         public bool IsLevelChanged()
         {
-            if (LastPlayerLevel != Player.Level)
-            {
-                LastPlayerLevel = Player.Level;
-                return true;
-            }
-            return false;
+            if (LastPlayerLevel == Player.Level) return false;
+            LastPlayerLevel = Player.Level;
+            return true;
         }
 
         public void CheckDeathRing()
         {
-            if (Player.DeathRingWeapon != null)
-                Player.DeathRingWeapon.DoDamage();
+            Player.DeathRingWeapon?.DoDamage();
         }
 
         public void CheckBullets()
         {
-            if (Player.RacingSoulWeapon != null)
-                Player.RacingSoulWeapon.CreateBullet();
+            Player.RacingSoulWeapon?.CreateBullet();
             foreach (var bullet in RacingSoulBullets.ToArray())
                 bullet.MoveToTarget();
         }
@@ -150,29 +150,25 @@ namespace VampireSurvivors2
             {
                 var vector = new Vector(Player.CentralPosition.X - entity.CentralPosition.X,
                     Player.CentralPosition.Y - entity.CentralPosition.Y);
-                if (vector.Length <= Player.PickupRange)
+                if (!(vector.Length <= Player.PickupRange)) continue;
+                vector.Normalize();
+                var newEntityPos = entity.Move(vector);
+                vector = new Vector(Player.CentralPosition.X - newEntityPos.X, Player.CentralPosition.Y - newEntityPos.Y);
+                if (!(vector.Length <= 5)) continue;
+                switch (entity)
                 {
-                    vector.Normalize();
-                    var newEntityPos = entity.Move(vector);
-                    vector = new Vector(Player.CentralPosition.X - newEntityPos.X, Player.CentralPosition.Y - newEntityPos.Y);
-                    if (vector.Length <= 5)
-                    {
-                        if (entity is Heart)
-                        {
-                            Player.GetHp(entity.Value);
-                            Entities.Remove(entity);
-                        }
-                        else if (entity is Crystal)
-                        {
-                            Player.GetXp(entity.Value);
-                            Entities.Remove(entity);
-                        }
-                        else if (entity is Chest)
-                        {
-                            Player.GetXp((int)Player.XpToNextLevel - (int)Player.CurrentXp + 1);
-                            Entities.Remove(entity);
-                        }
-                    }
+                    case Heart _:
+                        Player.GetHp(entity.Value);
+                        Entities.Remove(entity);
+                        break;
+                    case Crystal _:
+                        Player.GetXp(entity.Value);
+                        Entities.Remove(entity);
+                        break;
+                    case Chest _:
+                        Player.GetXp((int)Player.XpToNextLevel - (int)Player.CurrentXp + 1);
+                        Entities.Remove(entity);
+                        break;
                 }
             }
         }

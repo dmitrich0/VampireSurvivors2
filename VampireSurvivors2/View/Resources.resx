@@ -208,6 +208,9 @@
   <data name="down6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\down6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="font" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>font.otf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ghost_left__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ghost_left (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -250,6 +253,12 @@
   <data name="menuBg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\menuBg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="menuMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menuMusic.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="music" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\music.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="nextLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nextLevel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -258,6 +267,24 @@
   </data>
   <data name="skull" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\skull.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime__5_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slime__6_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slime (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="snake__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\snake (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

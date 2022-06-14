@@ -37,11 +37,11 @@ namespace VampireSurvivors2
             MainTimer = new Timer { Interval = 30 };
             world = new WorldModel(ClientSize.Width, ClientSize.Height, 100);
             player = world.Player;
-            musicPlayer = new SoundPlayer(@"..\..\Resources\music.wav");
-            myFontCollection.AddFontFile(@"..\..\View\font.otf");
+            musicPlayer = new SoundPlayer(View.Resources.music);
+            myFontCollection.AddFontFile(@"font.otf");
             myFont = myFontCollection.Families[0];
             BackgroundImage = View.Resources.bg;
-            MainTimer.Tick += new EventHandler(Update);
+            MainTimer.Tick += Update;
             MainTimer.Start();
             visibleTimer.Start();
             KeyDown += AddKeys;
@@ -114,8 +114,8 @@ namespace VampireSurvivors2
             var minutes = (int)visibleTimer.Elapsed.TotalMinutes;
             var timePosition = new PointF((float)(ClientSize.Width / 2.15), 30);
             var targetTimePosition = new PointF((float)(ClientSize.Width / 2.082), 90);
-            var totalTime = seconds % 60 >= 10 ? minutes.ToString() + ":" + seconds.ToString()
-                : minutes.ToString() + ":0" + seconds.ToString();
+            var totalTime = seconds % 60 >= 10 ? minutes + ":" + seconds
+                : minutes + ":0" + seconds;
             g.DrawString(totalTime, new Font(myFont, 36), Brushes.BlanchedAlmond, timePosition);
             g.DrawString("15:00", new Font(myFont, 18), Brushes.Gray, targetTimePosition);
         }
@@ -133,13 +133,11 @@ namespace VampireSurvivors2
                 var healthWidth = (monster.Health / monster.MaxHealth) * monster.Size.Width;
                 var healthHeight = 3;
                 g.DrawImage(monster.Image, monster.Position.X, monster.Position.Y, monster.Size.Width, monster.Size.Height);
-                if (Math.Abs(monster.Health - monster.MaxHealth) > 0)
-                {
-                    g.FillRectangle(Brushes.Red, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
-                        healthWidth, healthHeight);
-                    g.DrawRectangle(Pens.Black, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
-                       monster.Size.Width, healthHeight);
-                }
+                if (!(Math.Abs(monster.Health - monster.MaxHealth) > 0)) continue;
+                g.FillRectangle(Brushes.Red, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
+                    healthWidth, healthHeight);
+                g.DrawRectangle(Pens.Black, monster.Position.X, monster.Position.Y + monster.Size.Height + 10,
+                    monster.Size.Width, healthHeight);
             }
         }
 
@@ -198,7 +196,7 @@ namespace VampireSurvivors2
             var levelPos = new PointF(menuPos.X + 375, menuPos.Y + 179);
             g.DrawImage(menuImage, menuPos);
             g.DrawString(player.Level.ToString(), new Font(myFont, 20), Brushes.DarkGoldenrod, levelPos);
-            var dy = 115;
+            const int dy = 115;
             var i = 0;
             foreach (var weapon in world.AllWeapons)
             {
@@ -214,9 +212,9 @@ namespace VampireSurvivors2
 
         public void AddButtonsOnLevelWindow()
         {
-            var btnHeight = 87;
-            var btnWidth = 385;
-            var dy = 115;
+            const int btnHeight = 87;
+            const int btnWidth = 385;
+            const int dy = 115;
             for (var i = 0; i < 3; i++)
             {
                 var button = new Button()
