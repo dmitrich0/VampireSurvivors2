@@ -1,34 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using VampireSurvivors2.Model.Monsters;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Weapons
 {
     internal class RacingSoulBullet
     {
-        private int Damage { get; set; }
-        public Image Image { get; set; }
-        private int Speed { get; set; }
+        private int Damage { get; }
+        public Image Image { get; }
+        private int Speed { get; }
         public PointF Position { get; set; }
         public System.Windows.Size Size { get; }
-        public WorldModel World { get; set; }
-        private Monster Target { get; set; }
-        public Vector VectorToTarget
-        {
-            get { return new Vector(Target.CentralPosition.X - Position.X, Target.CentralPosition.Y - Position.Y); }
-        }
-        public PointF CentralPosition
-        {
-            get
-            {
-                return new PointF((float)(Position.X + Size.Width / 2),
-              (float)(Position.Y + Size.Height / 2));
-            }
-        }
+        public WorldModel World { get; }
+        private Monster Target { get; }
+        public Vector VectorToTarget => new Vector(Target.CentralPosition.X - Position.X, Target.CentralPosition.Y - Position.Y);
 
         public RacingSoulBullet(PointF pos, int damage, WorldModel world, Monster target)
         {

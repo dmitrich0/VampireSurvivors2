@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using VampireSurvivors2.Model.Interfaces;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Weapons
 {
     internal class DeathRingWeapon : IWeapon
     {

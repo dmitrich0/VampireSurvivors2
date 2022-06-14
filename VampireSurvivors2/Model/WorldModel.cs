@@ -4,9 +4,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows;
+using VampireSurvivors2.Model.Entities;
+using VampireSurvivors2.Model.Interfaces;
 using VampireSurvivors2.Model.Monsters;
+using VampireSurvivors2.Model.Weapons;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model
 {
     internal class WorldModel
     {
@@ -50,48 +53,49 @@ namespace VampireSurvivors2
         public void SpawnMonster()
         {
             if (spawnCooldownRemaining != 0)
-                spawnCooldownRemaining--;
-            else
             {
-                var sideId = random.Next(0, 4);
-                var x = 0f;
-                var y = 0f;
-                switch (sideId)
-                {
-                    case 0:
-                        y = -10f;
-                        x = (float)random.NextDouble() * WorldWidth;
-                        break;
-                    case 1:
-                        y = (float)random.NextDouble() * WorldHeight;
-                        x = WorldWidth + 10;
-                        break;
-                    case 2:
-                        y = WorldHeight + 10;
-                        x = (float)random.NextDouble() * WorldWidth;
-                        break;
-                    case 3:
-                        y = (float)random.NextDouble() * WorldHeight;
-                        x = -10f;
-                        break;
-                }
-                var monsterPos = new PointF(x, y);
-                var monsterId = random.Next(0, MonstersSpawned);
-                if (monsterId > 60)
-                    Monsters.Add(new Slime(this, monsterPos));
-                else if (monsterId > 48)
-                    Monsters.Add(new Ghost(this, monsterPos));
-                else if (monsterId > 24)
-                    Monsters.Add(new Snake(this, monsterPos));
-                else if (monsterId > 12)
-                    Monsters.Add(new Bee(this, monsterPos));
-                else
-                    Monsters.Add(new Bat(this, monsterPos));
-                spawnCooldownRemaining = spawnCooldown;
-                MonstersSpawned++;
-                if (MonstersSpawned % 20 == 0 && spawnCooldown != 1)
-                    spawnCooldown--;
+                spawnCooldownRemaining--;
+                return;
             }
+            var sideId = random.Next(0, 4);
+            var x = 0f;
+            var y = 0f;
+            switch (sideId)
+            {
+                case 0:
+                    y = -10f;
+                    x = (float)random.NextDouble() * WorldWidth;
+                    break;
+                case 1:
+                    y = (float)random.NextDouble() * WorldHeight;
+                    x = WorldWidth + 10;
+                    break;
+                case 2:
+                    y = WorldHeight + 10;
+                    x = (float)random.NextDouble() * WorldWidth;
+                    break;
+                case 3:
+                    y = (float)random.NextDouble() * WorldHeight;
+                    x = -10f;
+                    break;
+            }
+            var monsterPos = new PointF(x, y);
+            var monsterId = random.Next(0, Player.Killed);
+            if (monsterId > 90)
+                Monsters.Add(new DeathEye(this, monsterPos));
+            else if (monsterId > 60)
+                Monsters.Add(new Slime(this, monsterPos));
+            else if (monsterId > 48)
+                Monsters.Add(new Ghost(this, monsterPos));
+            else if (monsterId > 24)
+                Monsters.Add(new Snake(this, monsterPos));
+            else if (monsterId > 12)
+                Monsters.Add(new Bee(this, monsterPos));
+            else
+                Monsters.Add(new Bat(this, monsterPos));
+            spawnCooldownRemaining = spawnCooldown;
+            if (Player.Killed % 8 == 0 && spawnCooldown != 1)
+                spawnCooldown--;
         }
 
         public void MoveMonsters()

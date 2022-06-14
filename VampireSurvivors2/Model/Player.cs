@@ -3,8 +3,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using VampireSurvivors2.Model.Interfaces;
+using VampireSurvivors2.Model.Weapons;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model
 {
     internal class Player : IAnimarable
     {

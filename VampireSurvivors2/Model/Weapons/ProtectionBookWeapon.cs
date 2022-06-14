@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows;
+using VampireSurvivors2.Model.Interfaces;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Weapons
 {
     internal class ProtectionBookWeapon : IWeapon
     {
-        public int BaseDamage { get; set; }
+        public int BaseDamage { get; }
         public int WeaponLevel { get; set; }
         public Image Icon { get; set; }
-        public Image Image { get; set; }
-        public int CoolDown { get; set; }
+        public Image Image { get; }
+        public int CoolDown { get; }
         public int CurrentCooldown { get; set; }
         public int Damage { get; set; }
         public string LevelUpDescription { get; set; }

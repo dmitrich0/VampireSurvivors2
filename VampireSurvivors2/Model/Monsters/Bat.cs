@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model.Monsters
 {
     internal class Bat : Monster
     {

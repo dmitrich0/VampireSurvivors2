@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace VampireSurvivors2
+namespace VampireSurvivors2.Model
 {
     public static class Extensions
     {

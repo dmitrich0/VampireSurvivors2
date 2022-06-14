@@ -94,6 +94,7 @@
     <Compile Include="Model\Entities\Chest.cs" />
     <Compile Include="Model\Entities\Entity.cs" />
     <Compile Include="Model\Monsters\Bee.cs" />
+    <Compile Include="Model\Monsters\DeathEye.cs" />
     <Compile Include="Model\Monsters\Slime.cs" />
     <Compile Include="Model\Monsters\Ghost.cs" />
     <Compile Include="Model\Monsters\Monster.cs" />
@@ -193,6 +194,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\slime %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deathEye %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deathEye %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deathEye %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deathEye %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
