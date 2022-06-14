@@ -208,6 +208,30 @@
   <data name="down6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\down6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ghost_left__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_left (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghost_left__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_left (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghost_left__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_left (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghost_left__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_left (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghost_right__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_right (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghost_right__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_right (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghost_right__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_right (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ghost_right__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ghost_right (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="heart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\heart (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
